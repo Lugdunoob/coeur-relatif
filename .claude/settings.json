@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(à compléter en carte 05)",
+      "Bash(à compléter en carte 05)",
+      "Bash(à compléter en carte 05)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git checkout *)",
+      "Bash(git switch *)",
+      "Bash(git branch *)",
+      "Bash(git log *)",
+      "Bash(git diff *)",
+      "Bash(git status *)",
+      "Bash(git worktree *)",
+      "Bash(git push origin *)"
+    ],
+    "deny": [
+      "Bash(git push --force *)",
+      "Bash(git push -f *)",
+      "Bash(git push * --force*)",
+      "Bash(git merge *)",
+      "Bash(git rebase *)",
+      "Bash(git reset --hard *)",
+      "Bash(rm -rf *)",
+      "Bash(curl * | sh)",
+      "Bash(curl * | bash)",
+      "Bash(gh pr merge *)"
+    ]
+  }
+}

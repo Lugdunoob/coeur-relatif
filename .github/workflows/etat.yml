@@ -1,0 +1,24 @@
+# À copier dans .github/workflows/etat.yml du dépôt d'idée.
+# À chaque push : régénère docs/etat.md et le miroir issues/jalons. Aucune IA, aucun secret en plus du GITHUB_TOKEN.
+name: etat
+on:
+  push:
+    branches: [main, "regie/**", "lot-*"]
+permissions:
+  contents: write
+  issues: write
+jobs:
+  etat:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Régénérer docs/etat.md
+        run: python3 .loop/scripts/etat.py .
+      - name: Miroir issues et jalons
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: bash .loop/scripts/miroir-github.sh
+      - name: Commiter si changé
+        run: |
+          git config user.name "regie-bot"; git config user.email "regie-bot@users.noreply.github.com"
+          git add docs/etat.md
+          git diff --cached --quiet || git commit -m "etat: régénéré [skip ci]" && git push
