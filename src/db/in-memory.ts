@@ -1,14 +1,35 @@
-// Stub de typage : l'implémentation réelle du dépôt en mémoire est le lot 02
-// (docs/lots.md). Ne pas coder la logique ici avant ce lot — ce fichier existe
-// uniquement pour que `tsc` et les tests des lots 3 à 5 se chargent proprement
-// avant que le lot 02 n'existe (voir LESSONS.md, R-7).
-import type { Seance } from './schema.js';
+// Implémentation en mémoire du dépôt (lot 02, docs/lots.md).
+import type { Seance, Personne } from './schema.js';
 
 export class InMemoryRepository {
-  ajouterSeance(_seance: Seance): void {
-    throw new Error('InMemoryRepository.ajouterSeance : à implémenter au lot 02');
+  private seances: Seance[] = [];
+  private personnes = new Map<string, Personne>();
+  private rappelsConsentement = new Map<string, Date>();
+
+  ajouterSeance(seance: Seance): void {
+    this.seances.push(seance);
   }
-  dernieresSeances(_personneId: string, _n: number): Seance[] {
-    throw new Error('InMemoryRepository.dernieresSeances : à implémenter au lot 02');
+
+  dernieresSeances(personneId: string, n: number): Seance[] {
+    return this.seances
+      .filter((seance) => seance.personneId === personneId)
+      .sort((a, b) => a.horodatage.getTime() - b.horodatage.getTime())
+      .slice(-n);
+  }
+
+  upsertPersonne(personne: Personne): void {
+    this.personnes.set(personne.idTelegram, personne);
+  }
+
+  getPersonne(idTelegram: string): Personne | undefined {
+    return this.personnes.get(idTelegram);
+  }
+
+  enregistrerRappelConsentement(idTelegram: string, date: Date): void {
+    this.rappelsConsentement.set(idTelegram, date);
+  }
+
+  dernierRappelConsentement(idTelegram: string): Date | undefined {
+    return this.rappelsConsentement.get(idTelegram);
   }
 }
