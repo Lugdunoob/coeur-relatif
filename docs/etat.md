@@ -1,6 +1,6 @@
 # État de l'idée
 
-_Généré le 2026-09-13 21:13 UTC par `scripts/etat.py`. Ne pas éditer._
+_Généré le 2026-09-13 21:24 UTC par `scripts/etat.py`. Ne pas éditer._
 
 ## Veto possible maintenant
 
@@ -9,6 +9,7 @@ _Généré le 2026-09-13 21:13 UTC par `scripts/etat.py`. Ne pas éditer._
 - **Carte 03 Spécification** : encore 23 h. Décision : spécification approuvée avec un critère ajouté (CA-11bis) suite au. `/regie:veto 03 <raison>`
 - **Carte 05 Architecture et plan** : encore 23 h. Décision : architecture approuvée, avec un spike de vérification ajouté au lot 3. `/regie:veto 05 <raison>`
 - **Carte 06 Tests d'acceptation** : encore 23 h. Décision : les dix-huit tests d'acceptation sont approuvés tels quels.. `/regie:veto 06 <raison>`
+- **Carte 07 Lot 01** : encore 23 h. Décision : lot 1 approuvé ; fusionné dans `main` en local faute de dépôt distant.. `/regie:veto 07 <raison>`
 
 ## Où on en est
 
@@ -19,6 +20,7 @@ _Généré le 2026-09-13 21:13 UTC par `scripts/etat.py`. Ne pas éditer._
 | A cadrage | 03 Spécification | produit | ✓ approuvee | spécification approuvée avec un critère ajouté (CA-11bis) suite au |
 | B plan | 05 Architecture et plan | architecte | ✓ approuvee | architecture approuvée, avec un spike de vérification ajouté au lot 3 |
 | B plan | 06 Tests d'acceptation | architecte | ✓ approuvee | les dix-huit tests d'acceptation sont approuvés tels quels. |
+| C lots | 07 Lot 01 | dev | ✓ approuvee | lot 1 approuvé ; fusionné dans `main` en local faute de dépôt distant. |
 
 ## Prochaines étapes
 

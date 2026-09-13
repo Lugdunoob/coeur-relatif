@@ -35,5 +35,11 @@ pour les tests d'acceptation si la carte Architecture est jugée bonne.
 - [x] Carte 05 Architecture — approuvée 2026-09-13T21:13:40.423832+00:00
 - [x] Carte 06 Tests d'acceptation — approuvée, 11 suites rouges sur 12, preuve dans la carte
 
-## Lot en cours
-- [ ] Lot 01 : lancé en loop contexte frais, `.loop/prompts/loop-lot-01.md`
+## Programme C, lots
+- [x] Lot 01 (CA-04, CA-05, CA-07, CA-08) — loop terminé en 1 itération sur 8, fusionné
+  dans main en local le 2026-09-13T21:24:20+00:00 (pas de PR : aucun dépôt distant pour ce
+  projet à ce stade, voir carte 07 et son journal).
+- [ ] Lot 02 (CA-01, CA-02, CA-03, CA-06) — à lancer.
+- [ ] Lot 03 (CA-09, CA-10, avec spike de vérification Telegram avant le code métier)
+- [ ] Lot 04 (CA-11, CA-11bis, CA-12, CA-13)
+- [ ] Lot 05 (CA-14, CA-15, CA-16, CA-17)
