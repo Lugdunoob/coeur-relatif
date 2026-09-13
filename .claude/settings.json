@@ -1,9 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "Bash(à compléter en carte 05)",
-      "Bash(à compléter en carte 05)",
-      "Bash(à compléter en carte 05)",
+      "Bash(npm install*)",
+      "Bash(npm test*)",
+      "Bash(npm run lint*)",
+      "Bash(npm run typecheck*)",
       "Bash(git add *)",
       "Bash(git commit *)",
       "Bash(git checkout *)",
