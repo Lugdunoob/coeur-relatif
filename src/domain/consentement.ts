@@ -1,8 +1,9 @@
-// Stub de typage : implémentation réelle au lot 02 (docs/lots.md). Voir LESSONS.md, R-7.
-export function peutEnregistrer(_personne: { consentementHorodate?: Date }): boolean {
-  throw new Error('peutEnregistrer : à implémenter au lot 02');
+const SEPT_JOURS_MS = 7 * 24 * 3600 * 1000;
+
+export function peutEnregistrer(personne: { consentementHorodate?: Date }): boolean {
+  return personne.consentementHorodate !== undefined;
 }
 
-export function doitRelancerConsentement(_derniereRelance: Date, _maintenant: Date): boolean {
-  throw new Error('doitRelancerConsentement : à implémenter au lot 02');
+export function doitRelancerConsentement(derniereRelance: Date, maintenant: Date): boolean {
+  return maintenant.getTime() - derniereRelance.getTime() >= SEPT_JOURS_MS;
 }

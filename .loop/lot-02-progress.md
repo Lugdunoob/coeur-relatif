@@ -7,7 +7,7 @@
   `dernieresSeances(personneId, n)` (n dernières, triées ancienne→récente, filtrées par
   personne), `upsertPersonne`, `getPersonne(idTelegram)`, `enregistrerRappelConsentement`,
   `dernierRappelConsentement`.
-- [ ] Sous-lot 2 : `src/domain/consentement.ts` — `peutEnregistrer` (CA-01),
+- [x] Sous-lot 2 : `src/domain/consentement.ts` — `peutEnregistrer` (CA-01),
   `doitRelancerConsentement` (CA-02, seuil 7×24×3600×1000 ms). Fait passer
   `test/consentement.test.ts`.
 - [ ] Sous-lot 3 : `src/domain/parsing.ts` — `parserDeclaration` (CA-03) : regex tolérante
@@ -73,3 +73,9 @@
   8 fichiers en échec / 4 verts, 18 tests en échec / 11 verts — identique à l'état avant
   cette itération (aucune régression, aucun CA du lot 2 encore couvert par du code) ;
   `git diff --stat main -- docs/` vide ; branche `lot-02`.
+- It.3 (sous-lot 2) : `src/domain/consentement.ts` implémenté (`peutEnregistrer` teste
+  `consentementHorodate !== undefined` ; `doitRelancerConsentement` compare l'écart en ms
+  au seuil `7*24*3600*1000`). `npm run typecheck` 0 erreur ; `npm run lint` 0 erreur ;
+  `npm test` 7 fichiers en échec / 5 verts, 15 tests en échec / 14 verts (amélioration :
+  `test/consentement.test.ts` passe désormais, CA-01 et CA-02 couverts, aucune
+  régression sur les autres) ; `git diff --stat main -- docs/` vide ; branche `lot-02`.
