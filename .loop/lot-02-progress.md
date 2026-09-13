@@ -19,8 +19,78 @@
 - [x] Sous-lot 5 : squelette `src/telegram/webhook.ts` — structure seule, pas de `grammY`,
   pas d'appel réseau ; commentaire décrivant le branchement futur avec `consentement.ts`,
   `parsing.ts`, `message.ts`, `reference.ts`, `etoiles.ts`. Aucun test à faire passer.
-- [ ] Sous-lot final : revue contradictoire du diff `git diff main...lot-02`, corrections,
+- [x] Sous-lot final : revue contradictoire du diff `git diff main...lot-02`, corrections,
   `git push -u origin lot-02` (pas de `gh pr create`, absent de cet environnement).
+
+## Mémo du Contradicteur (sous-lot final) et réponses
+
+Revue en lecture seule, aucun fichier modifié par elle. `docs/cartes/02-lot-02.md`
+n'existe pas et la règle absolue 2 interdit toute écriture dans `docs/` tant que
+`.loop/phase = lot` : la réponse formelle ci-dessous vit ici (mémoire de boucle) ; sa
+retranscription dans la carte revient à l'orchestrateur, comme pour l'ouverture de la PR.
+
+État confirmé par le Contradicteur : typecheck 0 erreur, lint 0 erreur, 19/29 tests
+verts, les 10 échecs restants relèvent uniquement des lots 3-5 (« à implémenter au lot
+0X »), aucune régression du lot 1, `docs/` inchangé, aucun test modifié, aucune
+dépendance ajoutée, `src/domain/*` et `webhook.ts` sans import (conforme ADR-0004),
+seuil CA-02 exact (`7*24*3600*1000`).
+
+1. **« Tant qu'on y est » signalé sur `src/db/in-memory.ts`**
+   (`upsertPersonne`/`getPersonne`/`enregistrerRappelConsentement`/
+   `dernierRappelConsentement`) : signalement compréhensible (aucun test du lot 02 ne les
+   exerce directement) mais non retenu — c'est exactement ce que le prompt de loop
+   commande au sous-lot 1, en toutes lettres : « Ajouter aussi les méthodes de
+   consentement dont a besoin le sous-lot 2 [...] aucun test ne les couvre directement
+   mais consentement.ts en aura besoin. » Ce n'est pas une anticipation volontaire de
+   l'agent, c'est la mission elle-même qui les demande par avance pour armer le futur
+   branchement du webhook (sous-lot 5). Aucune correction : conservé tel quel.
+2. **Trou de conformité latent CA-06 (chiffres dans une activité libre)** : réel et
+   retenu comme risque, mais **non corrigé dans ce lot** — corriger `parsing.ts` ou
+   `message.ts` pour assainir l'activité inventerait une règle que ni `docs/spec.md`
+   (CA-03 : non vide, c'est tout) ni `test/message.test.ts`/`test/parsing.test.ts`
+   n'exigent aujourd'hui ; ce serait une fonctionnalité « tant qu'on y est » sans test
+   rouge, interdite par la règle absolue 3, et l'interdiction de modifier/inventer des
+   tests interdit d'ajouter ce cas moi-même. À trancher par le fondateur ou un futur lot
+   (probablement le lot 3, quand `webhook.ts` branchera réellement `parsing → message`) :
+   soit un CA numéroté explicite « l'activité déclarée ne doit contenir aucun chiffre »
+   avec un test rouge, soit une règle de normalisation dans `parsing.ts`. Laissé de côté
+   ici faute de critère et de test l'exigeant.
+3. **Écart `src/repository.ts` vs `src/db/in-memory.ts`** : déjà tranché et journalisé
+   au sous-lot 1 (« Idées rejetées » ci-dessus), le Contradicteur confirme le choix
+   défendable ; aucune action.
+
+Aucune correction de code apportée suite à cette revue : les deux points concrets sont
+soit déjà couverts par la mission (1), soit hors périmètre testé de ce lot et à trancher
+ailleurs (2). Le point 3 était déjà résolu.
+
+## Résumé final
+
+- **Critères couverts (verts)** : CA-01 (`test/consentement.test.ts`), CA-02 (idem,
+  seuil 7 jours), CA-03 (`test/parsing.test.ts`), CA-06 (`test/message.test.ts`).
+  19 tests verts sur 29, 7 fichiers de test verts sur 12 ; `npm run typecheck` et
+  `npm run lint` à 0 erreur.
+- **Itérations** : 4 au total sur cette branche (It.1 sous-lot 0 — plan seul ; It.2
+  sous-lot 1 — `InMemoryRepository` ; It.3 sous-lot 2 — `consentement.ts` ; It.4,
+  contexte frais, sous-lots 3 à final — `parsing.ts`, `message.ts`, squelette
+  `webhook.ts`, revue contradictoire, push).
+- **Laissé de côté, et pourquoi** :
+  - Lots 3, 4, 5 (CA-09, CA-10, CA-11, CA-11bis, CA-12, CA-13, CA-14, CA-15, CA-16,
+    CA-17) : hors périmètre du lot 02 par construction (`docs/lots.md`), les stubs
+    correspondants (`coeurs.ts`, `signal-vendredi.ts`, `rappel-lundi.ts`, `donnees.ts`,
+    `purge.ts`) restent volontairement non implémentés, leurs tests restent rouges.
+  - `src/repository.ts` (interface `Repository` décrite par l'ADR-0004) : non créé,
+    aucun test du lot 02 ne l'exige ; l'implémentation vit dans `src/db/schema.ts` /
+    `src/db/in-memory.ts` déjà en place. Décision journalisée, confirmée non bloquante
+    par la revue contradictoire.
+  - Assainissement des chiffres dans une activité libre avant publication (risque latent
+    CA-06 signalé par le Contradicteur) : non corrigé, aucun CA numéroté ni test rouge
+    actuel ne l'exige ; à trancher pour un futur lot (probablement le lot 3, quand
+    `webhook.ts` branchera réellement `parsing → message`).
+  - Câblage réel du webhook Telegram (`grammY`, appels réseau) : hors périmètre du
+    sous-lot 5, qui ne demande qu'un squelette commenté ; aucune dépendance ajoutée.
+- **Branche** : `lot-02`, poussée sur `origin` (`git push -u origin lot-02`) juste après
+  ce résumé. `main` non touchée. Aucun `gh pr create` tenté (absent de l'environnement) ;
+  la PR est à ouvrir par l'orchestrateur.
 
 ## Lecture faite
 - `CLAUDE.md` : règles absolues (main intouchable, pas d'écriture docs/ en lot, tests non
