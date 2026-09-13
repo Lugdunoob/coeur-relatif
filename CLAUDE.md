@@ -11,10 +11,10 @@ Les agents décident ; le fondateur a un veto de 24 h ; la liste réservée ne s
 - `.loop/coeur-relatif-method-log.md` : ajustements de méthode du Contrôleur.
 - `docs/programme.md` : les loops, leur ordre, leur état.
 
-## Commandes de vérification (à compléter en carte 5, Architecture)
-- typecheck : `à compléter en carte 05`
-- lint : `à compléter en carte 05`
-- tests : `à compléter en carte 05`
+## Commandes de vérification
+- typecheck : `npm run typecheck`
+- lint : `npm run lint`
+- tests : `npm test`
 
 ## Règles absolues
 - `main` intouchable ; une branche par programme (`regie/<programme>`), une par lot (`lot-NN`).

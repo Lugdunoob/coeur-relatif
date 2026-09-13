@@ -30,3 +30,10 @@ Fenêtre de veto de 24 h sur les trois cartes (jusqu'à la date `veto_jusqu_au` 
 carte 03, la plus tardive). Ensuite, programme B (Architecture et tests) peut être lancé,
 à la main pour la carte Architecture (première du genre, pas de golden), puis en loop
 pour les tests d'acceptation si la carte Architecture est jugée bonne.
+
+## Programme B, plan
+- [x] Carte 05 Architecture — approuvée 2026-09-13T21:13:40.423832+00:00
+- [x] Carte 06 Tests d'acceptation — approuvée, 11 suites rouges sur 12, preuve dans la carte
+
+## Lot en cours
+- [ ] Lot 01 : lancé en loop contexte frais, `.loop/prompts/loop-lot-01.md`
