@@ -28,7 +28,8 @@ for f in sorted((root / 'docs/cartes').glob('*.md')):
     if not h.get('carte'): continue
     veto = parse_dt(h.get('veto_jusqu_au', ''))
     journal = section(md, 'Journal de décision')
-    decision = next((l.strip('- *') for l in journal.splitlines() if l.strip().startswith('- **Décision')), '')
+    decision_line = next((l for l in journal.splitlines() if re.match(r'^-\s*\*\*Décision', l.strip())), '')
+    decision = re.sub(r'^-\s*\*\*Décision[^*]*\*\*\s*:?\s*', '', decision_line.strip())
     a_trancher = [l for l in section(md, 'Résumé de fin de carte').splitlines() if 'À trancher' in l]
     cartes.append(dict(f=f, **h, veto=veto, decision=decision.replace('Décision** : ', ''), a_trancher=a_trancher))
 
