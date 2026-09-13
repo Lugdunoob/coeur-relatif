@@ -10,13 +10,13 @@
 - [x] Sous-lot 2 : `src/domain/consentement.ts` — `peutEnregistrer` (CA-01),
   `doitRelancerConsentement` (CA-02, seuil 7×24×3600×1000 ms). Fait passer
   `test/consentement.test.ts`.
-- [ ] Sous-lot 3 : `src/domain/parsing.ts` — `parserDeclaration` (CA-03) : regex tolérante
+- [x] Sous-lot 3 : `src/domain/parsing.ts` — `parserDeclaration` (CA-03) : regex tolérante
   `<activité libre> <minutes> min effort <1-10>`, `null` si minutes ≤ 0, effort hors
   [1,10], ou activité vide. Fait passer `test/parsing.test.ts`.
-- [ ] Sous-lot 4 : `src/domain/message.ts` — `formaterMessagePublic` (CA-06) : étoiles en
+- [x] Sous-lot 4 : `src/domain/message.ts` — `formaterMessagePublic` (CA-06) : étoiles en
   répétant `★`, jamais un chiffre ; format `"<prenom> <★×N> · <activite>"`. Fait passer
   `test/message.test.ts`.
-- [ ] Sous-lot 5 : squelette `src/telegram/webhook.ts` — structure seule, pas de `grammY`,
+- [x] Sous-lot 5 : squelette `src/telegram/webhook.ts` — structure seule, pas de `grammY`,
   pas d'appel réseau ; commentaire décrivant le branchement futur avec `consentement.ts`,
   `parsing.ts`, `message.ts`, `reference.ts`, `etoiles.ts`. Aucun test à faire passer.
 - [ ] Sous-lot final : revue contradictoire du diff `git diff main...lot-02`, corrections,
@@ -79,3 +79,23 @@
   `npm test` 7 fichiers en échec / 5 verts, 15 tests en échec / 14 verts (amélioration :
   `test/consentement.test.ts` passe désormais, CA-01 et CA-02 couverts, aucune
   régression sur les autres) ; `git diff --stat main -- docs/` vide ; branche `lot-02`.
+- It.4 (contexte frais, sous-lots 3-5) : plan déjà écrit par une itération précédente,
+  sous-lots 0-2 déjà commités (`f9bf539`, `c373a59`). Repris directement à partir de là.
+  - Sous-lot 3 : `src/domain/parsing.ts` — regex `^(.+?)\s+(-?\d+)\s*min\s+effort\s+(-?\d+)\s*$`
+    (insensible à la casse), rejet si activité vide, minutes ≤ 0 ou effort hors [1,10].
+    `match[n] as string` (style aligné sur `reference.ts`, pas de `!`), requis par
+    `noUncheckedIndexedAccess` du tsconfig. Commit `d4794a9`.
+  - Sous-lot 4 : `src/domain/message.ts` — `` `${prenom} ${'★'.repeat(etoiles)} · ${activite}` ``.
+    Commit `7b30881`.
+  - Sous-lot 5 : `src/telegram/webhook.ts` créé (nouveau dossier `src/telegram/`), squelette
+    `export {}` + commentaire décrivant l'ordre de branchement futur (consentement → parsing
+    → référence/étoiles → message → dépôt), zéro import `grammY`, zéro test dédié (aucun
+    n'en réclame). Commit `f8ba89e`.
+  - Vérifications après chaque sous-lot : `npm run typecheck` 0 erreur, `npm run lint`
+    0 erreur, `npm test` sans régression (les échecs restants sont uniquement lots 3-5 :
+    `coeurs.test.ts`, `donnees.test.ts`, `purge.test.ts`, `rappel-lundi.test.ts`,
+    `signal-vendredi.test.ts` — 10 tests en échec après le sous-lot 5, tous hors
+    périmètre du lot 02). `git diff --stat main -- docs/` vide à chaque fois.
+  - État final avant sous-lot final : `test/consentement.test.ts`, `test/parsing.test.ts`,
+    `test/message.test.ts` verts (CA-01, CA-02, CA-03, CA-06 couverts) ; 7 fichiers de
+    test verts sur 12, 19 tests verts sur 29.
