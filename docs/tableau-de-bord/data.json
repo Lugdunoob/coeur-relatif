@@ -1,7 +1,7 @@
 {
   "idee": "Cœur relatif",
   "depot": "Lugdunoob/coeur-relatif",
-  "genere_le": "2026-09-14T07:20:53+00:00",
+  "genere_le": "2026-09-14T07:22:06+00:00",
   "a_prendre": [
     {
       "type": "veto",
@@ -50,6 +50,13 @@
       "nom": "Lot 01",
       "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-14T21:24:20+00:00.",
       "veto_jusqu_au": "2026-09-14T21:24:20+00:00"
+    },
+    {
+      "type": "veto",
+      "carte": "08",
+      "nom": "Lot 02",
+      "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-15T07:22:06+00:00.",
+      "veto_jusqu_au": "2026-09-15T07:22:06+00:00"
     }
   ],
   "cartes": [
@@ -486,6 +493,33 @@
         "tests_apres": "10/10 dans le périmètre du lot (12 suites totales, 9 hors périmètre encore rouges)",
         "ecart_process": "fusion locale au lieu d'une PR, faute de dépôt distant ; à corriger dès que le dépôt existe"
       }
+    },
+    {
+      "carte": "08",
+      "nom": "Lot 02",
+      "agent": "dev",
+      "statut": "approuvee",
+      "veto_jusqu_au": "2026-09-15T07:22:06+00:00",
+      "approuvee_le": "2026-09-14T07:22:06+00:00",
+      "livrable": "src/db/in-memory.ts, src/domain/consentement.ts, src/domain/parsing.ts, src/domain/message.ts, src/telegram/webhook.ts",
+      "porte": "CA-01, CA-02, CA-03, CA-06 verts ; typecheck et lint propres ; docs/ intact",
+      "journal": "- **Décision** : lot 2 approuvé et fusionné par PR (première PR réelle du projet,\n  le dépôt distant existant désormais).\n- **Options considérées** : (a) fusion directe comme le lot 1 (écartée, le dépôt\n  distant existe maintenant) ; (b) PR avec CI, retenue.\n- **Qui a tranché** : Stratège.\n- **Réversible** : oui, revert de la PR.\n- **Ce qui ferait revenir dessus** : une régression sur les tests du lot 1 ou 2.\n- **Veto possible jusqu'à** : 2026-09-15T07:22:06+00:00.",
+      "challenge": "",
+      "reponses": "",
+      "a_trancher": [],
+      "veto_ouvert": true,
+      "metadata": {
+        "criteres_couverts": [
+          "CA-01",
+          "CA-02",
+          "CA-03",
+          "CA-06"
+        ],
+        "iterations": 4,
+        "iterations_max": 20,
+        "pr": "https://github.com/Lugdunoob/coeur-relatif/pull/7",
+        "point_transmis": "un chiffre dans une activité libre n'est pas filtré par CA-06 ; à couvrir en recette ou lot futur"
+      }
     }
   ],
   "produit": {
@@ -786,7 +820,7 @@
         "CA-03",
         "CA-06"
       ],
-      "statut": "a_faire"
+      "statut": "termine"
     },
     {
       "titre": "Lot 3 — Les cœurs",
@@ -838,13 +872,27 @@
     "CA-17"
   ],
   "criteres_verts": [
+    "CA-01",
+    "CA-02",
+    "CA-03",
     "CA-04",
     "CA-05",
+    "CA-06",
     "CA-07",
     "CA-08",
     "CA-17"
   ],
   "commits": [
+    "cea80b2 Lot 02 — Chemin critique : déclarer, être vu du groupe (#7)",
+    "30871e9 feat: tableau de bord HTML neutre (assistant de direction), publié via GitHub Pages",
+    "3c0eed8 etat: régénéré [skip ci]",
+    "8281bfb lot-02 : reponse au memo du Contradicteur, resume final",
+    "24c710a lot-02 : progression mise a jour (sous-lots 3-5 coches)",
+    "f8ba89e lot-02 (sous-lot 5) : squelette webhook telegram",
+    "7b30881 lot-02 (sous-lot 4) : message public reel (CA-06)",
+    "d4794a9 lot-02 (sous-lot 3) : parsing reel (CA-03)",
+    "c373a59 lot-02 (sous-lot 2) : consentement réel (CA-01, CA-02)",
+    "f9bf539 lot-02 (sous-lot 1) : InMemoryRepository réel",
     "b54ff2b etat: régénéré [skip ci]",
     "c4291fd etat: régénéré après le correctif CI",
     "366f508 fix: stubs typés pour les modules des lots 2-5, CI ajustée à la méthode tests-d'abord",
@@ -854,9 +902,6 @@
     "d88d7f5 lot-01: signale le blocage sur l'ouverture de la PR (pas de remote git)",
     "99d94b7 lot-01: référence glissante et calcul des étoiles (CA-04, CA-05, CA-07, CA-08)",
     "15d0726 fix: settings.json avec les vraies commandes de vérification, prêt pour le loop",
-    "8509f74 regie: programme B — architecture, ADR, modèle de données, contrats, lots, 18 tests d'acceptation rouges",
-    "dd0e532 regie: programme A exécuté — cartes 01 Cadrage, 02 Méthode Musk, 03 Spécification approuvées",
-    "261b01d regie: dépôt préparé pour « Cœur relatif »",
-    "4cbbff0 init"
+    "8509f74 regie: programme B — architecture, ADR, modèle de données, contrats, lots, 18 tests d'acceptation rouges"
   ]
 }

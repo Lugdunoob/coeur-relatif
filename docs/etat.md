@@ -1,15 +1,16 @@
 # État de l'idée
 
-_Généré le 2026-09-13 21:51 UTC par `scripts/etat.py`. Ne pas éditer._
+_Généré le 2026-09-14 07:22 UTC par `scripts/etat.py`. Ne pas éditer._
 
 ## Veto possible maintenant
 
-- **Carte 01 Cadrage** : encore 23 h. Décision : cadrage approuvé sans modification ; trois points du Contradicteur ne sont pas tranchés ici mais transmis en exigences à la carte 02 et en item de protocole à la carte Pilote.. `/regie:veto 01 <raison>`
-- **Carte 02 Méthode Musk** : encore 23 h. Décision : référence personnelle = médiane glissante des six dernières séances,. `/regie:veto 02 <raison>`
-- **Carte 03 Spécification** : encore 23 h. Décision : spécification approuvée avec un critère ajouté (CA-11bis) suite au. `/regie:veto 03 <raison>`
-- **Carte 05 Architecture et plan** : encore 23 h. Décision : architecture approuvée, avec un spike de vérification ajouté au lot 3. `/regie:veto 05 <raison>`
-- **Carte 06 Tests d'acceptation** : encore 23 h. Décision : les dix-huit tests d'acceptation sont approuvés tels quels.. `/regie:veto 06 <raison>`
-- **Carte 07 Lot 01** : encore 23 h. Décision : lot 1 approuvé ; fusionné dans `main` en local faute de dépôt distant.. `/regie:veto 07 <raison>`
+- **Carte 01 Cadrage** : encore 13 h. Décision : cadrage approuvé sans modification ; trois points du Contradicteur ne sont pas tranchés ici mais transmis en exigences à la carte 02 et en item de protocole à la carte Pilote.. `/regie:veto 01 <raison>`
+- **Carte 02 Méthode Musk** : encore 13 h. Décision : référence personnelle = médiane glissante des six dernières séances,. `/regie:veto 02 <raison>`
+- **Carte 03 Spécification** : encore 13 h. Décision : spécification approuvée avec un critère ajouté (CA-11bis) suite au. `/regie:veto 03 <raison>`
+- **Carte 05 Architecture et plan** : encore 13 h. Décision : architecture approuvée, avec un spike de vérification ajouté au lot 3. `/regie:veto 05 <raison>`
+- **Carte 06 Tests d'acceptation** : encore 13 h. Décision : les dix-huit tests d'acceptation sont approuvés tels quels.. `/regie:veto 06 <raison>`
+- **Carte 07 Lot 01** : encore 14 h. Décision : lot 1 approuvé ; fusionné dans `main` en local faute de dépôt distant.. `/regie:veto 07 <raison>`
+- **Carte 08 Lot 02** : encore 23 h. Décision : lot 2 approuvé et fusionné par PR (première PR réelle du projet,. `/regie:veto 08 <raison>`
 
 ## Où on en est
 
@@ -21,6 +22,7 @@ _Généré le 2026-09-13 21:51 UTC par `scripts/etat.py`. Ne pas éditer._
 | B plan | 05 Architecture et plan | architecte | ✓ approuvee | architecture approuvée, avec un spike de vérification ajouté au lot 3 |
 | B plan | 06 Tests d'acceptation | architecte | ✓ approuvee | les dix-huit tests d'acceptation sont approuvés tels quels. |
 | C lots | 07 Lot 01 | dev | ✓ approuvee | lot 1 approuvé ; fusionné dans `main` en local faute de dépôt distant. |
+| C lots | 08 Lot 02 | dev | ✓ approuvee | lot 2 approuvé et fusionné par PR (première PR réelle du projet, |
 
 ## Prochaines étapes
 
@@ -31,6 +33,7 @@ _Généré le 2026-09-13 21:51 UTC par `scripts/etat.py`. Ne pas éditer._
 - Carte 02 : Telegram ou Slack pour le groupe (version prudente : Telegram, déjà
 - Carte 05 : rien de réservé sur cette carte.
 - Carte 06 : rien.
+- Carte 08 : rien de réservé. Point noté par le Contradicteur du loop, non
 
 ## Méthode
 
