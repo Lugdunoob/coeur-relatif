@@ -2,9 +2,9 @@
 
 ## Sous-lots
 - [x] Sous-lot 0 : lecture carte/lot/tests rouges, plan écrit ci-dessous.
-- [ ] Sous-lot 1 : `src/domain/signal-vendredi.ts` (CA-11, CA-11bis, CA-12)
-- [ ] Sous-lot 2 : `src/domain/rappel-lundi.ts` (CA-13)
-- [ ] Sous-lot 3 : squelette `src/cron.ts` (aucun test ne l'exige)
+- [x] Sous-lot 1 : `src/domain/signal-vendredi.ts` (CA-11, CA-11bis, CA-12)
+- [x] Sous-lot 2 : `src/domain/rappel-lundi.ts` (CA-13)
+- [x] Sous-lot 3 : squelette `src/cron.ts` (aucun test ne l'exige)
 - [ ] Sous-lot final : revue contradictoire du diff, push `lot-04`
 
 ## Constat de départ (itération 1)
@@ -40,3 +40,19 @@
 
 ## Journal
 - Itération 1 : sous-lot 0 terminé, plan écrit, aucun code modifié.
+- Itération 2 : sous-lots 1, 2, 3 réalisés.
+  - `signal-vendredi.ts` : message unique construit à partir de `seances.length` et
+    `coeurs.length`, pluriel géré, aucun accès aux champs `personneId`/`donneurId`
+    (donc aucun prénom possible par construction, pas seulement par accident).
+  - `rappel-lundi.ts` : texte fixe, paramètre `date` ignoré (signature imposée par
+    `docs/data-model.md`/le contrat, mais le contenu ne doit pas varier — CA-13).
+  - `src/cron.ts` : squelette commentaire seul (`export {}`), même style que
+    `src/telegram/webhook.ts` (lot 02/03) : décrit les deux déclenchements
+    (lundi 8h, vendredi 17h, cf. `docs/contracts.md`) et renvoie explicitement la
+    configuration du déclenchement réel (Vercel Cron) au lot 6 (Recette), hors
+    périmètre lot 04.
+  - Vérifications : `npm test` → 26/29 verts, les 3 rouges restants (`donnees.test.ts`
+    CA-14/CA-15, `purge.test.ts` CA-16) sont lot 05, non touchés, dans le même état
+    qu'à l'itération 1. `npm run typecheck` et `npm run lint` : 0 erreur.
+    `git diff --stat main -- docs/` : vide.
+  - Aucune nouvelle dépendance ajoutée.
