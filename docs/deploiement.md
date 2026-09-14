@@ -19,17 +19,38 @@ n'est touchée.
 1. ~~Créer le bot via `@BotFather`, récupérer `TELEGRAM_BOT_TOKEN`.~~ Fait le 2026-09-14.
 2. ~~Récupérer `SUPABASE_SERVICE_ROLE_KEY` depuis le dashboard Supabase.~~ Fait et
    vérifié le 2026-09-14.
-3. Câbler `src/telegram/webhook.ts` avec `grammY` (import du token, des gestionnaires
+3. ~~Créer le projet Vercel, le lier au dépôt GitHub, poser les variables
+   d'environnement.~~ Fait le 2026-09-14 via un token d'accès Vercel fourni par le
+   fondateur (voir « Projet Vercel » ci-dessous) — pas besoin de repasser par le
+   dashboard.
+4. Câbler `src/telegram/webhook.ts` avec `grammY` (import du token, des gestionnaires
    `message`/`message_reaction`/commandes `/mesdonnees` et `/supprimer`) — pas encore
    fait, voir le commentaire de branchement futur dans ce fichier.
-4. Déployer sur Vercel (`vercel deploy`, variables d'environnement ci-dessus dans les
-   Project Settings Vercel) — aucun outil Vercel disponible depuis une session Claude
-   Code, à faire par le fondateur ou un accès Vercel à donner explicitement.
 5. Configurer le webhook Telegram (`setWebhook` vers l'URL Vercel), avec
    `allowed_updates` incluant `message_reaction` (ADR-0002, à vérifier contre la doc
    Telegram au câblage réel).
 6. Rejouer à la main les huit points du parcours de Recette (`docs/spec.md`, P1-P8)
    avec de vrais messages Telegram, pas la démo en mémoire (`scripts/demo-recette.ts`).
+
+## Projet Vercel
+Créé le 2026-09-14 via l'API Vercel (token d'accès fourni par le fondateur, jamais
+donné au dépôt ni committé — stocké dans `.env`, gitignoré) :
+- Projet `coeur-relatif` (id `prj_u3m1PiNA8hf6W7syQEdMcBGzHn1j`), équipe
+  `lugdunoobs-projects` (id `team_S4bSZfJHniW7IANhiVMfs7YX`).
+- Lié au dépôt GitHub `Lugdunoob/coeur-relatif`, branche de production `main` : chaque
+  push déclenche un déploiement automatique, aucune commande manuelle nécessaire.
+- Les 3 variables d'environnement posées (chiffrées côté Vercel, valeurs jamais
+  relues depuis cette session après écriture) : `TELEGRAM_BOT_TOKEN` (production
+  seulement), `SUPABASE_SERVICE_ROLE_KEY` (production seulement), `SUPABASE_URL`
+  (production, preview, development).
+- **Protection Vercel Authentication désactivée** (`ssoProtection` était à
+  `all_except_custom_domains` par défaut, donc active sur l'URL `*.vercel.app` qu'on
+  utilise faute de domaine personnalisé) : sans ça, Telegram recevrait une page de
+  connexion Vercel au lieu d'une réponse 200 à son webhook, et le webhook ne
+  fonctionnerait jamais. Mis à `null` (désactivé) le 2026-09-14. Conséquence acceptée :
+  l'URL de déploiement est publiquement joignable — sans risque ici, le webhook ne fait
+  rien sans une mise à jour Telegram valide, et les futures routes de cron seront
+  protégées par un secret partagé (`CRON_SECRET`, à ajouter au câblage `grammY`).
 
 ## Vérification du schéma réel
 La migration `coeur_relatif_schema_initial` (+ `coeur_relatif_rappel_consentement`) a
