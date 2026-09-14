@@ -1,7 +1,7 @@
 {
   "idee": "Cœur relatif",
   "depot": "Lugdunoob/coeur-relatif",
-  "genere_le": "2026-09-14T09:56:07+00:00",
+  "genere_le": "2026-09-14T09:56:37+00:00",
   "a_prendre": [
     {
       "type": "veto",
@@ -71,6 +71,13 @@
       "nom": "Lot 04",
       "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-15T09:25:28+00:00.",
       "veto_jusqu_au": "2026-09-15T09:25:28+00:00"
+    },
+    {
+      "type": "veto",
+      "carte": "11",
+      "nom": "Lot 05",
+      "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-15T09:56:16+00:00.",
+      "veto_jusqu_au": "2026-09-15T09:56:16+00:00"
     }
   ],
   "cartes": [
@@ -585,6 +592,35 @@
         "iterations_max": 15,
         "pr": "https://github.com/Lugdunoob/coeur-relatif/pull/10"
       }
+    },
+    {
+      "carte": "11",
+      "nom": "Lot 05",
+      "agent": "dev",
+      "statut": "approuvee",
+      "veto_jusqu_au": "2026-09-15T09:56:16+00:00",
+      "approuvee_le": "2026-09-14T09:56:16+00:00",
+      "livrable": "src/domain/donnees.ts, src/domain/purge.ts",
+      "porte": "CA-14, CA-15, CA-16, CA-17 verts ; typecheck et lint propres ; docs/ intact",
+      "journal": "- **Décision** : lot 5 approuvé. Programme C (les cinq lots) terminé.\n- **Options considérées** : aucune alternative à documenter.\n- **Qui a tranché** : Stratège.\n- **Réversible** : oui.\n- **Ce qui ferait revenir dessus** : une régression trouvée en Recette.\n- **Veto possible jusqu'à** : 2026-09-15T09:56:16+00:00.",
+      "challenge": "",
+      "reponses": "",
+      "a_trancher": [],
+      "veto_ouvert": true,
+      "metadata": {
+        "criteres_couverts": [
+          "CA-14",
+          "CA-15",
+          "CA-16",
+          "CA-17"
+        ],
+        "pr": "https://github.com/Lugdunoob/coeur-relatif/pull/13",
+        "criteres_totaux_verts": "18/18",
+        "reserves_pour_recette": [
+          "reconfirmer message_reaction Telegram en direct avant le vrai webhook (carte 09)",
+          "modéliser le lien message_id ↔ Seance pour le câblage réel (carte 05/09)"
+        ]
+      }
     }
   ],
   "produit": {
@@ -957,6 +993,6 @@
     "CA-17"
   ],
   "commits": [
-    "287b0e4 Lot 05 — Les droits (#13)"
+    "36eab7c regie: lot 05 approuvé (carte 11) — les cinq lots du pilote sont terminés, 18/18 critères verts"
   ]
 }

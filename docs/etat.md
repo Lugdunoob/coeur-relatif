@@ -13,6 +13,7 @@ _Généré le 2026-09-14 09:56 UTC par `scripts/etat.py`. Ne pas éditer._
 - **Carte 08 Lot 02** : encore 21 h. Décision : lot 2 approuvé et fusionné par PR (première PR réelle du projet,. `/regie:veto 08 <raison>`
 - **Carte 09 Lot 03** : encore 22 h. Décision : lot 3 approuvé malgré la réserve sur le spike, parce que rien de codé. `/regie:veto 09 <raison>`
 - **Carte 10 Lot 04** : encore 23 h. Décision : lot 4 approuvé sans réserve.. `/regie:veto 10 <raison>`
+- **Carte 11 Lot 05** : encore 23 h. Décision : lot 5 approuvé. Programme C (les cinq lots) terminé.. `/regie:veto 11 <raison>`
 
 ## Où on en est
 
@@ -27,6 +28,7 @@ _Généré le 2026-09-14 09:56 UTC par `scripts/etat.py`. Ne pas éditer._
 | C lots | 08 Lot 02 | dev | ✓ approuvee | lot 2 approuvé et fusionné par PR (première PR réelle du projet, |
 | C lots | 09 Lot 03 | dev | ✓ approuvee | lot 3 approuvé malgré la réserve sur le spike, parce que rien de codé |
 | C lots | 10 Lot 04 | dev | ✓ approuvee | lot 4 approuvé sans réserve. |
+| C lots | 11 Lot 05 | dev | ✓ approuvee | lot 5 approuvé. Programme C (les cinq lots) terminé. |
 
 ## Prochaines étapes
 
@@ -40,6 +42,7 @@ _Généré le 2026-09-14 09:56 UTC par `scripts/etat.py`. Ne pas éditer._
 - Carte 08 : rien de réservé. Point noté par le Contradicteur du loop, non
 - Carte 09 : rien de réservé au fondateur maintenant ; le point 1 est une
 - Carte 10 : rien de réservé.
+- Carte 11 : rien de réservé sur cette carte.
 
 ## Méthode
 
