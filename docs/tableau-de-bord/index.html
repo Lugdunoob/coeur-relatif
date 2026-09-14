@@ -64,17 +64,36 @@
   .hstat .lbl{ font-size:10.5px; color:var(--ink-faint); text-transform:uppercase; letter-spacing:.06em; margin-top:3px; }
 
   /* ---- décisions à prendre ---- */
-  .decision-card{
-    display:flex; gap:12px; align-items:flex-start; background:var(--surface); border:1px solid var(--line);
-    border-left:4px solid var(--warn); border-radius:10px; padding:12px 14px; margin-bottom:8px; box-shadow:var(--shadow);
+  .statusline{
+    display:flex; align-items:center; gap:12px; border-radius:12px; padding:14px 18px;
+    font-size:15px; font-weight:600; margin-bottom:14px; box-shadow:var(--shadow);
   }
-  .decision-card.veto{ border-left-color:var(--idle); }
-  .decision-card .ico{ font-size:16px; line-height:1.4; }
-  .decision-card .txt{ font-size:13.5px; color:var(--ink); }
-  .decision-card .txt b{ font-weight:600; }
-  .decision-card .cd{ margin-left:auto; font-family:"IBM Plex Mono"; font-size:12px; color:var(--ink-faint); white-space:nowrap; }
-  .empty-ok{ display:flex; align-items:center; gap:10px; background:var(--accent-soft); color:var(--accent);
-    border-radius:10px; padding:12px 14px; font-size:13.5px; font-weight:500; }
+  .statusline.ok{ background:var(--accent-soft); color:var(--accent); }
+  .statusline.attn{ background:var(--warn-soft); color:var(--warn); }
+  .statusline .dot{ width:9px; height:9px; border-radius:50%; background:currentColor; flex:none; }
+
+  .question-card{
+    background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--warn);
+    border-radius:10px; padding:14px 16px; margin-bottom:10px; box-shadow:var(--shadow);
+  }
+  .question-card .eyebrow-q{ font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--warn); font-weight:700; margin-bottom:4px; }
+  .question-card .q{ font-size:15px; font-weight:600; color:var(--ink); line-height:1.4; }
+  .question-card .reco{ margin-top:6px; font-size:13px; color:var(--ink-soft); }
+  .question-card .reco b{ color:var(--ink); font-weight:600; }
+  .question-card .src{ margin-top:8px; font-size:11px; color:var(--ink-faint); }
+
+  .confirm-rollup{
+    background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:14px 16px;
+    margin-bottom:10px; box-shadow:var(--shadow); font-size:13.5px;
+  }
+  .confirm-rollup .head{ display:flex; align-items:center; gap:8px; color:var(--ink-soft); }
+  .confirm-rollup .head b{ color:var(--ink); }
+  .confirm-rollup summary{ cursor:pointer; color:var(--accent); font-size:12.5px; margin-top:8px; list-style:none; }
+  .confirm-rollup summary::-webkit-details-marker{ display:none; }
+  .confirm-row{ display:flex; justify-content:space-between; gap:10px; padding:6px 0; border-top:1px dashed var(--line); font-size:12.5px; }
+  .confirm-row:first-of-type{ border-top:none; margin-top:8px; }
+  .confirm-row .what{ color:var(--ink-soft); }
+  .confirm-row .when{ font-family:"IBM Plex Mono"; color:var(--ink-faint); white-space:nowrap; }
 
   /* ---- stratégie & produit ---- */
   .produit-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
@@ -186,8 +205,26 @@ function fmtDate(iso){
 function fmtCountdown(iso){
   const diff = new Date(iso).getTime() - Date.now();
   if(diff <= 0) return "délai écoulé";
-  const h = Math.floor(diff/3600000), m = Math.floor((diff%3600000)/60000);
-  return h + " h " + String(m).padStart(2,"0") + " min restantes";
+  const h = Math.round(diff/3600000);
+  return h <= 1 ? "moins d'1 h" : "encore " + h + " h";
+}
+function fmtEcheance(iso){
+  const d = new Date(iso), now = new Date();
+  const sameDay = d.toDateString() === now.toDateString();
+  const tomorrow = new Date(now); tomorrow.setDate(now.getDate() + 1);
+  const isTomorrow = d.toDateString() === tomorrow.toDateString();
+  const heure = d.toLocaleTimeString("fr-FR", { hour:"2-digit", minute:"2-digit" });
+  if(sameDay) return "aujourd'hui " + heure;
+  if(isTomorrow) return "demain " + heure;
+  return d.toLocaleDateString("fr-FR", { day:"2-digit", month:"short" }) + " " + heure;
+}
+// Une note "à trancher" prend souvent la forme "Question (détail/recommandation)."
+// On sépare la question de la recommandation pour l'afficher clairement, sans
+// changer le fond : c'est une question de présentation, pas d'interprétation.
+function splitQuestion(texte){
+  const m = texte.match(/^(.*?)\s*\(([^)]+)\)\.?\s*$/);
+  if(!m) return { question: texte.replace(/\.\s*$/, ''), reco: null };
+  return { question: m[1].trim(), reco: m[2].trim() };
 }
 
 fetch('./data.json?t=' + Date.now())
@@ -206,32 +243,46 @@ function render(DATA){
   document.getElementById('stat-crit').textContent = DATA.criteres_verts.length + " / " + DATA.criteres_ids.length;
   document.getElementById('stat-decisions').textContent = DATA.a_prendre.filter(a => a.type !== 'veto').length;
 
-  // ---- décisions à prendre ----
+  // ---- décisions à prendre : rapport direct, questions d'abord, confirmations groupées ----
   const dList = document.getElementById('decisions-list');
   const reelles = DATA.a_prendre.filter(a => a.type !== 'veto');
   const vetos = DATA.a_prendre.filter(a => a.type === 'veto');
-  if(reelles.length === 0 && vetos.length === 0){
-    dList.appendChild(el('div', 'empty-ok', '✓ Rien n\'attend ton avis en ce moment.'));
-  } else {
-    reelles.forEach(a => {
-      const icon = a.type === 'bloque' ? '⛔' : '❓';
-      const card = el('div', 'decision-card');
-      card.appendChild(el('span', 'ico', icon));
-      const txt = el('div', 'txt');
-      txt.innerHTML = (a.nom ? '<b>' + esc(a.nom) + '</b> — ' : '') + esc(a.texte);
-      card.appendChild(txt);
-      dList.appendChild(card);
+
+  const status = el('div', 'statusline ' + (reelles.length ? 'attn' : 'ok'));
+  status.appendChild(el('span', 'dot'));
+  status.appendChild(el('span', '', reelles.length
+    ? (reelles.length === 1 ? '1 décision demande ton avis.' : reelles.length + ' décisions demandent ton avis.')
+    : 'Rien ne demande ton avis maintenant.'));
+  dList.appendChild(status);
+
+  reelles.forEach(a => {
+    const { question, reco } = splitQuestion(a.texte);
+    const card = el('div', 'question-card');
+    card.appendChild(el('div', 'eyebrow-q', a.type === 'bloque' ? 'Bloqué' : 'Question ouverte'));
+    card.appendChild(el('div', 'q', esc(question)));
+    if(reco) card.appendChild(el('div', 'reco', '<b>Recommandation actuelle</b> : ' + esc(reco)));
+    card.appendChild(el('div', 'src', 'Vient de : ' + esc(a.nom)));
+    dList.appendChild(card);
+  });
+
+  if(vetos.length){
+    const rollup = el('div', 'confirm-rollup');
+    const nextDeadline = vetos.reduce((a,b) => new Date(a.veto_jusqu_au) < new Date(b.veto_jusqu_au) ? a : b);
+    const head = el('div', 'head');
+    head.innerHTML = '🕒 <b>' + vetos.length + (vetos.length > 1 ? ' décisions ont' : ' décision a') +
+      ' été prises cette nuit</b> par les agents. Rien à faire si tu es d\'accord — le silence vaut confirmation. ' +
+      'La plus proche se ferme ' + fmtEcheance(nextDeadline.veto_jusqu_au) + '.';
+    rollup.appendChild(head);
+    const details = el('details');
+    details.appendChild(el('summary', '', 'Voir le détail des ' + vetos.length));
+    vetos.forEach(v => {
+      const row = el('div', 'confirm-row');
+      row.appendChild(el('span', 'what', esc(v.nom)));
+      row.appendChild(el('span', 'when mono', fmtCountdown(v.veto_jusqu_au)));
+      details.appendChild(row);
     });
-    vetos.forEach(a => {
-      const card = el('div', 'decision-card veto');
-      card.appendChild(el('span', 'ico', '⏳'));
-      const txt = el('div', 'txt');
-      txt.innerHTML = '<b>' + esc(a.nom) + '</b> approuvée — silence = accord';
-      card.appendChild(txt);
-      const cd = el('span', 'cd mono', fmtCountdown(a.veto_jusqu_au));
-      card.appendChild(cd);
-      dList.appendChild(card);
-    });
+    rollup.appendChild(details);
+    dList.appendChild(rollup);
   }
 
   // ---- stratégie & produit ----

@@ -13,3 +13,13 @@ Branche par programme : `regie/<programme>`. Mémoire : `.loop/coeur-relatif-pro
 
 Arrêt d'un loop : `/ralph-loop:cancel-ralph` ou Échap. Reprise : relancer la même commande,
 la progression fait foi. Sortie bloquée : lire `BLOCKED.md`, trancher, relancer.
+
+## Après la Recette, si le pilote est concluant
+
+Une carte de cadrage à part entière, pas un lot de code : **quel canal pour la version
+vendue** (bot dans l'outil déjà utilisé par l'équipe, app dédiée, web) — avec les
+retours réels des douze collègues du pilote comme preuve, pas une intuition. Le moteur
+de calcul (`src/domain/`) est déjà isolé de l'affichage (ADR-0004) : quel que soit le
+choix, rien du pilote n'est perdu.
+
+Question posée par le fondateur le 2026-09-14, à trancher à ce moment-là, pas avant.

@@ -1,7 +1,7 @@
 {
   "idee": "Cœur relatif",
   "depot": "Lugdunoob/coeur-relatif",
-  "genere_le": "2026-09-14T07:22:06+00:00",
+  "genere_le": "2026-09-14T07:39:57+00:00",
   "a_prendre": [
     {
       "type": "veto",
@@ -21,7 +21,7 @@
       "type": "a_trancher",
       "carte": "02",
       "nom": "Méthode Musk",
-      "texte": "Telegram ou Slack pour le groupe (version prudente : Telegram, déjà"
+      "texte": "Telegram ou Slack pour le groupe (version prudente : Telegram, déjà utilisé par le fondateur pour la Régie)."
     },
     {
       "type": "veto",
@@ -118,7 +118,7 @@
       "challenge": "*Reprend le challenge du Contradicteur du run de référence (`golden/carte-2-challenge.md`),\ndéjà résolu et approuvé par le fondateur le 2026-09-11.*\n\n**1 · Sérieuse · La référence personnelle par médiane de la semaine 1 récompense celui qui\ncommence mollement.** Quelqu'un qui déclare deux séances faciles en semaine 1 aura cinq\nétoiles sur une séance normale en semaine 2 ; le sportif qui commence fort n'en aura\njamais plus de trois. L'équité perçue, besoin protégé, est menacée dans l'autre sens.\nAlternative : référence = médiane glissante sur les six dernières séances, sans\ndistinction de semaine, première étoile dès la troisième séance.\nCe qui tranche : rejouer les deux formules sur les données des deux premières semaines\ndu pilote ; regarder qui a cinq étoiles et si c'est mérité aux yeux du groupe.\n\n**2 · Sérieuse · L'effort ressenti est déclaratif ; rien ne contient la triche (H3).**\nPré-mortem le plus probable : un collègue met « effort 10 » à tout, reçoit cinq étoiles\nà chaque fois, les autres décrochent.\nAlternative : plafonner à quatre étoiles toute séance dont l'effort déclaré est 10 deux\nfois de suite ; le cœur du groupe reste le vrai jugement.\nCe qui tranche : la question anonyme de fin de pilote, plus une lecture des déclarations\nà effort 9-10 par personne.\n\n**3 · Mineure · Le bot de groupe expose les prénoms et le fait de bouger ou non ;\n« zéro surveillance » vaut pour le manager, pas pour les collègues.** Celui qui ne\ndéclare rien pendant deux semaines est visible par son absence.\nAlternative : le bot ne poste que les séances, jamais les absences, aucun récapitulatif\nnominatif ; l'unique message hebdomadaire est collectif.\nCe qui tranche : critère d'acceptation négatif dans la spec.\n\n**Verdict : à revoir sur la référence, puis approuvé.** La direction bot-sans-chiffres\ntient ; la formule de calibration était l'hypothèse la plus faible.",
       "reponses": "1. **Accepte.** Formule changée : médiane glissante des six dernières séances, première\n   étoile à la troisième séance, calibration silencieuse abandonnée sur ce point précis\n   (mais gardée pour les trois toutes premières séances, faute d'historique).\n2. **Remonte au fondateur**, avec les deux options (rien / plafond). Décidé ci-dessous.\n3. **Accepte.** Ajouté au hors périmètre : aucun message nominatif d'absence, aucun\n   récapitulatif nominatif.",
       "a_trancher": [
-        "Telegram ou Slack pour le groupe (version prudente : Telegram, déjà"
+        "Telegram ou Slack pour le groupe (version prudente : Telegram, déjà utilisé par le fondateur pour la Régie)."
       ],
       "veto_ouvert": true,
       "metadata": {
@@ -883,6 +883,8 @@
     "CA-17"
   ],
   "commits": [
+    "5be7c73 fix: le workflow etat retente son push en cas de course avec un autre push",
+    "b6127d9 regie: lot 02 approuvé (carte 08), tableau de bord et état régénérés",
     "cea80b2 Lot 02 — Chemin critique : déclarer, être vu du groupe (#7)",
     "30871e9 feat: tableau de bord HTML neutre (assistant de direction), publié via GitHub Pages",
     "3c0eed8 etat: régénéré [skip ci]",
@@ -900,8 +902,6 @@
     "d043a3c regie: lot 01 approuvé (carte 07), état régénéré",
     "c7fd1fa merge: lot-01 — référence glissante et calcul des étoiles (CA-04, CA-05, CA-07, CA-08)",
     "d88d7f5 lot-01: signale le blocage sur l'ouverture de la PR (pas de remote git)",
-    "99d94b7 lot-01: référence glissante et calcul des étoiles (CA-04, CA-05, CA-07, CA-08)",
-    "15d0726 fix: settings.json avec les vraies commandes de vérification, prêt pour le loop",
-    "8509f74 regie: programme B — architecture, ADR, modèle de données, contrats, lots, 18 tests d'acceptation rouges"
+    "99d94b7 lot-01: référence glissante et calcul des étoiles (CA-04, CA-05, CA-07, CA-08)"
   ]
 }

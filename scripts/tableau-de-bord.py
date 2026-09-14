@@ -40,7 +40,7 @@ for f in sorted(root.glob('docs/cartes/*.md')):
     journal = section(md, 'Journal de décision')
     challenge = section(md, 'Challenge')
     reponses = section(md, 'Réponses de l\'auteur')
-    a_trancher_matches = re.findall(r'\*\*À trancher\*\*\s*:\s*(.+)', section(md, 'Résumé de fin de carte'))
+    a_trancher_matches = [re.sub(r'\s+', ' ', m).strip() for m in re.findall(r'\*\*À trancher\*\*\s*:\s*(.+?)(?=\n-\s\*\*|\Z)', section(md, 'Résumé de fin de carte'), re.S)]
     meta = json_block(md)
     veto = h.get('veto_jusqu_au', '')
     veto_dt = None
