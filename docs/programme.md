@@ -48,6 +48,21 @@ suppression, simplification) plutôt que codée directement : « des scores » e
 solution, pas un besoin. Le besoin derrière est probablement l'émulation entre équipes
 sans exposer les individus — à confirmer avec le fondateur avant d'écrire une exigence.
 
+**Extension transmise le même jour, pendant la Recette (point 4, les cœurs)** : le
+fondateur propose que chacun voie ses propres cœurs et les totaux agrégés des niveaux
+au-dessus (équipe / société / région / pays), sans jamais voir le détail d'un autre
+groupe — et évoque, en plus, un classement de cœurs par pays.
+
+Même tension que ci-dessus, en plus directe : un **classement** est exactement ce que
+R7/R8 et le détail signature de la carte 02 excluent (« jamais affiché en cumul public
+ni classé entre collègues »). Un total agrégé anonyme existe déjà dans le pilote (CA-11,
+signal du vendredi : total séances + total cœurs du groupe entier, sans prénom) — ce
+n'est donc pas un territoire totalement neuf. Un classement *entre groupes ou pays* est
+une autre nature de fonctionnalité : il réintroduit la comparaison, seulement déplacée
+du collègue vers le pays. À rediscuter à la même carte de cadrage post-Recette (canal de
+vente + scores de groupe), pas avant ; le cloisonnement par pays n'a de sens qu'avec
+plusieurs pays clients, hors de portée du pilote à douze personnes dans un seul bureau.
+
 ## Piste de style transmise par le fondateur (2026-09-14) : horloge à bascule / panneau d'aéroport
 
 Direction visuelle proposée pour une future interface (app ou web, pas le pilote bot
