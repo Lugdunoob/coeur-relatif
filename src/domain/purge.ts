@@ -1,5 +1,6 @@
-// Lot 05 (docs/lots.md, carte 05) : purge automatique fin de pilote (CA-16).
-import type { InMemoryRepository } from '../db/in-memory.js';
+// Lot 05 (docs/lots.md, carte 05) : purge automatique fin de pilote (CA-16). Async
+// depuis le lot 6 (src/db/repository.ts).
+import type { Repository } from '../db/repository.js';
 
 const UN_JOUR_MS = 24 * 3600 * 1000;
 const GRACE_JOURS = 30;
@@ -9,11 +10,11 @@ const GRACE_JOURS = 30;
 // la date butoir n'est pas atteinte, rien n'est supprimé. Une fois la date butoir
 // atteinte, tout le pilote se termine à la fois : séances (et cœurs qui leur étaient
 // rattachés), fiches personne et rappels de consentement sont effacés.
-export function purger(repo: InMemoryRepository, maintenant: Date, finPilote: Date): void {
+export async function purger(repo: Repository, maintenant: Date, finPilote: Date): Promise<void> {
   const dateButoir = new Date(finPilote.getTime() + GRACE_JOURS * UN_JOUR_MS);
   if (maintenant < dateButoir) {
     return;
   }
 
-  repo.purgerFinPilote(dateButoir);
+  await repo.purgerFinPilote(dateButoir);
 }

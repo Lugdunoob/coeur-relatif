@@ -1,29 +1,32 @@
-// Implémentation en mémoire du dépôt (lot 02, docs/lots.md).
+// Implémentation en mémoire du dépôt (lot 02, docs/lots.md). Implémente `Repository`
+// (lot 6, src/db/repository.ts) : méthodes async pour respecter le même contrat que
+// `SupabaseRepository`, même si rien ici ne fait de vrai I/O.
 import type { Seance, Personne, Coeur } from './schema.js';
+import type { Repository } from './repository.js';
 
-export class InMemoryRepository {
+export class InMemoryRepository implements Repository {
   private seances: Seance[] = [];
   private personnes = new Map<string, Personne>();
   private rappelsConsentement = new Map<string, Date>();
   private coeurs: Coeur[] = [];
 
-  ajouterSeance(seance: Seance): void {
+  async ajouterSeance(seance: Seance): Promise<void> {
     this.seances.push(seance);
   }
 
-  dernieresSeances(personneId: string, n: number): Seance[] {
+  async dernieresSeances(personneId: string, n: number): Promise<Seance[]> {
     return this.seances
       .filter((seance) => seance.personneId === personneId)
       .sort((a, b) => a.horodatage.getTime() - b.horodatage.getTime())
       .slice(-n);
   }
 
-  seancesDe(personneId: string): Seance[] {
+  async seancesDe(personneId: string): Promise<Seance[]> {
     return this.seances.filter((seance) => seance.personneId === personneId);
   }
 
-  supprimerDonneesPersonne(personneId: string): void {
-    const idsSeances = new Set(this.seancesDe(personneId).map((seance) => seance.id));
+  async supprimerDonneesPersonne(personneId: string): Promise<void> {
+    const idsSeances = new Set((await this.seancesDe(personneId)).map((seance) => seance.id));
     this.seances = this.seances.filter((seance) => seance.personneId !== personneId);
     this.coeurs = this.coeurs.filter(
       (coeur) => coeur.donneurId !== personneId && !idsSeances.has(coeur.seanceId),
@@ -32,7 +35,7 @@ export class InMemoryRepository {
     this.rappelsConsentement.delete(personneId);
   }
 
-  purgerFinPilote(dateButoir: Date): void {
+  async purgerFinPilote(dateButoir: Date): Promise<void> {
     const idsSupprimees = new Set(
       this.seances.filter((seance) => seance.horodatage < dateButoir).map((seance) => seance.id),
     );
@@ -42,36 +45,36 @@ export class InMemoryRepository {
     this.rappelsConsentement.clear();
   }
 
-  upsertPersonne(personne: Personne): void {
+  async upsertPersonne(personne: Personne): Promise<void> {
     this.personnes.set(personne.idTelegram, personne);
   }
 
-  getPersonne(idTelegram: string): Personne | undefined {
+  async getPersonne(idTelegram: string): Promise<Personne | undefined> {
     return this.personnes.get(idTelegram);
   }
 
-  enregistrerRappelConsentement(idTelegram: string, date: Date): void {
+  async enregistrerRappelConsentement(idTelegram: string, date: Date): Promise<void> {
     this.rappelsConsentement.set(idTelegram, date);
   }
 
-  dernierRappelConsentement(idTelegram: string): Date | undefined {
+  async dernierRappelConsentement(idTelegram: string): Promise<Date | undefined> {
     return this.rappelsConsentement.get(idTelegram);
   }
 
-  ajouterCoeur(coeur: Coeur): void {
+  async ajouterCoeur(coeur: Coeur): Promise<void> {
     this.coeurs.push(coeur);
   }
 
-  coeursParSeance(seanceId: string): Coeur[] {
+  async coeursParSeance(seanceId: string): Promise<Coeur[]> {
     return this.coeurs.filter((coeur) => coeur.seanceId === seanceId);
   }
 
-  coeursDonnesParPersonne(donneurId: string): Coeur[] {
+  async coeursDonnesParPersonne(donneurId: string): Promise<Coeur[]> {
     return this.coeurs.filter((coeur) => coeur.donneurId === donneurId);
   }
 
-  coeursRecusParPersonne(personneId: string): Coeur[] {
-    const idsSeances = new Set(this.seancesDe(personneId).map((seance) => seance.id));
+  async coeursRecusParPersonne(personneId: string): Promise<Coeur[]> {
+    const idsSeances = new Set((await this.seancesDe(personneId)).map((seance) => seance.id));
     return this.coeurs.filter((coeur) => idsSeances.has(coeur.seanceId));
   }
 }

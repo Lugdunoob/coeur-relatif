@@ -10,6 +10,7 @@
 | prenom | texte | non | affiché dans le groupe (CA-06) |
 | consentement_horodate | date/heure ou vide | non | tant que vide, aucune écriture des autres champs (CA-01) |
 | demande_suppression_le | date/heure ou vide | non | posé par `/supprimer` (CA-15) |
+| dernier_rappel_consentement | date/heure ou vide | non | horodatage du dernier rappel envoyé ; sert `doitRelancerConsentement` pour ne pas relancer plus d'une fois par 7 jours (CA-02). Champ manquant à l'écriture initiale de cette carte, ajouté au lot 6 en implémentant `SupabaseRepository` — `InMemoryRepository` l'avait déjà (`enregistrerRappelConsentement`/`dernierRappelConsentement`), l'écart n'était pas documenté ici. |
 
 ## Entité `seance`
 | Champ | Type | Sensible | Note |

@@ -10,6 +10,7 @@ Les agents décident ; le fondateur a un veto de 24 h ; la liste réservée ne s
 - `.loop/coeur-relatif-progress.md` : mémoire de boucle, seule liste de ce qui reste à faire.
 - `.loop/coeur-relatif-method-log.md` : ajustements de méthode du Contrôleur.
 - `docs/programme.md` : les loops, leur ordre, leur état.
+- `docs/deploiement.md` : variables d'environnement et étapes du lot 6 (câblage réel).
 
 ## Commandes de vérification
 - typecheck : `npm run typecheck`

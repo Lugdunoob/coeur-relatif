@@ -1,6 +1,6 @@
 // Lot 05 (docs/lots.md, carte 05) : les droits — accès et suppression, aucune fuite
-// vers un tiers (CA-14, CA-15).
-import type { InMemoryRepository } from '../db/in-memory.js';
+// vers un tiers (CA-14, CA-15). Async depuis le lot 6 (src/db/repository.ts).
+import type { Repository } from '../db/repository.js';
 
 const UN_JOUR_MS = 24 * 3600 * 1000;
 const UNE_SEMAINE_MS = 7 * UN_JOUR_MS;
@@ -17,22 +17,21 @@ function debutSemaine(reference: Date): Date {
 
 // CA-14 : uniquement les étoiles de la semaine en cours de la personne qui invoque
 // `/mesdonnees`, jamais celles d'un tiers.
-export function mesDonnees(
-  repo: InMemoryRepository,
+export async function mesDonnees(
+  repo: Repository,
   personneId: string,
   semaineCourante: Date,
-): { etoiles: number }[] {
+): Promise<{ etoiles: number }[]> {
   const debut = debutSemaine(semaineCourante);
   const fin = new Date(debut.getTime() + UNE_SEMAINE_MS);
 
-  return repo
-    .seancesDe(personneId)
+  return (await repo.seancesDe(personneId))
     .filter((seance) => seance.horodatage >= debut && seance.horodatage < fin && seance.etoiles !== null)
     .map((seance) => ({ etoiles: seance.etoiles as number }));
 }
 
 // CA-15 : `/supprimer` efface toutes les données de la personne (séances, cœurs donnés
 // ou reçus, fiche personne, rappel de consentement).
-export function supprimerMesDonnees(repo: InMemoryRepository, personneId: string): void {
-  repo.supprimerDonneesPersonne(personneId);
+export async function supprimerMesDonnees(repo: Repository, personneId: string): Promise<void> {
+  await repo.supprimerDonneesPersonne(personneId);
 }
