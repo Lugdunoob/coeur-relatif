@@ -1,47 +1,43 @@
 import { describe, expect, it } from 'vitest';
-import { parserDeclaration } from '../src/domain/parsing.js';
+import { parserDeclaration, ACTIVITES, DUREES_MINUTES, EFFORTS_MOTS } from '../src/domain/parsing.js';
 
-// CA-03 : une déclaration valide est une liste de trois lignes (activité, durée,
-// effort), dans n'importe quel ordre, reconnues par mot-clé. Décision prise en
-// Recette (2026-09-14) : remplace le format en une phrase par une liste à trois
-// points, plus lisible pour douze collègues qui découvrent le bot.
-describe('CA-03 : validation d\'une déclaration en trois lignes', () => {
-  it('accepte le format standard, activité puis durée puis effort', () => {
+// CA-03 : une déclaration valide vient de trois choix par boutons (activité, durée,
+// effort), jamais d'une phrase tapée. Décision prise en Recette (2026-09-14, deuxième
+// correction) : « Autre » pour l'activité reste la seule entrée en texte libre.
+describe('CA-03 : validation de trois choix par boutons', () => {
+  it('accepte un choix parmi les listes fermées', () => {
     expect(
-      parserDeclaration('Activité : course\nDurée : 30\nEffort : 7'),
-    ).toEqual({ activite: 'course', minutes: 30, effort: 7 });
+      parserDeclaration({ activite: 'Course', minutes: 30, effortMot: 'Soutenu' }),
+    ).toEqual({ activite: 'Course', minutes: 30, effort: 6 });
   });
 
-  it('accepte les lignes dans n\'importe quel ordre', () => {
+  it('accepte "Autre" avec un texte libre pour l\'activité', () => {
     expect(
-      parserDeclaration('Effort : 7\nActivité : course\nDurée : 30'),
-    ).toEqual({ activite: 'course', minutes: 30, effort: 7 });
+      parserDeclaration({ activite: 'Escalade', minutes: 60, effortMot: 'Dur' }),
+    ).toEqual({ activite: 'Escalade', minutes: 60, effort: 8 });
   });
 
-  it('accepte les mots-clés synonymes, sans accent et sans majuscule', () => {
-    expect(
-      parserDeclaration('sport: vélo\ntemps: 45\nressenti: 4'),
-    ).toEqual({ activite: 'vélo', minutes: 45, effort: 4 });
+  it('rejette une activité vide (bouton "Autre" sans texte saisi)', () => {
+    expect(parserDeclaration({ activite: '  ', minutes: 30, effortMot: 'Facile' })).toBeNull();
   });
 
-  it('rejette si une ligne manque', () => {
-    expect(parserDeclaration('Activité : course\nDurée : 30')).toBeNull();
+  it('rejette une durée hors de la liste fermée', () => {
+    expect(parserDeclaration({ activite: 'Course', minutes: 25, effortMot: 'Facile' })).toBeNull();
   });
 
-  it('rejette un effort hors de 1 à 10', () => {
-    expect(parserDeclaration('Activité : course\nDurée : 30\nEffort : 15')).toBeNull();
+  it('rejette un mot d\'effort inconnu', () => {
+    expect(parserDeclaration({ activite: 'Course', minutes: 30, effortMot: 'Extrême' })).toBeNull();
   });
 
-  it('rejette une durée nulle ou négative', () => {
-    expect(parserDeclaration('Activité : course\nDurée : 0\nEffort : 5')).toBeNull();
+  it('couvre chaque durée et chaque mot d\'effort de la liste', () => {
+    for (const minutes of DUREES_MINUTES) {
+      for (const effortMot of EFFORTS_MOTS) {
+        expect(parserDeclaration({ activite: 'Course', minutes, effortMot })).not.toBeNull();
+      }
+    }
   });
 
-  it('rejette une activité vide', () => {
-    expect(parserDeclaration('Activité : \nDurée : 30\nEffort : 5')).toBeNull();
-  });
-
-  it('rejette un texte qui ne ressemble pas à une liste de trois lignes', () => {
-    expect(parserDeclaration('course 30 min effort 7')).toBeNull();
-    expect(parserDeclaration('zzz')).toBeNull();
+  it('la liste d\'activités par défaut contient les cinq attendues', () => {
+    expect(ACTIVITES).toEqual(['Course', 'Vélo', 'Musculation', 'Natation', 'Marche']);
   });
 });

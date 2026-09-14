@@ -1,6 +1,6 @@
 # État de l'idée
 
-_Généré le 2026-09-14 13:43 UTC par `scripts/etat.py`. Ne pas éditer._
+_Généré le 2026-09-14 13:56 UTC par `scripts/etat.py`. Ne pas éditer._
 
 ## Veto possible maintenant
 
@@ -13,8 +13,9 @@ _Généré le 2026-09-14 13:43 UTC par `scripts/etat.py`. Ne pas éditer._
 - **Carte 08 Lot 02** : encore 17 h. Décision : lot 2 approuvé et fusionné par PR (première PR réelle du projet,. `/regie:veto 08 <raison>`
 - **Carte 09 Lot 03** : encore 18 h. Décision : lot 3 approuvé malgré la réserve sur le spike, parce que rien de codé. `/regie:veto 09 <raison>`
 - **Carte 10 Lot 04** : encore 19 h. Décision : lot 4 approuvé sans réserve.. `/regie:veto 10 <raison>`
-- **Carte 11 Lot 05** : encore 20 h. Décision : lot 5 approuvé. Programme C (les cinq lots) terminé.. `/regie:veto 11 <raison>`
+- **Carte 11 Lot 05** : encore 19 h. Décision : lot 5 approuvé. Programme C (les cinq lots) terminé.. `/regie:veto 11 <raison>`
 - **Carte 12 Correction Recette — format de déclaration en trois lignes** : encore 23 h. Décision : le format de déclaration devient une liste à trois lignes, ordre libre,. `/regie:veto 12 <raison>`
+- **Carte 13 Correction Recette — déclaration par boutons, sans texte libre** : encore 24 h. Décision : la déclaration d'une séance se fait par trois choix de boutons. `/regie:veto 13 <raison>`
 
 ## Où on en est
 
@@ -31,6 +32,7 @@ _Généré le 2026-09-14 13:43 UTC par `scripts/etat.py`. Ne pas éditer._
 | C lots | 10 Lot 04 | dev | ✓ approuvee | lot 4 approuvé sans réserve. |
 | C lots | 11 Lot 05 | dev | ✓ approuvee | lot 5 approuvé. Programme C (les cinq lots) terminé. |
 | Recette (fondateur) | 12 Correction Recette — format de déclaration en trois lignes | fondateur | ✓ approuvee | le format de déclaration devient une liste à trois lignes, ordre libre, |
+| Recette (fondateur) | 13 Correction Recette — déclaration par boutons, sans texte libre | fondateur | ✓ approuvee | la déclaration d'une séance se fait par trois choix de boutons |
 
 ## Prochaines étapes
 
@@ -46,6 +48,7 @@ _Généré le 2026-09-14 13:43 UTC par `scripts/etat.py`. Ne pas éditer._
 - Carte 10 : rien de réservé.
 - Carte 11 : rien de réservé sur cette carte.
 - Carte 12 : rien de réservé restant sur ce point précis.
+- Carte 13 : confirmer les presets de durée et les mots d'effort exacts avant le
 
 ## Méthode
 

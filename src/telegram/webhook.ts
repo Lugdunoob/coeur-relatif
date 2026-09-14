@@ -6,8 +6,11 @@
 //   1. `consentement.ts` (`peutEnregistrer`, `doitRelancerConsentement`) : refuser tout
 //      enregistrement tant que la personne n'a pas dit « J'accepte », relancer le rappel
 //      de consentement au plus une fois tous les 7 jours (CA-01, CA-02).
-//   2. `parsing.ts` (`parserDeclaration`) : transformer le texte libre reçu en
-//      `{ activite, minutes, effort }`, ou rejeter silencieusement si invalide (CA-03).
+//   2. `parsing.ts` (`parserDeclaration`) : transformer les trois choix reçus par boutons
+//      (activité, durée, effort ressenti — voir `ChoixDeclaration`) en
+//      `{ activite, minutes, effort }`, ou rejeter silencieusement si un choix manque ou
+//      sort des listes fermées (CA-03). Aucun texte libre à parser, sauf le nom saisi
+//      après le bouton « Autre ».
 //   3. `reference.ts` + `etoiles.ts` (lot 1) : calculer la charge, la référence glissante
 //      et le nombre d'étoiles à partir de l'historique du dépôt.
 //   4. `message.ts` (`formaterMessagePublic`) : composer le message envoyé au groupe,

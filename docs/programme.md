@@ -47,3 +47,22 @@ Idée à retester à ce moment-là avec la méthode Musk complète (premiers pri
 suppression, simplification) plutôt que codée directement : « des scores » est une
 solution, pas un besoin. Le besoin derrière est probablement l'émulation entre équipes
 sans exposer les individus — à confirmer avec le fondateur avant d'écrire une exigence.
+
+## Piste de style transmise par le fondateur (2026-09-14) : horloge à bascule / panneau d'aéroport
+
+Direction visuelle proposée pour une future interface (app ou web, pas le pilote bot
+actuel) : l'esthétique des horloges à palettes rétro ou des panneaux de départ
+d'aéroport (chiffres/lettres qui basculent). Mécanique, tactile, aucune vraie mesure
+affichée puisque le produit ne montre que des étoiles — le mouvement de bascule
+pourrait très bien s'appliquer au passage d'une étoile à l'autre plutôt qu'à un chiffre.
+
+Deux autres pistes dans le même esprit, si utile au moment de la vraie décision de
+design (après la Recette, avec le canal de vente) :
+- **Constellation** : les étoiles de la semaine se placent dans un ciel qui se remplit
+  au fil des séances ; prend le mot « étoile » au pied de la lettre plutôt que comme
+  une note.
+- **Tableau de bord de gare ou de stade rétro** : proche de l'aéroport mais plus
+  « effort collectif », cohérent avec le signal du vendredi qui parle du groupe entier.
+
+À trancher avec le reste (canal de vente, scores de groupe) une fois le pilote jugé,
+pas maintenant : le pilote reste un bot texte, aucune interface visuelle à construire.
