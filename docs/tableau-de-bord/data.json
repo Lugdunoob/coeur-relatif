@@ -1,7 +1,7 @@
 {
   "idee": "Cœur relatif",
   "depot": "Lugdunoob/coeur-relatif",
-  "genere_le": "2026-09-14T14:04:29+00:00",
+  "genere_le": "2026-09-14T14:04:54+00:00",
   "a_prendre": [
     {
       "type": "veto",
@@ -1052,25 +1052,6 @@
     "CA-17"
   ],
   "commits": [
-    "caa448f etat: régénéré [skip ci]",
-    "537f4a2 Deuxième correction Recette : déclaration par boutons, sans texte libre",
-    "e0e3edb etat: régénéré [skip ci]",
-    "1ee88b9 recette: format de déclaration en liste à trois lignes (carte 12)",
-    "ca3f13b etat: régénéré [skip ci]",
-    "07deda1 etat: régénéré [skip ci]",
-    "36eab7c regie: lot 05 approuvé (carte 11) — les cinq lots du pilote sont terminés, 18/18 critères verts",
-    "287b0e4 Lot 05 — Les droits (#13)",
-    "3780702 merge: résolu en régénérant les fichiers auto (etat.md, data.json)",
-    "701c3d1 etat: régénéré après fusion de main dans lot-05",
-    "c76a854 merge: main dans lot-05 pour résoudre le conflit de docs auto-générés",
-    "cc27108 chore: ignorer .loop/phase (marqueur éphémère, jamais destiné à être commité)",
-    "d9c71d6 etat: régénéré [skip ci]",
-    "f261fd4 Lot 05 — Les droits (CA-14, CA-15, CA-16, CA-17)",
-    "6862f3d etat: régénéré [skip ci]",
-    "4d86a7e regie: lot 04 approuvé (carte 10)",
-    "8d85204 Lot 04 — Les signaux collectifs (#10)",
-    "b7d1338 lot-04 : push abouti (git push origin sans -u), lot terminé",
-    "dc55da9 lot-04 : note d'état — push origin/lot-04 bloqué par une invite d'approbation",
-    "5691321 lot-04 (sous-lot final) : revue contradictoire, résumé, prêt pour push"
+    "3c701d3 Ajout du libellé \"90+\" sur le dernier palier de durée"
   ]
 }
