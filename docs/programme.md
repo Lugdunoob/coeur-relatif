@@ -23,3 +23,27 @@ de calcul (`src/domain/`) est déjà isolé de l'affichage (ADR-0004) : quel que
 choix, rien du pilote n'est perdu.
 
 Question posée par le fondateur le 2026-09-14, à trancher à ce moment-là, pas avant.
+
+## Idée transmise par le fondateur (2026-09-14) : scores de groupe et score total
+
+**L'idée** : des scores de groupe et un score total, avec cloisonnement strict — un
+groupe ne voit jamais le score d'un autre groupe.
+
+**Pourquoi ce n'est pas un lot maintenant.** La carte 02 (Méthode Musk) a fixé comme
+détail signature : « les chiffres n'existent pas, ni pour le groupe, ni pour
+l'organisateur, ni pour soi ». Un score de groupe ou un score total réintroduit
+exactement le nombre agrégé que cette décision a supprimé. Ce n'est pas un ajout
+technique, c'est une tension directe avec le principe qui fait tenir le produit : avant
+de coder quoi que ce soit, il faut redécider si le score reste absent pour de bon ou
+si l'idée change le détail signature lui-même.
+
+**Où ça va.** Traité comme la question du canal de vente ci-dessus : une carte de
+cadrage à part, après la Recette, pas un lot du pilote actuel. Le pilote reste à douze
+personnes, un seul groupe ; le cloisonnement entre groupes n'a de sens qu'à partir de
+plusieurs groupes, donc plusieurs sociétés ou équipes — la version vendue, pas le
+pilote.
+
+Idée à retester à ce moment-là avec la méthode Musk complète (premiers principes,
+suppression, simplification) plutôt que codée directement : « des scores » est une
+solution, pas un besoin. Le besoin derrière est probablement l'émulation entre équipes
+sans exposer les individus — à confirmer avec le fondateur avant d'écrire une exigence.
