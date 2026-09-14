@@ -1,6 +1,6 @@
 # État de l'idée
 
-_Généré le 2026-09-14 14:21 UTC par `scripts/etat.py`. Ne pas éditer._
+_Généré le 2026-09-14 14:22 UTC par `scripts/etat.py`. Ne pas éditer._
 
 ## Veto possible maintenant
 
