@@ -1,7 +1,7 @@
 {
   "idee": "Cœur relatif",
   "depot": "Lugdunoob/coeur-relatif",
-  "genere_le": "2026-09-14T09:54:40+00:00",
+  "genere_le": "2026-09-14T09:55:05+00:00",
   "a_prendre": [
     {
       "type": "veto",
@@ -957,6 +957,7 @@
     "CA-17"
   ],
   "commits": [
+    "701c3d1 etat: régénéré après fusion de main dans lot-05",
     "c76a854 merge: main dans lot-05 pour résoudre le conflit de docs auto-générés",
     "cc27108 chore: ignorer .loop/phase (marqueur éphémère, jamais destiné à être commité)",
     "f261fd4 Lot 05 — Les droits (CA-14, CA-15, CA-16, CA-17)",
@@ -975,7 +976,6 @@
     "d0fb0c3 lot-03 (sous-lots 0-1) : plan et spike Telegram (message_reaction) positif",
     "f08e5de docs: idée transmise (scores de groupe/total) mise en attente, pas dans le pilote",
     "81c8344 fix: extraction complète des notes multi-lignes + tableau de bord reformulé en langage direct",
-    "5be7c73 fix: le workflow etat retente son push en cas de course avec un autre push",
-    "b6127d9 regie: lot 02 approuvé (carte 08), tableau de bord et état régénérés"
+    "5be7c73 fix: le workflow etat retente son push en cas de course avec un autre push"
   ]
 }
