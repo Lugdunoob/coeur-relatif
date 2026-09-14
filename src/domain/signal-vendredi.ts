@@ -1,6 +1,7 @@
-// Stub de typage : implémentation réelle au lot 04 (docs/lots.md). Voir LESSONS.md, R-7.
+// Lot 04 (docs/lots.md, carte 04) : signal collectif du vendredi, aucun prénom (R8).
 import type { Seance, Coeur } from '../db/schema.js';
 
-export function genererSignalVendredi(_seances: Seance[], _coeurs: Coeur[]): string {
-  throw new Error('genererSignalVendredi : à implémenter au lot 04');
+// CA-11, CA-11bis, CA-12 : total du groupe uniquement, y compris à zéro.
+export function genererSignalVendredi(seances: Seance[], coeurs: Coeur[]): string {
+  return `Cette semaine : ${seances.length} séance${seances.length === 1 ? '' : 's'}, ${coeurs.length} cœur${coeurs.length === 1 ? '' : 's'}.`;
 }

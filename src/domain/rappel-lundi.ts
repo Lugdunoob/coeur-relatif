@@ -1,4 +1,5 @@
-// Stub de typage : implémentation réelle au lot 04 (docs/lots.md). Voir LESSONS.md, R-7.
+// Lot 04 (docs/lots.md, carte 04) : rappel fixe du lundi, aucune donnée personnelle.
+// CA-13 : texte identique chaque semaine ; le paramètre `date` n'influence pas le contenu.
 export function genererRappelLundi(_date: Date): string {
-  throw new Error('genererRappelLundi : à implémenter au lot 04');
+  return 'Nouvelle semaine, nouvelles séances. Déclarez-les en privé au bot.';
 }
