@@ -8,5 +8,6 @@ scripts/demo-recette.ts
 scripts/verif-supabase.ts
 scripts/verif-bot.ts
 scripts/creer-lien.ts
+scripts/verif-ecran.mjs
 .env
 .env.*

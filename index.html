@@ -139,18 +139,19 @@
     background: linear-gradient(to bottom, var(--case) 0%, transparent 32%, transparent 68%, var(--case) 100%);
   }
   .roue-item {
-    position: absolute; left: 0; right: 0; top: 0; height: 36px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.8rem;
+    position: absolute; left: 0; right: 0; top: 0;
+    width: 100%; max-width: 100%; box-sizing: border-box;
+    height: 36px; line-height: 36px;
+    font-size: 0.72rem;
     color: var(--encre-douce);
     opacity: .45;
     text-align: center;
-    padding: 0 6px;
+    padding: 0 4px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .roue-item.actif { opacity: 1; color: var(--klein); font-weight: 800; font-size: 1.15rem; }
+  .roue-item.actif { opacity: 1; color: var(--klein); font-weight: 800; font-size: 0.98rem; }
   .chargement, .erreur { text-align: center; color: var(--encre-douce); margin-top: 40vh; font-size: 0.85rem; letter-spacing: 0.05em; }
   .erreur { color: var(--coeur); }
 </style>
