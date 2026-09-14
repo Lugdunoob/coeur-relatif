@@ -8,7 +8,7 @@ faire tourner le bot pour de vrai — rien de ceci n'est nécessaire pour `npm t
 | Variable | Où la trouver | Note |
 |---|---|---|
 | `SUPABASE_URL` | `https://feikqaysteuwkipzvggn.supabase.co` (projet `domelo-dev`) | Fixe, pas un secret. |
-| `SUPABASE_SERVICE_ROLE_KEY` | Dashboard Supabase → projet `domelo-dev` → Project Settings → API → clé `service_role` | **Secret.** Jamais commité, jamais donné à un agent : aucun outil ne l'expose (voir ADR-0005). À définir uniquement dans les variables d'environnement Vercel. |
+| `SUPABASE_SERVICE_ROLE_KEY` | Dashboard Supabase → projet `domelo-dev` → Project Settings → API → clé `service_role` | **Secret.** Fournie par le fondateur le 2026-09-14 (aucun outil de cette session ne peut la lire lui-même, par conception — voir ADR-0005). Stockée dans `.env` (gitignoré), vérifiée par `scripts/verif-supabase.ts` (gitignoré, hors produit) contre le vrai projet : lecture/écriture/suppression fonctionnent, aucune donnée de test restante. À reporter dans les variables d'environnement Vercel au déploiement. |
 | `TELEGRAM_BOT_TOKEN` | `@BotFather` sur Telegram → `/newbot` | **Secret.** Créé par le fondateur (compte Telegram personnel), jamais par un agent. Obtenu le 2026-09-14, bot `@Coeursportbot` ("Coeur sport"), vérifié via `getMe`. Stocké dans `.env` (gitignoré), à reporter dans les variables d'environnement Vercel au déploiement. |
 
 `SupabaseRepository` (`src/db/supabase.ts`) cible le schéma `coeur_relatif` du projet
@@ -17,7 +17,8 @@ n'est touchée.
 
 ## Ce qui reste à faire pour aller en production
 1. ~~Créer le bot via `@BotFather`, récupérer `TELEGRAM_BOT_TOKEN`.~~ Fait le 2026-09-14.
-2. Récupérer `SUPABASE_SERVICE_ROLE_KEY` depuis le dashboard Supabase.
+2. ~~Récupérer `SUPABASE_SERVICE_ROLE_KEY` depuis le dashboard Supabase.~~ Fait et
+   vérifié le 2026-09-14.
 3. Câbler `src/telegram/webhook.ts` avec `grammY` (import du token, des gestionnaires
    `message`/`message_reaction`/commandes `/mesdonnees` et `/supprimer`) — pas encore
    fait, voir le commentaire de branchement futur dans ce fichier.
@@ -36,3 +37,31 @@ La migration `coeur_relatif_schema_initial` (+ `coeur_relatif_rappel_consentemen
 contrainte `effort between 1 and 10` rejette bien une valeur hors plage, et supprimer une
 `seance` supprime en cascade ses `coeur` (`on delete cascade`). Aucune donnée de test
 laissée dans les tables après vérification.
+
+Vérifiée une deuxième fois de bout en bout le 2026-09-14 avec la vraie clé
+`service_role` et le vrai code TypeScript (`scripts/verif-supabase.ts`, pas seulement du
+SQL manuel) : créer une personne, une séance, un cœur, un rappel de consentement, puis
+tout supprimer — chaque étape lue et confirmée contre le projet réel.
+
+### Exposition du schéma `coeur_relatif` (à refaire si le schéma est recréé)
+Un schéma Postgres créé dans Supabase n'est pas automatiquement accessible via l'API
+REST (PostgREST) : deux réglages en plus de la migration elle-même, sans lesquels
+`SupabaseRepository` échoue avec `PGRST106`/`PGRST205`/`42501`.
+1. **Exposer le schéma** (en plus de `public, graphql_public`, sans les retirer) :
+   ```sql
+   alter role authenticator set pgrst.db_schemas = 'public, graphql_public, coeur_relatif';
+   notify pgrst, 'reload config';
+   notify pgrst, 'reload schema';
+   ```
+2. **Donner les droits Postgres à `service_role`** (RLS deny-by-default n'empêche pas
+   ces droits d'être nécessaires en plus, pour toute nouvelle table de ce schéma) :
+   ```sql
+   grant usage on schema coeur_relatif to service_role;
+   grant all on all tables in schema coeur_relatif to service_role;
+   grant all on all sequences in schema coeur_relatif to service_role;
+   alter default privileges in schema coeur_relatif grant all on tables to service_role;
+   alter default privileges in schema coeur_relatif grant all on sequences to service_role;
+   ```
+Fait une fois pour toutes le 2026-09-14 sur le projet `domelo-dev` ; les futures tables
+créées dans `coeur_relatif` héritent des droits par défaut (`alter default privileges`
+ci-dessus), pas besoin de refaire le `grant` à chaque nouvelle table.
