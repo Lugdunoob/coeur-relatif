@@ -6,63 +6,129 @@
 <title>Cœur relatif</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
-<meta name="theme-color" content="#2b2320">
+<meta name="theme-color" content="#15120f">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --fond: #faf6f0;
-    --encre: #2b2320;
-    --encre-douce: #6b5f57;
-    --or: #c99a3f;
-    --or-clair: #f3e3c2;
-    --coeur: #b5544a;
-    --ligne: #e7ddd0;
+    --fond: #15120f;
+    --panneau: #1d1813;
+    --case: #241d17;
+    --case-bord: #4a3c26;
+    --or: #e8b84b;
+    --or-vif: #f6cf6e;
+    --creme: #efe6d6;
+    --creme-douce: #a99a83;
+    --coeur: #d1483c;
+    --seam: rgba(0,0,0,.35);
   }
   * { box-sizing: border-box; }
   body {
     margin: 0;
     background: var(--fond);
-    color: var(--encre);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-image:
+      radial-gradient(ellipse at top, rgba(232,184,75,.06), transparent 60%);
+    color: var(--creme);
+    font-family: "JetBrains Mono", ui-monospace, monospace;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 24px 16px calc(24px + env(safe-area-inset-bottom));
+    padding: 32px 16px calc(32px + env(safe-area-inset-bottom));
+  }
+  .marque {
+    font-family: "Bebas Neue", "JetBrains Mono", sans-serif;
+    font-size: 2.4rem;
+    letter-spacing: 0.12em;
+    color: var(--or-vif);
+    text-shadow: 0 0 18px rgba(246,207,110,.25);
+    margin: 0 0 2px;
+  }
+  .marque-sous {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--creme-douce);
+    text-transform: uppercase;
+    margin: 0 0 28px;
   }
   .carte {
     width: 100%;
     max-width: 420px;
-    background: #fff;
-    border: 1px solid var(--ligne);
-    border-radius: 20px;
-    padding: 28px 24px;
-    margin-top: 8vh;
+    background: var(--panneau);
+    border: 1px solid var(--case-bord);
+    border-radius: 10px;
+    padding: 28px 22px;
+    box-shadow: 0 20px 50px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.03);
+    position: relative;
   }
-  h1 { font-size: 1.3rem; margin: 0 0 4px; }
-  .sous-titre { color: var(--encre-douce); font-size: 0.9rem; margin: 0 0 20px; }
-  p { line-height: 1.5; }
+  .carte::before {
+    content: '';
+    position: absolute; inset: 6px;
+    border: 1px solid rgba(232,184,75,.12);
+    border-radius: 6px;
+    pointer-events: none;
+  }
+  h1 {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 1.7rem;
+    letter-spacing: 0.06em;
+    margin: 0 0 4px;
+    color: var(--creme);
+    text-transform: uppercase;
+  }
+  .sous-titre { color: var(--creme-douce); font-size: 0.78rem; letter-spacing: 0.05em; margin: 0 0 20px; text-transform: uppercase; }
+  p { line-height: 1.6; font-size: 0.92rem; color: var(--creme-douce); }
   .boutons { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
   button {
-    font: inherit;
-    font-size: 1rem;
-    padding: 14px 16px;
-    border-radius: 12px;
-    border: 1px solid var(--ligne);
-    background: var(--or-clair);
-    color: var(--encre);
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 16px 18px;
+    border-radius: 6px;
+    border: 1px solid var(--case-bord);
+    background: var(--case);
+    color: var(--or-vif);
     cursor: pointer;
     text-align: left;
+    position: relative;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.04), 0 2px 0 rgba(0,0,0,.3);
   }
-  button:active { transform: scale(0.98); }
-  button.principal { background: var(--encre); color: #fff; border-color: var(--encre); text-align: center; font-weight: 600; }
-  button.discret { background: transparent; border: none; color: var(--encre-douce); text-align: center; text-decoration: underline; }
-  .etoiles { font-size: 2.2rem; color: var(--or); letter-spacing: 4px; text-align: center; margin: 20px 0; }
-  .retour { background: none; border: none; color: var(--encre-douce); padding: 4px 0 16px; text-align: left; font-size: 0.9rem; }
-  .chargement, .erreur { text-align: center; color: var(--encre-douce); margin-top: 40vh; }
+  button::after {
+    content: '';
+    position: absolute; left: 12px; right: 12px; top: 50%;
+    border-top: 1px solid var(--seam);
+  }
+  button:active { transform: translateY(1px); box-shadow: inset 0 1px 0 rgba(255,255,255,.04); }
+  button.principal { background: var(--or); color: #1a1410; border-color: var(--or); text-align: center; }
+  button.principal::after { border-top-color: rgba(0,0,0,.15); }
+  button.discret { background: transparent; border: none; box-shadow: none; color: var(--creme-douce); text-align: center; text-decoration: underline; text-transform: none; letter-spacing: 0; font-weight: 400; }
+  button.discret::after { content: none; }
+  .etoiles { display: flex; justify-content: center; gap: 6px; margin: 22px 0; }
+  .etoiles .case-etoile {
+    width: 38px; height: 46px;
+    background: var(--case);
+    border: 1px solid var(--case-bord);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    color: var(--creme-douce);
+    position: relative;
+    animation: bascule .5s ease-out backwards;
+  }
+  .etoiles .case-etoile::after { content: ''; position: absolute; left: 0; right: 0; top: 50%; border-top: 1px solid var(--seam); }
+  .etoiles .case-etoile.pleine { color: var(--or-vif); text-shadow: 0 0 10px rgba(246,207,110,.4); }
+  @keyframes bascule { from { transform: rotateX(90deg); opacity: 0; } to { transform: rotateX(0); opacity: 1; } }
+  .retour { background: none; border: none; box-shadow: none; color: var(--creme-douce); padding: 0 0 18px; text-align: left; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .chargement, .erreur { text-align: center; color: var(--creme-douce); margin-top: 40vh; font-size: 0.85rem; letter-spacing: 0.05em; }
   .erreur { color: var(--coeur); }
 </style>
 </head>
 <body>
+<div class="marque">CŒUR RELATIF</div>
+<div class="marque-sous">Pilote · Effort relatif</div>
 <div id="app" class="chargement">Chargement…</div>
 
 <script>
@@ -75,6 +141,15 @@ const app = document.getElementById('app');
 function carte(html) {
   app.className = '';
   app.innerHTML = '<div class="carte">' + html + '</div>';
+}
+
+function panneauEtoiles(nombre) {
+  let cases = '';
+  for (let i = 0; i < 5; i++) {
+    const pleine = i < nombre;
+    cases += `<div class="case-etoile${pleine ? ' pleine' : ''}" style="animation-delay:${i * 80}ms">${pleine ? '★' : ''}</div>`;
+  }
+  return `<div class="etoiles">${cases}</div>`;
 }
 
 async function api(chemin, options) {
@@ -205,7 +280,7 @@ async function envoyerDeclaration(activite, minutes, effortMot) {
     if (resultat.etoiles === null) {
       carte(`<h1>Enregistré</h1><p class="sous-titre">Tes étoiles arrivent à partir de la 3e séance.</p><div class="boutons"><button class="principal" id="ok">Menu</button></div>`);
     } else {
-      carte(`<h1>${resultat.activite}</h1><div class="etoiles">${'★'.repeat(resultat.etoiles)}</div><div class="boutons"><button class="principal" id="ok">Menu</button></div>`);
+      carte(`<h1>${resultat.activite}</h1>${panneauEtoiles(resultat.etoiles)}<div class="boutons"><button class="principal" id="ok">Menu</button></div>`);
     }
     document.getElementById('ok').onclick = () => afficherMenu();
   } catch (e) {
@@ -223,7 +298,7 @@ async function afficherMesDonnees() {
     <h1>Cette semaine</h1>
     ${etoiles.length === 0
       ? '<p class="sous-titre">Aucune séance notée cette semaine.</p>'
-      : etoiles.map((e) => `<div class="etoiles">${'★'.repeat(e)}</div>`).join('')}
+      : etoiles.map((e) => panneauEtoiles(e)).join('')}
   `);
   document.getElementById('retour').onclick = () => afficherMenu();
 }
