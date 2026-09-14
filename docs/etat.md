@@ -1,12 +1,12 @@
 # État de l'idée
 
-_Généré le 2026-09-14 13:56 UTC par `scripts/etat.py`. Ne pas éditer._
+_Généré le 2026-09-14 14:04 UTC par `scripts/etat.py`. Ne pas éditer._
 
 ## Veto possible maintenant
 
-- **Carte 01 Cadrage** : encore 7 h. Décision : cadrage approuvé sans modification ; trois points du Contradicteur ne sont pas tranchés ici mais transmis en exigences à la carte 02 et en item de protocole à la carte Pilote.. `/regie:veto 01 <raison>`
-- **Carte 02 Méthode Musk** : encore 7 h. Décision : référence personnelle = médiane glissante des six dernières séances,. `/regie:veto 02 <raison>`
-- **Carte 03 Spécification** : encore 7 h. Décision : spécification approuvée avec un critère ajouté (CA-11bis) suite au. `/regie:veto 03 <raison>`
+- **Carte 01 Cadrage** : encore 6 h. Décision : cadrage approuvé sans modification ; trois points du Contradicteur ne sont pas tranchés ici mais transmis en exigences à la carte 02 et en item de protocole à la carte Pilote.. `/regie:veto 01 <raison>`
+- **Carte 02 Méthode Musk** : encore 6 h. Décision : référence personnelle = médiane glissante des six dernières séances,. `/regie:veto 02 <raison>`
+- **Carte 03 Spécification** : encore 6 h. Décision : spécification approuvée avec un critère ajouté (CA-11bis) suite au. `/regie:veto 03 <raison>`
 - **Carte 05 Architecture et plan** : encore 7 h. Décision : architecture approuvée, avec un spike de vérification ajouté au lot 3. `/regie:veto 05 <raison>`
 - **Carte 06 Tests d'acceptation** : encore 7 h. Décision : les dix-huit tests d'acceptation sont approuvés tels quels.. `/regie:veto 06 <raison>`
 - **Carte 07 Lot 01** : encore 7 h. Décision : lot 1 approuvé ; fusionné dans `main` en local faute de dépôt distant.. `/regie:veto 07 <raison>`
@@ -48,7 +48,7 @@ _Généré le 2026-09-14 13:56 UTC par `scripts/etat.py`. Ne pas éditer._
 - Carte 10 : rien de réservé.
 - Carte 11 : rien de réservé sur cette carte.
 - Carte 12 : rien de réservé restant sur ce point précis.
-- Carte 13 : confirmer les presets de durée et les mots d'effort exacts avant le
+- Carte 13 : rien de réservé restant sur ce point précis.
 
 ## Méthode
 

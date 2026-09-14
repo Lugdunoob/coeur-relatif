@@ -8,6 +8,18 @@ export const EFFORTS_MOTS = ['Facile', 'Modéré', 'Soutenu', 'Dur', 'Maximal'] 
 
 export type EffortMot = (typeof EFFORTS_MOTS)[number];
 
+// Libellé affiché sur chaque bouton de durée. Décision du fondateur (2026-09-14) : le
+// dernier palier se lit « 90+ min » pour ne pas donner l'impression qu'une séance plus
+// longue est refusée. Purement cosmétique : la valeur utilisée dans le calcul de charge
+// (minutes × effort) reste 90, aucun nouveau palier numérique n'est créé.
+export const DUREE_LABELS: Record<(typeof DUREES_MINUTES)[number], string> = {
+  15: '15 min',
+  30: '30 min',
+  45: '45 min',
+  60: '60 min',
+  90: '90+ min',
+};
+
 // Mots choisis pour être lus d'un coup d'œil sur un bouton de téléphone. La valeur
 // numérique interne alimente le même calcul (charge = minutes × effort) que le lot 1 ;
 // rien ne change dans reference.ts ni etoiles.ts.

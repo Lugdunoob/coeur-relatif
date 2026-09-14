@@ -61,18 +61,21 @@ Clarifié ensuite par question directe au fondateur (trois points) :
   activités les plus fréquentes, l'activité nommée librement reste possible via
   « Autre ». Signalé explicitement au fondateur avant que la question fermée ne soit
   posée ; le fondateur a tranché en faveur de ce compromis en connaissance de cause.
-- **Ce qui manque** : les presets de durée (15/30/45/60/90) et les mots d'effort exacts
-  sont une proposition par défaut de l'agent, non confirmés un par un par le fondateur
-  au même niveau de détail que la liste d'activités — à valider explicitement pendant
-  la suite de la Recette avant le câblage réel (lot 6). L'échelle d'effort pourrait
-  évoluer vers des smileys ou des images plus tard (mentionné par le fondateur, non
-  décidé).
+- **Ce qui manque** : plus rien sur les presets eux-mêmes — le fondateur a confirmé les
+  durées (15/30/45/60/90+) et les mots d'effort proposés (« ok pour le reste »), avec un
+  seul ajustement (voir ci-dessous). L'échelle d'effort pourrait évoluer vers des
+  smileys ou des images plus tard (mentionné par le fondateur, non décidé, pas urgent).
+- **Ajustement confirmé le 2026-09-14 (même jour)** : le dernier bouton de durée se lit
+  « 90+ min » plutôt que « 90 min », pour ne pas donner l'impression qu'une séance plus
+  longue est refusée. Purement cosmétique : `DUREE_LABELS` (nouveau, dans
+  `src/domain/parsing.ts`) ne change que le texte du bouton ; la valeur utilisée dans le
+  calcul de charge reste 90, aucun palier numérique supplémentaire n'est créé. `docs/spec.md`
+  (P2, CA-03) mis à jour en conséquence.
 - **Risque** : L1, fichiers de `docs/` et `src/domain/` modifiés en dehors du cycle
   normal de lot, fait directement pendant la Recette avec le fondateur présent.
 - **Conséquences** : réversible ; remplace un format (carte 12) qui n'a jamais été mis
   en service réel, donc aucune migration de données à faire.
-- **À trancher** : confirmer les presets de durée et les mots d'effort exacts avant le
-  câblage réel (voir « Ce qui manque »).
+- **À trancher** : rien de réservé restant sur ce point précis.
 - **Coût du run** : correction ciblée, quelques minutes, zéro régression (32/32 tests
   verts, typecheck et lint propres).
 

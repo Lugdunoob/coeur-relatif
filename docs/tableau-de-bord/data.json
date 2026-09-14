@@ -1,7 +1,7 @@
 {
   "idee": "Cœur relatif",
   "depot": "Lugdunoob/coeur-relatif",
-  "genere_le": "2026-09-14T13:56:46+00:00",
+  "genere_le": "2026-09-14T14:04:29+00:00",
   "a_prendre": [
     {
       "type": "veto",
@@ -92,12 +92,6 @@
       "nom": "Correction Recette — déclaration par boutons, sans texte libre",
       "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-15T14:30:00+00:00.",
       "veto_jusqu_au": "2026-09-15T14:30:00+00:00"
-    },
-    {
-      "type": "a_trancher",
-      "carte": "13",
-      "nom": "Correction Recette — déclaration par boutons, sans texte libre",
-      "texte": "confirmer les presets de durée et les mots d'effort exacts avant le câblage réel (voir « Ce qui manque »)."
     }
   ],
   "cartes": [
@@ -676,9 +670,7 @@
       "journal": "- **Décision** : la déclaration d'une séance se fait par trois choix de boutons\n  (activité, durée, effort ressenti), sans texte libre sauf le nom saisi après le\n  bouton « Autre » pour l'activité.\n- **Options considérées** :\n  (a) garder le format en trois lignes tapées de la carte 12 (écartée, encore trop de\n  friction/risque de frappe pour le fondateur) ;\n  (b) trois choix par boutons avec liste d'activités totalement fermée, sans échappatoire\n  texte libre (écartée par le fondateur au profit de (c), pour ne pas revenir\n  entièrement sur la carte 02) ;\n  (c) trois choix par boutons, liste fermée + « Autre » en texte libre pour l'activité,\n  durée en liste fermée de minutes, effort ressenti en mots (retenue).\n- **Qui a tranché** : le fondateur, en direct pendant la Recette, avec une question\n  fermée à trois points pour préciser le détail (liste d'activités, son contenu,\n  nature de l'échelle d'effort). Aucune remontée nécessaire : plus haute autorité du\n  processus.\n- **Réversible** : oui.\n- **Ce qui ferait revenir dessus** : si le pilote réel montre que le bouton « Autre »\n  est utilisé si souvent que la liste fermée n'apporte rien, ou à l'inverse que même\n  les cinq boutons restent trop nombreux sur petit écran.\n- **Veto possible jusqu'à** : 2026-09-15T14:30:00+00:00 (fenêtre symbolique : c'est déjà\n  la décision du fondateur, pas celle d'un agent).",
       "challenge": "",
       "reponses": "",
-      "a_trancher": [
-        "confirmer les presets de durée et les mots d'effort exacts avant le câblage réel (voir « Ce qui manque »)."
-      ],
+      "a_trancher": [],
       "veto_ouvert": true,
       "metadata": {
         "criteres_touches": [
@@ -1060,6 +1052,25 @@
     "CA-17"
   ],
   "commits": [
-    "537f4a2 Deuxième correction Recette : déclaration par boutons, sans texte libre"
+    "caa448f etat: régénéré [skip ci]",
+    "537f4a2 Deuxième correction Recette : déclaration par boutons, sans texte libre",
+    "e0e3edb etat: régénéré [skip ci]",
+    "1ee88b9 recette: format de déclaration en liste à trois lignes (carte 12)",
+    "ca3f13b etat: régénéré [skip ci]",
+    "07deda1 etat: régénéré [skip ci]",
+    "36eab7c regie: lot 05 approuvé (carte 11) — les cinq lots du pilote sont terminés, 18/18 critères verts",
+    "287b0e4 Lot 05 — Les droits (#13)",
+    "3780702 merge: résolu en régénérant les fichiers auto (etat.md, data.json)",
+    "701c3d1 etat: régénéré après fusion de main dans lot-05",
+    "c76a854 merge: main dans lot-05 pour résoudre le conflit de docs auto-générés",
+    "cc27108 chore: ignorer .loop/phase (marqueur éphémère, jamais destiné à être commité)",
+    "d9c71d6 etat: régénéré [skip ci]",
+    "f261fd4 Lot 05 — Les droits (CA-14, CA-15, CA-16, CA-17)",
+    "6862f3d etat: régénéré [skip ci]",
+    "4d86a7e regie: lot 04 approuvé (carte 10)",
+    "8d85204 Lot 04 — Les signaux collectifs (#10)",
+    "b7d1338 lot-04 : push abouti (git push origin sans -u), lot terminé",
+    "dc55da9 lot-04 : note d'état — push origin/lot-04 bloqué par une invite d'approbation",
+    "5691321 lot-04 (sous-lot final) : revue contradictoire, résumé, prêt pour push"
   ]
 }

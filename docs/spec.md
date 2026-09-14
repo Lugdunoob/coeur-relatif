@@ -16,7 +16,9 @@ plus d'une fois par semaine.
 Aucun texte libre. Trois choix par boutons, dans cet ordre :
 1. **Activité** : Course, Vélo, Musculation, Natation, Marche, ou **Autre** (seul cas où
    un texte libre est demandé, une fois, pour nommer l'activité).
-2. **Durée** : 15, 30, 45, 60 ou 90 minutes.
+2. **Durée** : 15, 30, 45, 60 ou 90+ minutes (le dernier bouton se lit « 90+ » pour ne
+   pas donner l'impression qu'une séance plus longue est refusée ; en interne, il reste
+   compté comme 90 minutes, aucun palier de calcul supplémentaire).
 3. **Effort ressenti** : Facile, Modéré, Soutenu, Dur, Maximal — converti en interne sur
    l'échelle 1-10 déjà utilisée par le calcul (2/4/6/8/10), sans jamais afficher de chiffre.
 
@@ -74,7 +76,7 @@ tout ce qui concerne la personne et le confirme.
 |---|---|---|---|
 | CA-01 | Tant que la personne n'a pas répondu « J'accepte », aucune déclaration n'est enregistrée. | P1 | R1 |
 | CA-02 | Le bot ne relance pas le consentement plus d'une fois par période de 7 jours. | P1 | R1 |
-| CA-03 | Une déclaration valide vient de trois choix par boutons : une activité de la liste fermée ou un texte non vide via « Autre », une durée de {15,30,45,60,90} minutes, un effort ressenti parmi {Facile,Modéré,Soutenu,Dur,Maximal} ; tout choix absent ou hors liste rejette la déclaration. | P2 | — |
+| CA-03 | Une déclaration valide vient de trois choix par boutons : une activité de la liste fermée ou un texte non vide via « Autre », une durée de {15,30,45,60,90} minutes (le bouton du dernier palier affiche « 90+ »), un effort ressenti parmi {Facile,Modéré,Soutenu,Dur,Maximal} ; tout choix absent ou hors liste rejette la déclaration. | P2 | — |
 | CA-04 | Pour les séances 1 et 2 d'une personne, le bot répond en privé « enregistré » et ne publie rien dans le groupe. | P3 | R4 |
 | CA-05 | À partir de la 3e séance, la référence est la médiane des charges des six dernières séances disponibles (moins de six si l'historique est plus court). | P3 | R3 |
 | CA-06 | Le message publié dans le groupe contient le prénom, le nombre d'étoiles, le nom de l'activité, et ne contient ni minutes, ni effort, ni aucun nombre autre que les étoiles. | P4 | R2 |
