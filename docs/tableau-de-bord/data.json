@@ -1,7 +1,7 @@
 {
   "idee": "Cœur relatif",
   "depot": "Lugdunoob/coeur-relatif",
-  "genere_le": "2026-09-14T08:24:00+00:00",
+  "genere_le": "2026-09-14T09:25:28+00:00",
   "a_prendre": [
     {
       "type": "veto",
@@ -64,6 +64,13 @@
       "nom": "Lot 03",
       "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-15T08:24:00+00:00.",
       "veto_jusqu_au": "2026-09-15T08:24:00+00:00"
+    },
+    {
+      "type": "veto",
+      "carte": "10",
+      "nom": "Lot 04",
+      "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-15T09:25:28+00:00.",
+      "veto_jusqu_au": "2026-09-15T09:25:28+00:00"
     }
   ],
   "cartes": [
@@ -552,6 +559,32 @@
         "pr": "https://github.com/Lugdunoob/coeur-relatif/pull/9",
         "reserve_recette": "reconfirmer message_reaction en direct avant de configurer le vrai webhook"
       }
+    },
+    {
+      "carte": "10",
+      "nom": "Lot 04",
+      "agent": "dev",
+      "statut": "approuvee",
+      "veto_jusqu_au": "2026-09-15T09:25:28+00:00",
+      "approuvee_le": "2026-09-14T09:25:28+00:00",
+      "livrable": "src/domain/signal-vendredi.ts, src/domain/rappel-lundi.ts",
+      "porte": "CA-11, CA-11bis, CA-12, CA-13 verts ; typecheck et lint propres ; docs/ intact",
+      "journal": "- **Décision** : lot 4 approuvé sans réserve.\n- **Options considérées** : aucune alternative à documenter, exécution conforme au plan.\n- **Qui a tranché** : Stratège.\n- **Réversible** : oui.\n- **Ce qui ferait revenir dessus** : une régression constatée au lot 5 ou en recette.\n- **Veto possible jusqu'à** : 2026-09-15T09:25:28+00:00.",
+      "challenge": "",
+      "reponses": "",
+      "a_trancher": [],
+      "veto_ouvert": true,
+      "metadata": {
+        "criteres_couverts": [
+          "CA-11",
+          "CA-11bis",
+          "CA-12",
+          "CA-13"
+        ],
+        "iterations": 3,
+        "iterations_max": 15,
+        "pr": "https://github.com/Lugdunoob/coeur-relatif/pull/10"
+      }
     }
   ],
   "produit": {
@@ -870,7 +903,7 @@
         "CA-12",
         "CA-13"
       ],
-      "statut": "a_faire"
+      "statut": "termine"
     },
     {
       "titre": "Lot 5 — Les droits",
@@ -914,9 +947,20 @@
     "CA-08",
     "CA-09",
     "CA-10",
+    "CA-11",
+    "CA-11bis",
+    "CA-12",
+    "CA-13",
     "CA-17"
   ],
   "commits": [
+    "8d85204 Lot 04 — Les signaux collectifs (#10)",
+    "b7d1338 lot-04 : push abouti (git push origin sans -u), lot terminé",
+    "dc55da9 lot-04 : note d'état — push origin/lot-04 bloqué par une invite d'approbation",
+    "5691321 lot-04 (sous-lot final) : revue contradictoire, résumé, prêt pour push",
+    "3ca3ded lot-04 (sous-lots 1-3) : signal du vendredi, rappel du lundi, squelette cron",
+    "9e1e18e lot-04 (sous-lot 0) : lecture carte/lot/tests rouges, plan écrit",
+    "ba1f120 regie: lot 03 approuvé (carte 09) — réserve notée sur le spike Telegram pour la Recette",
     "3fbd5d5 Lot 03 — Les cœurs (#9)",
     "cd1e051 lot-03 (sous-lot final) : revue contradictoire, résumé, prêt pour push",
     "a145b93 lot-03 (sous-lots 2-3) : implémentation réelle des cœurs (CA-09, CA-10)",
@@ -929,13 +973,6 @@
     "30871e9 feat: tableau de bord HTML neutre (assistant de direction), publié via GitHub Pages",
     "3c0eed8 etat: régénéré [skip ci]",
     "8281bfb lot-02 : reponse au memo du Contradicteur, resume final",
-    "24c710a lot-02 : progression mise a jour (sous-lots 3-5 coches)",
-    "f8ba89e lot-02 (sous-lot 5) : squelette webhook telegram",
-    "7b30881 lot-02 (sous-lot 4) : message public reel (CA-06)",
-    "d4794a9 lot-02 (sous-lot 3) : parsing reel (CA-03)",
-    "c373a59 lot-02 (sous-lot 2) : consentement réel (CA-01, CA-02)",
-    "f9bf539 lot-02 (sous-lot 1) : InMemoryRepository réel",
-    "b54ff2b etat: régénéré [skip ci]",
-    "c4291fd etat: régénéré après le correctif CI"
+    "24c710a lot-02 : progression mise a jour (sous-lots 3-5 coches)"
   ]
 }

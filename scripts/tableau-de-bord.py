@@ -106,16 +106,21 @@ for row in re.finditer(r'\|\s*(CA-[\w-]+)\s*\|[^|]*\|\s*`([^`]+)`\s*\|', test_pl
 
 fichiers_ok = set()
 vitest_json = root / '.tableau-de-bord-vitest.json'
-subprocess.run(['npx', 'vitest', 'run', '--reporter=json', f'--outputFile={vitest_json.name}'],
-               cwd=str(root), capture_output=True, text=True)
-try:
-    vres = json.loads(vitest_json.read_text())
-    for tf in vres.get('testResults', []):
-        rel = 'test/' + pathlib.Path(tf['name']).name
-        if tf.get('status') == 'passed' or (tf.get('assertionResults') and all(a['status'] == 'passed' for a in tf['assertionResults'])):
-            fichiers_ok.add(rel)
-finally:
-    vitest_json.unlink(missing_ok=True)
+vitest_run = subprocess.run(['npx', 'vitest', 'run', '--reporter=json', f'--outputFile={vitest_json.name}'],
+                             cwd=str(root), capture_output=True, text=True)
+if not vitest_json.exists():
+    print('AVERTISSEMENT : npx vitest n a pas produit de rapport (node_modules absent ?) ; '
+          'critères verts non mesurés cette fois. stderr :', file=sys.stderr)
+    print(vitest_run.stderr[-2000:], file=sys.stderr)
+else:
+    try:
+        vres = json.loads(vitest_json.read_text())
+        for tf in vres.get('testResults', []):
+            rel = 'test/' + pathlib.Path(tf['name']).name
+            if tf.get('status') == 'passed' or (tf.get('assertionResults') and all(a['status'] == 'passed' for a in tf['assertionResults'])):
+                fichiers_ok.add(rel)
+    finally:
+        vitest_json.unlink(missing_ok=True)
 
 verts = [ca for ca, fichier in ca_vers_fichier.items() if fichier in fichiers_ok]
 for l in lots:
