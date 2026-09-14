@@ -1,6 +1,6 @@
 # État de l'idée
 
-_Généré le 2026-09-14 14:22 UTC par `scripts/etat.py`. Ne pas éditer._
+_Généré le 2026-09-14 14:30 UTC par `scripts/etat.py`. Ne pas éditer._
 
 ## Veto possible maintenant
 
@@ -9,14 +9,15 @@ _Généré le 2026-09-14 14:22 UTC par `scripts/etat.py`. Ne pas éditer._
 - **Carte 03 Spécification** : encore 6 h. Décision : spécification approuvée avec un critère ajouté (CA-11bis) suite au. `/regie:veto 03 <raison>`
 - **Carte 05 Architecture et plan** : encore 6 h. Décision : architecture approuvée, avec un spike de vérification ajouté au lot 3. `/regie:veto 05 <raison>`
 - **Carte 06 Tests d'acceptation** : encore 6 h. Décision : les dix-huit tests d'acceptation sont approuvés tels quels.. `/regie:veto 06 <raison>`
-- **Carte 07 Lot 01** : encore 7 h. Décision : lot 1 approuvé ; fusionné dans `main` en local faute de dépôt distant.. `/regie:veto 07 <raison>`
-- **Carte 08 Lot 02** : encore 17 h. Décision : lot 2 approuvé et fusionné par PR (première PR réelle du projet,. `/regie:veto 08 <raison>`
-- **Carte 09 Lot 03** : encore 18 h. Décision : lot 3 approuvé malgré la réserve sur le spike, parce que rien de codé. `/regie:veto 09 <raison>`
-- **Carte 10 Lot 04** : encore 19 h. Décision : lot 4 approuvé sans réserve.. `/regie:veto 10 <raison>`
+- **Carte 07 Lot 01** : encore 6 h. Décision : lot 1 approuvé ; fusionné dans `main` en local faute de dépôt distant.. `/regie:veto 07 <raison>`
+- **Carte 08 Lot 02** : encore 16 h. Décision : lot 2 approuvé et fusionné par PR (première PR réelle du projet,. `/regie:veto 08 <raison>`
+- **Carte 09 Lot 03** : encore 17 h. Décision : lot 3 approuvé malgré la réserve sur le spike, parce que rien de codé. `/regie:veto 09 <raison>`
+- **Carte 10 Lot 04** : encore 18 h. Décision : lot 4 approuvé sans réserve.. `/regie:veto 10 <raison>`
 - **Carte 11 Lot 05** : encore 19 h. Décision : lot 5 approuvé. Programme C (les cinq lots) terminé.. `/regie:veto 11 <raison>`
 - **Carte 12 Correction Recette — format de déclaration en trois lignes** : encore 23 h. Décision : le format de déclaration devient une liste à trois lignes, ordre libre,. `/regie:veto 12 <raison>`
-- **Carte 13 Correction Recette — déclaration par boutons, sans texte libre** : encore 24 h. Décision : la déclaration d'une séance se fait par trois choix de boutons. `/regie:veto 13 <raison>`
+- **Carte 13 Correction Recette — déclaration par boutons, sans texte libre** : encore 23 h. Décision : la déclaration d'une séance se fait par trois choix de boutons. `/regie:veto 13 <raison>`
 - **Carte 14 Correction Recette — cœurs groupés par jour et mécanisme de style de message** : encore 24 h. Décision : les cœurs reçus sont annoncés en un seul message par jour (toutes. `/regie:veto 14 <raison>`
+- **Carte 15 Correction Recette — rotation de phrases motivantes le lundi** : encore 24 h. Décision : le message du lundi tourne parmi une liste fixe de 4 phrases. `/regie:veto 15 <raison>`
 
 ## Où on en est
 
@@ -35,6 +36,7 @@ _Généré le 2026-09-14 14:22 UTC par `scripts/etat.py`. Ne pas éditer._
 | Recette (fondateur) | 12 Correction Recette — format de déclaration en trois lignes | fondateur | ✓ approuvee | le format de déclaration devient une liste à trois lignes, ordre libre, |
 | Recette (fondateur) | 13 Correction Recette — déclaration par boutons, sans texte libre | fondateur | ✓ approuvee | la déclaration d'une séance se fait par trois choix de boutons |
 | Recette (fondateur) | 14 Correction Recette — cœurs groupés par jour et mécanisme de style de message | fondateur | ✓ approuvee | les cœurs reçus sont annoncés en un seul message par jour (toutes |
+| Recette (fondateur) | 15 Correction Recette — rotation de phrases motivantes le lundi | fondateur | ✓ approuvee | le message du lundi tourne parmi une liste fixe de 4 phrases |
 
 ## Prochaines étapes
 

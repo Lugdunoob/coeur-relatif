@@ -47,7 +47,10 @@ Chaque vendredi, un message collectif dans le groupe, sans prénom : nombre de s
 déclarées et nombre de cœurs posés cette semaine, par l'ensemble du groupe.
 
 ### P7 — Le rappel du lundi
-Chaque lundi matin, un message dans le groupe : « nouvelle semaine ».
+Chaque lundi matin, un message dans le groupe, choisi de façon déterministe (pas
+aléatoire) dans une liste fixe de phrases motivantes, sans prénom ni chiffre de
+performance ; la même semaine renvoie toujours la même phrase, la liste tourne d'une
+semaine à l'autre.
 
 ### P8 — Mes données
 `/mesdonnees` renvoie en privé les étoiles de la semaine en cours. `/supprimer` efface
@@ -91,7 +94,7 @@ tout ce qui concerne la personne et le confirme.
 | CA-10 | En fin de semaine, chaque personne reçoit en privé le nombre de cœurs qu'elle a donnés ; ce nombre n'est jamais comparé aux autres dans un message. | P5 | R7 |
 | CA-11 | Le message du vendredi contient un total de séances et un total de cœurs pour le groupe entier, et ne contient aucun prénom. | P6 | R8 |
 | CA-12 | Aucun message généré par le bot, à aucun moment, ne mentionne qu'une personne nommée n'a pas déclaré de séance. | P6 | R8 |
-| CA-13 | Le message du lundi est identique chaque semaine et ne contient aucune donnée personnelle. | P7 | — |
+| CA-13 | Le message du lundi vient d'une liste fixe de phrases motivantes, choisie de façon déterministe selon la semaine (même semaine → même phrase, semaine suivante → phrase différente) ; aucune phrase ne contient de donnée personnelle ni de chiffre. | P7 | — |
 | CA-14 | `/mesdonnees` renvoie uniquement les étoiles de la semaine en cours de la personne qui l'invoque, jamais celles d'un tiers. | P8 | R2 |
 | CA-15 | `/supprimer` efface toutes les données de la personne et le bot confirme la suppression dans le même message. | P8 | R9 |
 | CA-16 | Toute donnée d'une personne est effacée automatiquement à la date fin-du-pilote + 30 jours, sans action requise. | P8 | R9 |

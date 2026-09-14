@@ -1,7 +1,7 @@
 {
   "idee": "Cœur relatif",
   "depot": "Lugdunoob/coeur-relatif",
-  "genere_le": "2026-09-14T14:22:05+00:00",
+  "genere_le": "2026-09-14T14:30:18+00:00",
   "a_prendre": [
     {
       "type": "veto",
@@ -99,6 +99,13 @@
       "nom": "Correction Recette — cœurs groupés par jour et mécanisme de style de message",
       "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-15T15:00:00+00:00.",
       "veto_jusqu_au": "2026-09-15T15:00:00+00:00"
+    },
+    {
+      "type": "veto",
+      "carte": "15",
+      "nom": "Correction Recette — rotation de phrases motivantes le lundi",
+      "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-15T15:30:00+00:00.",
+      "veto_jusqu_au": "2026-09-15T15:30:00+00:00"
     }
   ],
   "cartes": [
@@ -709,6 +716,28 @@
         "trouve_pendant": "Recette, point 4",
         "decideur": "fondateur"
       }
+    },
+    {
+      "carte": "15",
+      "nom": "Correction Recette — rotation de phrases motivantes le lundi",
+      "agent": "fondateur",
+      "statut": "approuvee",
+      "veto_jusqu_au": "2026-09-15T15:30:00+00:00",
+      "approuvee_le": "2026-09-14T15:30:00+00:00",
+      "livrable": "docs/spec.md (P7, CA-13), src/domain/rappel-lundi.ts, test/rappel-lundi.test.ts, scripts/demo-recette.ts",
+      "porte": "les cinq tests de rappel-lundi.ts passent ; les 41 tests du dépôt passent ; docs/spec.md à jour",
+      "journal": "- **Décision** : le message du lundi tourne parmi une liste fixe de 4 phrases\n  motivantes, choisie de façon déterministe selon la semaine, plutôt qu'un texte unique\n  fixe pour toujours.\n- **Options considérées** :\n  (a) une phrase fixe plus motivante, toujours la même (écartée par le fondateur, moins\n  vivant sur la durée) ;\n  (b) rotation déterministe parmi un petit set de phrases (retenue) ;\n  (c) message aléatoire à chaque lundi (jamais proposée à l'agent lui-même : écartée en\n  amont par l'agent pour rester testable et reproductible, cohérent avec le style de\n  code du dépôt qui évite le hasard non maîtrisé).\n- **Qui a tranché** : le fondateur, en direct pendant la Recette, entre les deux options\n  soumises par l'agent (A/B). Aucune remontée nécessaire : plus haute autorité du\n  processus.\n- **Réversible** : oui.\n- **Ce qui ferait revenir dessus** : si les collègues du pilote trouvent la variation\n  déroutante ou préfèrent un texte stable et reconnaissable ; revenir à une seule phrase\n  serait un simple raccourcissement de la liste à un élément.\n- **Veto possible jusqu'à** : 2026-09-15T15:30:00+00:00 (fenêtre symbolique : c'est déjà\n  la décision du fondateur, pas celle d'un agent).",
+      "challenge": "",
+      "reponses": "",
+      "a_trancher": [],
+      "veto_ouvert": true,
+      "metadata": {
+        "criteres_touches": [
+          "CA-13"
+        ],
+        "trouve_pendant": "Recette, point 5",
+        "decideur": "fondateur"
+      }
     }
   ],
   "produit": {
@@ -1081,6 +1110,25 @@
     "CA-17"
   ],
   "commits": [
-    "fbf89bc Résumé quotidien des cœurs + mécanisme de style de message (CA-09bis)"
+    "2c58852 etat: régénéré [skip ci]",
+    "fbf89bc Résumé quotidien des cœurs + mécanisme de style de message (CA-09bis)",
+    "5c7bd37 etat: régénéré [skip ci]",
+    "b7b94bd Note backlog : totaux de cœurs par niveau hiérarchique + classement pays",
+    "5391332 etat: régénéré [skip ci]",
+    "3c701d3 Ajout du libellé \"90+\" sur le dernier palier de durée",
+    "caa448f etat: régénéré [skip ci]",
+    "537f4a2 Deuxième correction Recette : déclaration par boutons, sans texte libre",
+    "e0e3edb etat: régénéré [skip ci]",
+    "1ee88b9 recette: format de déclaration en liste à trois lignes (carte 12)",
+    "ca3f13b etat: régénéré [skip ci]",
+    "07deda1 etat: régénéré [skip ci]",
+    "36eab7c regie: lot 05 approuvé (carte 11) — les cinq lots du pilote sont terminés, 18/18 critères verts",
+    "287b0e4 Lot 05 — Les droits (#13)",
+    "3780702 merge: résolu en régénérant les fichiers auto (etat.md, data.json)",
+    "701c3d1 etat: régénéré après fusion de main dans lot-05",
+    "c76a854 merge: main dans lot-05 pour résoudre le conflit de docs auto-générés",
+    "cc27108 chore: ignorer .loop/phase (marqueur éphémère, jamais destiné à être commité)",
+    "d9c71d6 etat: régénéré [skip ci]",
+    "f261fd4 Lot 05 — Les droits (CA-14, CA-15, CA-16, CA-17)"
   ]
 }
