@@ -30,7 +30,9 @@
     margin: 0;
     background: var(--fond);
     background-image:
-      radial-gradient(ellipse at top, rgba(10,63,240,.05), transparent 55%);
+      radial-gradient(ellipse at top, rgba(10,63,240,.05), transparent 55%),
+      radial-gradient(rgba(20,20,31,.06) 1px, transparent 1.4px);
+    background-size: auto, 14px 14px;
     color: var(--encre);
     font-family: "JetBrains Mono", ui-monospace, monospace;
     min-height: 100vh;
@@ -43,6 +45,8 @@
      son contenu (« auto »), ce qui rend circulaire le width:100% de .carte à
      l'intérieur. Largeur explicite ici pour que .carte puisse vraiment grandir. */
   #app { width: 100%; display: flex; justify-content: center; }
+  .marque-ligne { display: flex; align-items: center; gap: 10px; }
+  .marque-coeur { width: 30px; height: 30px; flex: none; color: var(--klein); }
   .marque {
     font-family: "Bebas Neue", "JetBrains Mono", sans-serif;
     font-size: 2.4rem;
@@ -62,11 +66,21 @@
     max-width: 440px;
     background: var(--panneau);
     border: 1px solid var(--case-bord);
-    border-radius: 18px;
+    border-radius: 6px;
     padding: 28px 22px;
     box-shadow: 0 20px 50px rgba(20,20,50,.08);
     position: relative;
   }
+  /* Coins façon panneau de signalétique (aéroport / gare) */
+  .carte::before, .carte::after,
+  .carte-coin-bd, .carte-coin-bg {
+    content: ''; position: absolute; width: 16px; height: 16px;
+    border: 2px solid var(--klein); opacity: .55; pointer-events: none;
+  }
+  .carte::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+  .carte::after { top: -1px; right: -1px; border-left: none; border-bottom: none; }
+  .carte-coin-bd { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+  .carte-coin-bg { bottom: -1px; left: -1px; border-right: none; border-top: none; }
   h1 {
     font-family: "Bebas Neue", sans-serif;
     font-size: 1.8rem;
@@ -83,17 +97,25 @@
     font-size: 0.95rem;
     letter-spacing: 0.04em;
     padding: 16px 18px;
-    border-radius: 12px;
+    border-radius: 4px;
     border: 1px solid var(--case-bord);
     background: var(--case);
     color: var(--encre);
     cursor: pointer;
     text-align: center;
     box-shadow: 0 2px 0 rgba(20,20,50,.04);
+    position: relative;
+  }
+  button::after {
+    content: '';
+    position: absolute; left: 10px; right: 10px; top: 50%;
+    border-top: 1px solid var(--seam);
   }
   button:active { transform: translateY(1px); box-shadow: none; }
   button.principal { background: var(--klein); color: #fff; border-color: var(--klein); }
+  button.principal::after { border-top-color: rgba(255,255,255,.2); }
   button.discret { background: transparent; border: none; box-shadow: none; color: var(--encre-douce); text-decoration: underline; font-weight: 400; }
+  button.discret::after { content: none; }
   .etoiles { display: flex; justify-content: center; gap: 6px; margin: 22px 0; }
   .etoiles .case-etoile {
     width: 38px; height: 46px;
@@ -105,7 +127,7 @@
     color: var(--case-bord);
     animation: bascule .5s ease-out backwards;
   }
-  .etoiles .case-etoile.pleine { color: var(--or); background: #fdf4de; border-color: #f1dfa4; }
+  .etoiles .case-etoile.pleine { color: var(--coeur); background: #fdeae7; border-color: #f5c4bc; }
   @keyframes bascule { from { transform: rotateX(90deg); opacity: 0; } to { transform: rotateX(0); opacity: 1; } }
   .retour { background: none; border: none; box-shadow: none; color: var(--encre-douce); padding: 0 0 18px; text-align: left; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; }
 
@@ -118,7 +140,7 @@
     height: 180px;
     background: var(--case);
     border: 1px solid var(--case-bord);
-    border-radius: 12px;
+    border-radius: 4px;
     overflow: hidden;
     touch-action: none;
     user-select: none;
@@ -153,8 +175,9 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    border-bottom: 1px solid var(--seam);
   }
-  .roue-item.actif { opacity: 1; color: var(--klein); font-weight: 800; font-size: 0.98rem; }
+  .roue-item.actif { opacity: 1; color: var(--klein); font-weight: 800; font-size: 0.98rem; border-bottom-color: transparent; }
   .chargement, .erreur { text-align: center; color: var(--encre-douce); margin-top: 40vh; font-size: 0.85rem; letter-spacing: 0.05em; }
   .erreur { color: var(--coeur); }
 
@@ -173,7 +196,7 @@
     button { font-size: 1.05rem; padding: 18px 22px; }
     .roues { gap: 24px; margin: 18px 0 30px; }
     .roue-entete { font-size: 0.85rem; }
-    .roue-cadre { height: 280px; border-radius: 16px; }
+    .roue-cadre { height: 280px; border-radius: 4px; }
     .roue-item { font-size: 1rem; }
     .roue-item.actif { font-size: 1.55rem; }
     .etoiles .case-etoile { width: 56px; height: 66px; font-size: 1.8rem; border-radius: 10px; }
@@ -181,8 +204,13 @@
 </style>
 </head>
 <body>
-<div class="marque">CŒUR RELATIF</div>
-<div class="marque-sous">Pilote · Effort relatif</div>
+<div class="marque-ligne">
+  <svg class="marque-coeur" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true">
+    <path d="M50 82 C 18 60, 9 39, 20 25 C 29 14, 45 15, 50 28 C 55 15, 71 14, 80 25 C 91 39, 82 60, 50 82 Z"/>
+  </svg>
+  <div class="marque">CŒUR RELATIF</div>
+</div>
+<div class="marque-sous">Ton effort, ta seule référence</div>
 <div id="app" class="chargement">Chargement…</div>
 
 <script>
@@ -194,14 +222,14 @@ const app = document.getElementById('app');
 
 function carte(html) {
   app.className = '';
-  app.innerHTML = '<div class="carte">' + html + '</div>';
+  app.innerHTML = '<div class="carte">' + html + '<div class="carte-coin-bd"></div><div class="carte-coin-bg"></div></div>';
 }
 
 function panneauEtoiles(nombre) {
   let cases = '';
   for (let i = 0; i < 5; i++) {
     const pleine = i < nombre;
-    cases += `<div class="case-etoile${pleine ? ' pleine' : ''}" style="animation-delay:${i * 80}ms">${pleine ? '★' : ''}</div>`;
+    cases += `<div class="case-etoile${pleine ? ' pleine' : ''}" style="animation-delay:${i * 80}ms">${pleine ? '❤' : ''}</div>`;
   }
   return `<div class="etoiles">${cases}</div>`;
 }
@@ -253,10 +281,10 @@ function afficherConsentement(prenom) {
 function afficherMenu(prenom) {
   carte(`
     <h1>Salut${prenom ? ', ' + prenom : ''}</h1>
-    <p class="sous-titre">Qu'est-ce qu'on fait ?</p>
+    <p class="sous-titre">Choisis un geste</p>
     <div class="boutons">
       <button id="declarer">Déclarer une séance</button>
-      <button id="mesdonnees">Mes étoiles de la semaine</button>
+      <button id="mesdonnees">Voir mes cœurs</button>
       <button class="discret" id="supprimer">Supprimer mes données</button>
     </div>
   `);
@@ -292,7 +320,7 @@ function afficherRoues(options) {
   carte(`
     <button class="retour" id="retour">← Menu</button>
     <h1>Déclarer</h1>
-    <p class="sous-titre">Fais tourner chaque roue</p>
+    <p class="sous-titre">Compose ta séance, roue par roue</p>
     <div class="roues">
       ${colonne('roue-activite', 'Activité')}
       ${colonne('roue-duree', 'Durée')}
@@ -434,7 +462,7 @@ async function envoyerDeclaration(activite, minutes, effortMot) {
       body: JSON.stringify({ p: jeton, activite, minutes, effortMot }),
     });
     if (resultat.etoiles === null) {
-      carte(`<h1>Enregistré</h1><p class="sous-titre">Tes étoiles arrivent à partir de la 3e séance.</p><div class="boutons"><button class="principal" id="ok">Menu</button></div>`);
+      carte(`<h1>C'est noté</h1><p class="sous-titre">Tes cœurs arrivent à partir de la 3e séance.</p><div class="boutons"><button class="principal" id="ok">Menu</button></div>`);
     } else {
       carte(`<h1>${resultat.activite}</h1>${panneauEtoiles(resultat.etoiles)}<div class="boutons"><button class="principal" id="ok">Menu</button></div>`);
     }
@@ -453,7 +481,7 @@ async function afficherMesDonnees() {
     <button class="retour" id="retour">← Menu</button>
     <h1>Cette semaine</h1>
     ${etoiles.length === 0
-      ? '<p class="sous-titre">Aucune séance notée cette semaine.</p>'
+      ? '<p class="sous-titre">Aucun cœur cette semaine. À toi de jouer.</p>'
       : etoiles.map((e) => panneauEtoiles(e)).join('')}
   `);
   document.getElementById('retour').onclick = () => afficherMenu();
@@ -463,7 +491,7 @@ async function confirmerSuppression() {
   if (!confirm('Supprimer toutes tes données ? Cette action est immédiate et définitive.')) return;
   await api('/api/web/supprimer', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ p: jeton }) });
   localStorage.removeItem('coeur-relatif-jeton');
-  carte('<h1>Supprimé</h1><p class="sous-titre">Toutes tes données ont été effacées.</p>');
+  carte('<h1>Effacé</h1><p class="sous-titre">Toutes tes données ont disparu, sans trace.</p>');
 }
 
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(() => {});
