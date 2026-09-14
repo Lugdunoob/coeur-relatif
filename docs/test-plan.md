@@ -15,6 +15,7 @@ Supabase ni Telegram (ADR-0004, `InMemoryRepository`).*
 | CA-07 | unitaire | `test/etoiles.test.ts` | une charge par tranche des cinq seuils |
 | CA-08 | unitaire | `test/etoiles.test.ts` | deux séances consécutives à effort 10 puis une troisième forte |
 | CA-09 | intégration | `test/coeurs.test.ts` | réaction simulée sur une séance, dépôt en mémoire |
+| CA-09bis | intégration | `test/coeurs.test.ts`, `test/styles.test.ts` | cœurs sur deux séances le même jour, cœur la veille exclu, cas zéro cœur |
 | CA-10 | intégration | `test/coeurs.test.ts` | récapitulatif hebdomadaire de dons |
 | CA-11 | unitaire | `test/signal-vendredi.test.ts` | semaine avec plusieurs séances, recherche d'un prénom |
 | CA-11bis | unitaire | `test/signal-vendredi.test.ts` | semaine sans aucune séance |

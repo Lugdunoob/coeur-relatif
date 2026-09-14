@@ -21,3 +21,16 @@ export function coeursDonnesSemaine(repo: InMemoryRepository, personneId: string
     .coeursDonnesParPersonne(personneId)
     .filter((coeur) => coeur.horodatage >= debutSemaine && coeur.horodatage < finSemaine).length;
 }
+
+const UN_JOUR_MS = 24 * 3600 * 1000;
+
+// Décision prise en Recette (2026-09-14, point 4) : pas de message instantané à chaque
+// cœur, un seul résumé groupé par jour, toutes séances de la personne confondues.
+// Compte tous les cœurs reçus par la personne, quelle que soit la séance, sur les
+// 24h qui suivent `debutJour`.
+export function coeursRecusJour(repo: InMemoryRepository, personneId: string, debutJour: Date): number {
+  const finJour = new Date(debutJour.getTime() + UN_JOUR_MS);
+  return repo
+    .coeursRecusParPersonne(personneId)
+    .filter((coeur) => coeur.horodatage >= debutJour && coeur.horodatage < finJour).length;
+}

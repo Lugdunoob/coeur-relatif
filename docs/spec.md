@@ -38,6 +38,10 @@ Un collègue répond ❤️ au message du groupe. Le bot compte, en privé seule
 l'auteur de la séance, le nombre de cœurs reçus sur cette séance ; à chacun, en fin de
 semaine, le nombre de cœurs donnés. Aucun total n'est jamais public ni classé.
 
+Les cœurs reçus ne déclenchent pas un message instantané par cœur : ils sont regroupés
+en un seul résumé quotidien, toutes séances de la journée confondues (« 2 cœurs reçus
+aujourd'hui. »), moins intrusif qu'une notification à chaque ❤️.
+
 ### P6 — Le signal du vendredi
 Chaque vendredi, un message collectif dans le groupe, sans prénom : nombre de séances
 déclarées et nombre de cœurs posés cette semaine, par l'ensemble du groupe.
@@ -83,6 +87,7 @@ tout ce qui concerne la personne et le confirme.
 | CA-07 | Les seuils d'étoiles appliqués correspondent exactement à R5 sur un jeu de charges de test couvrant les cinq tranches. | P3 | R5 |
 | CA-08 | Si les deux séances précédentes de la personne ont un effort de 10, la note de la séance courante ne dépasse jamais ★★★★, même si le calcul de R5 donnerait ★★★★★. | P3 | R6 |
 | CA-09 | Un ❤️ posé sur un message de séance est compté en privé pour l'auteur de la séance ; ce total n'apparaît nulle part en public. | P5 | R7 |
+| CA-09bis | Les cœurs reçus par une personne un même jour, toutes séances confondues, sont annoncés dans un seul message quotidien, jamais un message par cœur reçu. | P5 | R7 |
 | CA-10 | En fin de semaine, chaque personne reçoit en privé le nombre de cœurs qu'elle a donnés ; ce nombre n'est jamais comparé aux autres dans un message. | P5 | R7 |
 | CA-11 | Le message du vendredi contient un total de séances et un total de cœurs pour le groupe entier, et ne contient aucun prénom. | P6 | R8 |
 | CA-12 | Aucun message généré par le bot, à aucun moment, ne mentionne qu'une personne nommée n'a pas déclaré de séance. | P6 | R8 |

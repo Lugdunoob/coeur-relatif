@@ -35,4 +35,15 @@
 //   3. Aucun appel réseau, aucune dépendance `grammY` ajoutée à ce stade : aucun test
 //      ne l'exige encore (`test/coeurs.test.ts` teste `coeurs.ts` directement, sans
 //      passer par ce fichier).
+//
+// Branchement futur pour le résumé quotidien des cœurs (CA-09bis, décision Recette
+// 2026-09-14, point 4) : pas de message à chaque ❤️, un seul job planifié une fois par
+// jour et par personne.
+//   1. `coeurs.ts` (`coeursRecusJour`) : compter les cœurs reçus par la personne sur les
+//      dernières 24h, toutes séances confondues.
+//   2. `styles.ts` (`STYLE_NEUTRE.coeursDigestJour`) : composer le texte envoyé en privé.
+//      Le style utilisé est une table interchangeable (voir l'en-tête de `styles.ts`) :
+//      changer de ton ne touche ni ce fichier ni `coeurs.ts`.
+//   3. N'envoyer le message que si la personne a au moins une séance ce jour-là ou a
+//      reçu au moins un cœur ; jamais de message vide à tout le monde chaque jour.
 export {};

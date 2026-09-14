@@ -1,7 +1,7 @@
 {
   "idee": "Cœur relatif",
   "depot": "Lugdunoob/coeur-relatif",
-  "genere_le": "2026-09-14T14:12:46+00:00",
+  "genere_le": "2026-09-14T14:21:40+00:00",
   "a_prendre": [
     {
       "type": "veto",
@@ -92,6 +92,13 @@
       "nom": "Correction Recette — déclaration par boutons, sans texte libre",
       "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-15T14:30:00+00:00.",
       "veto_jusqu_au": "2026-09-15T14:30:00+00:00"
+    },
+    {
+      "type": "veto",
+      "carte": "14",
+      "nom": "Correction Recette — cœurs groupés par jour et mécanisme de style de message",
+      "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-15T15:00:00+00:00.",
+      "veto_jusqu_au": "2026-09-15T15:00:00+00:00"
     }
   ],
   "cartes": [
@@ -680,6 +687,28 @@
         "decideur": "fondateur",
         "tension_avec": "02"
       }
+    },
+    {
+      "carte": "14",
+      "nom": "Correction Recette — cœurs groupés par jour et mécanisme de style de message",
+      "agent": "fondateur",
+      "statut": "approuvee",
+      "veto_jusqu_au": "2026-09-15T15:00:00+00:00",
+      "approuvee_le": "2026-09-14T15:00:00+00:00",
+      "livrable": "docs/spec.md (P5, CA-09bis), src/domain/coeurs.ts, src/domain/styles.ts, src/db/in-memory.ts, test/coeurs.test.ts, test/styles.test.ts, src/telegram/webhook.ts, scripts/demo-recette.ts",
+      "porte": "les tests de coeurs.ts et styles.ts passent ; les 38 tests du dépôt passent ; docs/spec.md à jour",
+      "journal": "- **Décision** : les cœurs reçus sont annoncés en un seul message par jour (toutes\n  séances confondues), pas un message par cœur ; le texte de ce message vient d'une\n  table de style interchangeable, en commençant par un style neutre.\n- **Options considérées** :\n  (a) garder un message instantané par cœur, comme démontré au point 4 initial (écartée,\n  jugée trop intrusive par le fondateur) ;\n  (b) résumé groupé par séance plutôt que par jour (écartée : recevoir un message par\n  séance ayant reçu un cœur revient presque au même qu'un message par cœur si la\n  personne fait plusieurs séances dans la journée) ;\n  (c) résumé groupé par jour, toutes séances confondues (retenue).\n  Pour le ton : (a) écrire le ton définitif tout de suite (écartée, prématuré sans\n  retour du pilote) ; (b) neutre d'abord + mécanisme de tables interchangeables pour\n  itérer facilement plus tard (retenue, demande explicite du fondateur).\n- **Qui a tranché** : le fondateur, en direct pendant la Recette. Aucune remontée\n  nécessaire : plus haute autorité du processus.\n- **Réversible** : oui.\n- **Ce qui ferait revenir dessus** : si le pilote réel montre qu'un résumé quotidien\n  arrive trop tard pour créer un sentiment de reconnaissance (ex. cœur posé le matin,\n  résumé reçu seulement le soir) — auquel cas un résumé plus fréquent (ex. deux fois par\n  jour) resterait un réglage de fréquence, pas une remise en cause du principe groupé.\n- **Veto possible jusqu'à** : 2026-09-15T15:00:00+00:00 (fenêtre symbolique : c'est déjà\n  la décision du fondateur, pas celle d'un agent).",
+      "challenge": "",
+      "reponses": "",
+      "a_trancher": [],
+      "veto_ouvert": true,
+      "metadata": {
+        "criteres_touches": [
+          "CA-09bis"
+        ],
+        "trouve_pendant": "Recette, point 4",
+        "decideur": "fondateur"
+      }
     }
   ],
   "produit": {
@@ -1052,6 +1081,25 @@
     "CA-17"
   ],
   "commits": [
-    "b7b94bd Note backlog : totaux de cœurs par niveau hiérarchique + classement pays"
+    "5c7bd37 etat: régénéré [skip ci]",
+    "b7b94bd Note backlog : totaux de cœurs par niveau hiérarchique + classement pays",
+    "5391332 etat: régénéré [skip ci]",
+    "3c701d3 Ajout du libellé \"90+\" sur le dernier palier de durée",
+    "caa448f etat: régénéré [skip ci]",
+    "537f4a2 Deuxième correction Recette : déclaration par boutons, sans texte libre",
+    "e0e3edb etat: régénéré [skip ci]",
+    "1ee88b9 recette: format de déclaration en liste à trois lignes (carte 12)",
+    "ca3f13b etat: régénéré [skip ci]",
+    "07deda1 etat: régénéré [skip ci]",
+    "36eab7c regie: lot 05 approuvé (carte 11) — les cinq lots du pilote sont terminés, 18/18 critères verts",
+    "287b0e4 Lot 05 — Les droits (#13)",
+    "3780702 merge: résolu en régénérant les fichiers auto (etat.md, data.json)",
+    "701c3d1 etat: régénéré après fusion de main dans lot-05",
+    "c76a854 merge: main dans lot-05 pour résoudre le conflit de docs auto-générés",
+    "cc27108 chore: ignorer .loop/phase (marqueur éphémère, jamais destiné à être commité)",
+    "d9c71d6 etat: régénéré [skip ci]",
+    "f261fd4 Lot 05 — Les droits (CA-14, CA-15, CA-16, CA-17)",
+    "6862f3d etat: régénéré [skip ci]",
+    "4d86a7e regie: lot 04 approuvé (carte 10)"
   ]
 }

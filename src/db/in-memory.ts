@@ -69,4 +69,9 @@ export class InMemoryRepository {
   coeursDonnesParPersonne(donneurId: string): Coeur[] {
     return this.coeurs.filter((coeur) => coeur.donneurId === donneurId);
   }
+
+  coeursRecusParPersonne(personneId: string): Coeur[] {
+    const idsSeances = new Set(this.seancesDe(personneId).map((seance) => seance.id));
+    return this.coeurs.filter((coeur) => idsSeances.has(coeur.seanceId));
+  }
 }
