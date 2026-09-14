@@ -39,6 +39,10 @@
     align-items: center;
     padding: 32px 16px calc(32px + env(safe-area-inset-bottom));
   }
+  /* #app est un enfant flex sans largeur propre : par défaut il se dimensionne sur
+     son contenu (« auto »), ce qui rend circulaire le width:100% de .carte à
+     l'intérieur. Largeur explicite ici pour que .carte puisse vraiment grandir. */
+  #app { width: 100%; display: flex; justify-content: center; }
   .marque {
     font-family: "Bebas Neue", "JetBrains Mono", sans-serif;
     font-size: 2.4rem;
@@ -55,7 +59,7 @@
   }
   .carte {
     width: 100%;
-    max-width: 420px;
+    max-width: 440px;
     background: var(--panneau);
     border: 1px solid var(--case-bord);
     border-radius: 18px;
@@ -121,7 +125,7 @@
     -webkit-user-select: none;
   }
   .roue-bande {
-    position: absolute; left: 4px; right: 4px; top: 72px; height: 36px;
+    position: absolute; left: 4px; right: 4px; top: 40%; height: 20%;
     border-radius: 8px;
     background: var(--klein-clair);
     box-shadow: inset 0 0 0 1px rgba(10,63,240,.25);
@@ -141,7 +145,6 @@
   .roue-item {
     position: absolute; left: 0; right: 0; top: 0;
     width: 100%; max-width: 100%; box-sizing: border-box;
-    height: 36px; line-height: 36px;
     font-size: 0.72rem;
     color: var(--encre-douce);
     opacity: .45;
@@ -154,6 +157,27 @@
   .roue-item.actif { opacity: 1; color: var(--klein); font-weight: 800; font-size: 0.98rem; }
   .chargement, .erreur { text-align: center; color: var(--encre-douce); margin-top: 40vh; font-size: 0.85rem; letter-spacing: 0.05em; }
   .erreur { color: var(--coeur); }
+
+  /* Écran large (ordinateur) : l'appli reste utilisable au doigt sur mobile, mais ne
+     reste pas coincée dans une carte étroite quand il y a toute la place d'un écran
+     d'ordinateur. Bloc unique, placé après toutes les règles de base : une règle de
+     media query placée avant la règle de base qu'elle doit modifier perd face à elle
+     dans la cascade (même spécificité, ordre du fichier), même quand elle s'applique. */
+  @media (min-width: 680px) {
+    .marque { font-size: 3.6rem; }
+    .marque-sous { font-size: 0.85rem; }
+    .carte { max-width: 860px; padding: 48px 60px; }
+    h1 { font-size: 2.4rem; }
+    .sous-titre { font-size: 0.95rem; }
+    p { font-size: 1.05rem; }
+    button { font-size: 1.05rem; padding: 18px 22px; }
+    .roues { gap: 24px; margin: 18px 0 30px; }
+    .roue-entete { font-size: 0.85rem; }
+    .roue-cadre { height: 280px; border-radius: 16px; }
+    .roue-item { font-size: 1rem; }
+    .roue-item.actif { font-size: 1.55rem; }
+    .etoiles .case-etoile { width: 56px; height: 66px; font-size: 1.8rem; border-radius: 10px; }
+  }
 </style>
 </head>
 <body>
@@ -241,9 +265,6 @@ function afficherMenu(prenom) {
   document.getElementById('supprimer').onclick = confirmerSuppression;
 }
 
-const HAUTEUR_LIGNE = 36;
-const HAUTEUR_CADRE = 180;
-
 async function demarrerDeclaration() {
   const options = await api('/api/web/options');
   afficherRoues(options);
@@ -306,6 +327,11 @@ function initRoue(id, valeurs) {
   const cadre = document.getElementById(id);
   const piste = cadre.querySelector('.roue-piste');
   const n = valeurs.length;
+  // Mesuré sur le vrai cadre affiché (pas une constante figée) : s'adapte tout seul à
+  // la taille définie en CSS, y compris la version « grand écran » (media query).
+  const RANGEES_VISIBLES = 5;
+  const hauteurCadre = cadre.clientHeight;
+  const hauteurLigne = hauteurCadre / RANGEES_VISIBLES;
   let pos = 0;
   let vitesse = 0;
   let dernierY = 0, dernierT = 0;
@@ -316,9 +342,9 @@ function initRoue(id, valeurs) {
     const centre = Math.round(pos);
     let html = '';
     for (let i = centre - 3; i <= centre + 3; i++) {
-      const y = HAUTEUR_CADRE / 2 + (i - pos) * HAUTEUR_LIGNE - HAUTEUR_LIGNE / 2;
+      const y = hauteurCadre / 2 + (i - pos) * hauteurLigne - hauteurLigne / 2;
       const actif = i === Math.round(pos);
-      html += `<div class="roue-item${actif ? ' actif' : ''}" style="transform:translateY(${y}px)">${valeurs[mod(i, n)]}</div>`;
+      html += `<div class="roue-item${actif ? ' actif' : ''}" style="height:${hauteurLigne}px;line-height:${hauteurLigne}px;transform:translateY(${y}px)">${valeurs[mod(i, n)]}</div>`;
     }
     piste.innerHTML = html;
   }
@@ -371,10 +397,10 @@ function initRoue(id, valeurs) {
     const maintenant = performance.now();
     const deltaY = dernierY - e.clientY;
     dernierY = e.clientY;
-    pos += deltaY / HAUTEUR_LIGNE;
+    pos += deltaY / hauteurLigne;
     if (dernierT) {
       const dt = Math.max(1, maintenant - dernierT);
-      vitesse = (deltaY / HAUTEUR_LIGNE) / dt;
+      vitesse = (deltaY / hauteurLigne) / dt;
     }
     dernierT = maintenant;
     rendre();
