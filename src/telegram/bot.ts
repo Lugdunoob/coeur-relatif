@@ -76,6 +76,14 @@ export interface OptionsBot {
 export function creerBot({ token, repo, groupChatId }: OptionsBot): Bot {
   const bot = new Bot(token);
 
+  // Règle Telegram (docs/contracts.md) : répondre 200 au webhook quel que soit le
+  // résultat du traitement. grammY rejette la promesse de `handleUpdate` sans ce
+  // gestionnaire (ex. callback_query périmé, chat bloqué) ; webhook.ts a aussi son
+  // propre filet de sécurité, mais l'erreur doit être journalisée ici, au plus près.
+  bot.catch((erreur) => {
+    console.error('Erreur non gérée dans un gestionnaire grammY :', erreur);
+  });
+
   bot.command('start', async (ctx) => {
     const idTelegram = String(ctx.from?.id);
     const personne = await repo.getPersonne(idTelegram);

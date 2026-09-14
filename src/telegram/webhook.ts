@@ -42,10 +42,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse): 
     return;
   }
 
-  const bot = obtenirBot();
-  await bot.init();
-  await bot.handleUpdate(req.body);
-  // Règle Telegram (docs/contracts.md) : répondre vite, traiter après. Le traitement
-  // ci-dessus est déjà terminé ici (await), donc rien à différer.
+  try {
+    const monBot = obtenirBot();
+    await monBot.init();
+    await monBot.handleUpdate(req.body);
+  } catch (erreur) {
+    // Règle Telegram (docs/contracts.md) : toujours répondre 200, quel que soit le
+    // résultat du traitement — un code d'erreur ferait réessayer Telegram, et des
+    // échecs répétés peuvent lui faire désactiver le webhook. `bot.catch()` dans
+    // bot.ts journalise déjà la plupart des erreurs ; ce filet couvre aussi celles en
+    // dehors des gestionnaires grammY (ex. `obtenirBot()`, `bot.init()`).
+    console.error('Erreur non gérée dans le webhook Telegram :', erreur);
+  }
   res.status(200).json({ ok: true });
 }
