@@ -1,7 +1,7 @@
 {
   "idee": "Cœur relatif",
   "depot": "Lugdunoob/coeur-relatif",
-  "genere_le": "2026-09-14T14:04:54+00:00",
+  "genere_le": "2026-09-14T14:12:46+00:00",
   "a_prendre": [
     {
       "type": "veto",
@@ -1052,6 +1052,6 @@
     "CA-17"
   ],
   "commits": [
-    "3c701d3 Ajout du libellé \"90+\" sur le dernier palier de durée"
+    "b7b94bd Note backlog : totaux de cœurs par niveau hiérarchique + classement pays"
   ]
 }
