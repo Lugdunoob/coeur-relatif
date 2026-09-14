@@ -9,14 +9,14 @@ faire tourner le bot pour de vrai — rien de ceci n'est nécessaire pour `npm t
 |---|---|---|
 | `SUPABASE_URL` | `https://feikqaysteuwkipzvggn.supabase.co` (projet `domelo-dev`) | Fixe, pas un secret. |
 | `SUPABASE_SERVICE_ROLE_KEY` | Dashboard Supabase → projet `domelo-dev` → Project Settings → API → clé `service_role` | **Secret.** Jamais commité, jamais donné à un agent : aucun outil ne l'expose (voir ADR-0005). À définir uniquement dans les variables d'environnement Vercel. |
-| `TELEGRAM_BOT_TOKEN` | `@BotFather` sur Telegram → `/newbot` | **Secret.** Créé par le fondateur (compte Telegram personnel), jamais par un agent. |
+| `TELEGRAM_BOT_TOKEN` | `@BotFather` sur Telegram → `/newbot` | **Secret.** Créé par le fondateur (compte Telegram personnel), jamais par un agent. Obtenu le 2026-09-14, bot `@Coeursportbot` ("Coeur sport"), vérifié via `getMe`. Stocké dans `.env` (gitignoré), à reporter dans les variables d'environnement Vercel au déploiement. |
 
 `SupabaseRepository` (`src/db/supabase.ts`) cible le schéma `coeur_relatif` du projet
 `domelo-dev`, pas le schéma `public` (voir ADR-0005) — aucune table du reste de domelo
 n'est touchée.
 
-## Ce qui reste à faire pour aller en production (pas fait dans cette carte)
-1. Créer le bot via `@BotFather`, récupérer `TELEGRAM_BOT_TOKEN`.
+## Ce qui reste à faire pour aller en production
+1. ~~Créer le bot via `@BotFather`, récupérer `TELEGRAM_BOT_TOKEN`.~~ Fait le 2026-09-14.
 2. Récupérer `SUPABASE_SERVICE_ROLE_KEY` depuis le dashboard Supabase.
 3. Câbler `src/telegram/webhook.ts` avec `grammY` (import du token, des gestionnaires
    `message`/`message_reaction`/commandes `/mesdonnees` et `/supprimer`) — pas encore
