@@ -4,3 +4,4 @@ dist/
 .vitest/
 .tableau-de-bord-vitest.json
 .loop/phase
+scripts/demo-recette.ts

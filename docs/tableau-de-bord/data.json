@@ -1,7 +1,7 @@
 {
   "idee": "Cœur relatif",
   "depot": "Lugdunoob/coeur-relatif",
-  "genere_le": "2026-09-14T09:56:37+00:00",
+  "genere_le": "2026-09-14T13:42:58+00:00",
   "a_prendre": [
     {
       "type": "veto",
@@ -78,6 +78,13 @@
       "nom": "Lot 05",
       "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-15T09:56:16+00:00.",
       "veto_jusqu_au": "2026-09-15T09:56:16+00:00"
+    },
+    {
+      "type": "veto",
+      "carte": "12",
+      "nom": "Correction Recette — format de déclaration en trois lignes",
+      "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-15T13:42:58+00:00.",
+      "veto_jusqu_au": "2026-09-15T13:42:58+00:00"
     }
   ],
   "cartes": [
@@ -621,6 +628,28 @@
           "modéliser le lien message_id ↔ Seance pour le câblage réel (carte 05/09)"
         ]
       }
+    },
+    {
+      "carte": "12",
+      "nom": "Correction Recette — format de déclaration en trois lignes",
+      "agent": "fondateur",
+      "statut": "approuvee",
+      "veto_jusqu_au": "2026-09-15T13:42:58+00:00",
+      "approuvee_le": "2026-09-14T13:42:58+00:00",
+      "livrable": "docs/spec.md (P2, CA-03), src/domain/parsing.ts, test/parsing.test.ts",
+      "porte": "les huit tests de parsing passent ; les 33 tests du dépôt passent ; docs/spec.md à jour",
+      "journal": "- **Décision** : le format de déclaration devient une liste à trois lignes, ordre libre,\n  synonymes tolérés.\n- **Options considérées** : (a) garder le format en une phrase et améliorer seulement le\n  message d'erreur (écartée par le fondateur, encore fragile à la frappe) ; (b) liste à\n  trois lignes (retenue, décision directe du fondateur).\n- **Qui a tranché** : le fondateur, en direct, pendant la Recette. Aucune remontée\n  nécessaire : c'est la plus haute autorité du processus qui a tranché elle-même.\n- **Réversible** : oui.\n- **Ce qui ferait revenir dessus** : si les tests du vrai pilote montrent que la liste à\n  trois lignes est encore plus lourde à taper sur téléphone que l'ancienne phrase.\n- **Veto possible jusqu'à** : 2026-09-15T13:42:58+00:00 (fenêtre symbolique : c'est déjà la décision du\n  fondateur, pas celle d'un agent).",
+      "challenge": "",
+      "reponses": "",
+      "a_trancher": [],
+      "veto_ouvert": true,
+      "metadata": {
+        "criteres_touches": [
+          "CA-03"
+        ],
+        "trouve_pendant": "Recette, point 2",
+        "decideur": "fondateur"
+      }
     }
   ],
   "produit": {
@@ -993,6 +1022,25 @@
     "CA-17"
   ],
   "commits": [
-    "36eab7c regie: lot 05 approuvé (carte 11) — les cinq lots du pilote sont terminés, 18/18 critères verts"
+    "ca3f13b etat: régénéré [skip ci]",
+    "07deda1 etat: régénéré [skip ci]",
+    "36eab7c regie: lot 05 approuvé (carte 11) — les cinq lots du pilote sont terminés, 18/18 critères verts",
+    "287b0e4 Lot 05 — Les droits (#13)",
+    "3780702 merge: résolu en régénérant les fichiers auto (etat.md, data.json)",
+    "701c3d1 etat: régénéré après fusion de main dans lot-05",
+    "c76a854 merge: main dans lot-05 pour résoudre le conflit de docs auto-générés",
+    "cc27108 chore: ignorer .loop/phase (marqueur éphémère, jamais destiné à être commité)",
+    "d9c71d6 etat: régénéré [skip ci]",
+    "f261fd4 Lot 05 — Les droits (CA-14, CA-15, CA-16, CA-17)",
+    "6862f3d etat: régénéré [skip ci]",
+    "4d86a7e regie: lot 04 approuvé (carte 10)",
+    "8d85204 Lot 04 — Les signaux collectifs (#10)",
+    "b7d1338 lot-04 : push abouti (git push origin sans -u), lot terminé",
+    "dc55da9 lot-04 : note d'état — push origin/lot-04 bloqué par une invite d'approbation",
+    "5691321 lot-04 (sous-lot final) : revue contradictoire, résumé, prêt pour push",
+    "3ca3ded lot-04 (sous-lots 1-3) : signal du vendredi, rappel du lundi, squelette cron",
+    "9e1e18e lot-04 (sous-lot 0) : lecture carte/lot/tests rouges, plan écrit",
+    "ba1f120 regie: lot 03 approuvé (carte 09) — réserve notée sur le spike Telegram pour la Recette",
+    "3fbd5d5 Lot 03 — Les cœurs (#9)"
   ]
 }

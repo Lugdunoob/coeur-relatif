@@ -13,8 +13,16 @@ stocké, ce qui ne l'est jamais, la durée de conservation, comment supprimer), 
 plus d'une fois par semaine.
 
 ### P2 — Déclarer une séance
-En message privé au bot : une activité libre, des minutes, un effort ressenti de 1 à 10.
-Le bot confirme en privé et, s'il y a assez d'historique, publie dans le groupe.
+En message privé au bot, trois lignes, une par information, dans n'importe quel ordre :
+```
+Activité : course
+Durée : 30
+Effort : 7
+```
+Chaque ligne commence par un mot-clé reconnu (l'accent et la casse n'ont pas
+d'importance) : « activité » ou « sport » pour l'activité libre ; « durée », « minutes »
+ou « temps » pour la durée en minutes ; « effort » ou « ressenti » pour l'effort ressenti
+de 1 à 10. Le bot confirme en privé et, s'il y a assez d'historique, publie dans le groupe.
 
 ### P3 — Recevoir sa note
 Calcul de la charge (minutes × effort), comparaison à la référence personnelle glissante,
@@ -68,7 +76,7 @@ tout ce qui concerne la personne et le confirme.
 |---|---|---|---|
 | CA-01 | Tant que la personne n'a pas répondu « J'accepte », aucune déclaration n'est enregistrée. | P1 | R1 |
 | CA-02 | Le bot ne relance pas le consentement plus d'une fois par période de 7 jours. | P1 | R1 |
-| CA-03 | Une déclaration valide contient une activité non vide, des minutes > 0, un effort entre 1 et 10 ; toute autre valeur est rejetée avec un message d'erreur en privé. | P2 | — |
+| CA-03 | Une déclaration valide est une liste de trois lignes (activité, durée, effort), dans n'importe quel ordre, reconnues par mot-clé ; l'activité doit être non vide, la durée > 0, l'effort entre 1 et 10 ; toute ligne manquante ou hors limites rejette toute la déclaration avec un message d'erreur en privé. | P2 | — |
 | CA-04 | Pour les séances 1 et 2 d'une personne, le bot répond en privé « enregistré » et ne publie rien dans le groupe. | P3 | R4 |
 | CA-05 | À partir de la 3e séance, la référence est la médiane des charges des six dernières séances disponibles (moins de six si l'historique est plus court). | P3 | R3 |
 | CA-06 | Le message publié dans le groupe contient le prénom, le nombre d'étoiles, le nom de l'activité, et ne contient ni minutes, ni effort, ni aucun nombre autre que les étoiles. | P4 | R2 |
