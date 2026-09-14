@@ -1,7 +1,7 @@
 {
   "idee": "Cœur relatif",
   "depot": "Lugdunoob/coeur-relatif",
-  "genere_le": "2026-09-14T07:39:57+00:00",
+  "genere_le": "2026-09-14T08:24:00+00:00",
   "a_prendre": [
     {
       "type": "veto",
@@ -57,6 +57,13 @@
       "nom": "Lot 02",
       "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-15T07:22:06+00:00.",
       "veto_jusqu_au": "2026-09-15T07:22:06+00:00"
+    },
+    {
+      "type": "veto",
+      "carte": "09",
+      "nom": "Lot 03",
+      "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-15T08:24:00+00:00.",
+      "veto_jusqu_au": "2026-09-15T08:24:00+00:00"
     }
   ],
   "cartes": [
@@ -520,6 +527,31 @@
         "pr": "https://github.com/Lugdunoob/coeur-relatif/pull/7",
         "point_transmis": "un chiffre dans une activité libre n'est pas filtré par CA-06 ; à couvrir en recette ou lot futur"
       }
+    },
+    {
+      "carte": "09",
+      "nom": "Lot 03",
+      "agent": "dev",
+      "statut": "approuvee",
+      "veto_jusqu_au": "2026-09-15T08:24:00+00:00",
+      "approuvee_le": "2026-09-14T08:24:00+00:00",
+      "livrable": "src/domain/coeurs.ts",
+      "porte": "CA-09, CA-10 verts ; typecheck et lint propres ; docs/ intact",
+      "journal": "- **Décision** : lot 3 approuvé malgré la réserve sur le spike, parce que rien de codé\n  n'est faux : `coeurs.ts` fonctionne sur l'interface prévue par l'ADR-0004,\n  indépendamment de Telegram. Le risque porte sur l'intégration réelle (lot 6), pas sur\n  ce lot.\n- **Options considérées** : (a) bloquer le lot tant que le spike n'est pas vérifié en\n  direct (écartée : aucun outil réseau n'est disponible dans cet environnement, bloquer\n  reviendrait à ne jamais avancer) ; (b) approuver avec la réserve écrite noir sur blanc\n  pour la Recette (retenue).\n- **Qui a tranché** : Stratège.\n- **Réversible** : oui.\n- **Ce qui ferait revenir dessus** : si la vérification en Recette montre que les\n  réactions ne sont pas exploitables, CA-09/CA-10 changent de mécanisme (texte au lieu\n  de réaction native), déjà anticipé par la carte 05.\n- **Veto possible jusqu'à** : 2026-09-15T08:24:00+00:00.",
+      "challenge": "",
+      "reponses": "",
+      "a_trancher": [],
+      "veto_ouvert": true,
+      "metadata": {
+        "criteres_couverts": [
+          "CA-09",
+          "CA-10"
+        ],
+        "iterations": 1,
+        "iterations_max": 15,
+        "pr": "https://github.com/Lugdunoob/coeur-relatif/pull/9",
+        "reserve_recette": "reconfirmer message_reaction en direct avant de configurer le vrai webhook"
+      }
     }
   ],
   "produit": {
@@ -828,7 +860,7 @@
         "CA-09",
         "CA-10"
       ],
-      "statut": "a_faire"
+      "statut": "termine"
     },
     {
       "titre": "Lot 4 — Les signaux collectifs",
@@ -880,9 +912,17 @@
     "CA-06",
     "CA-07",
     "CA-08",
+    "CA-09",
+    "CA-10",
     "CA-17"
   ],
   "commits": [
+    "3fbd5d5 Lot 03 — Les cœurs (#9)",
+    "cd1e051 lot-03 (sous-lot final) : revue contradictoire, résumé, prêt pour push",
+    "a145b93 lot-03 (sous-lots 2-3) : implémentation réelle des cœurs (CA-09, CA-10)",
+    "d0fb0c3 lot-03 (sous-lots 0-1) : plan et spike Telegram (message_reaction) positif",
+    "f08e5de docs: idée transmise (scores de groupe/total) mise en attente, pas dans le pilote",
+    "81c8344 fix: extraction complète des notes multi-lignes + tableau de bord reformulé en langage direct",
     "5be7c73 fix: le workflow etat retente son push en cas de course avec un autre push",
     "b6127d9 regie: lot 02 approuvé (carte 08), tableau de bord et état régénérés",
     "cea80b2 Lot 02 — Chemin critique : déclarer, être vu du groupe (#7)",
@@ -896,12 +936,6 @@
     "c373a59 lot-02 (sous-lot 2) : consentement réel (CA-01, CA-02)",
     "f9bf539 lot-02 (sous-lot 1) : InMemoryRepository réel",
     "b54ff2b etat: régénéré [skip ci]",
-    "c4291fd etat: régénéré après le correctif CI",
-    "366f508 fix: stubs typés pour les modules des lots 2-5, CI ajustée à la méthode tests-d'abord",
-    "4086412 etat: régénéré [skip ci]",
-    "d043a3c regie: lot 01 approuvé (carte 07), état régénéré",
-    "c7fd1fa merge: lot-01 — référence glissante et calcul des étoiles (CA-04, CA-05, CA-07, CA-08)",
-    "d88d7f5 lot-01: signale le blocage sur l'ouverture de la PR (pas de remote git)",
-    "99d94b7 lot-01: référence glissante et calcul des étoiles (CA-04, CA-05, CA-07, CA-08)"
+    "c4291fd etat: régénéré après le correctif CI"
   ]
 }
