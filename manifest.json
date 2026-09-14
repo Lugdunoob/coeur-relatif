@@ -1,0 +1,12 @@
+{
+  "name": "Cœur relatif",
+  "short_name": "Cœur relatif",
+  "description": "Note tes séances, relativement à toi-même. Jamais de chiffres publics.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#faf6f0",
+  "theme_color": "#2b2320",
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

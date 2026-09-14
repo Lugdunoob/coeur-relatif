@@ -9,10 +9,9 @@ import {
   DUREES_MINUTES,
   DUREE_LABELS,
   EFFORTS_MOTS,
-  parserDeclaration,
   type ChoixDeclaration,
 } from '../domain/parsing.js';
-import { calculerEtoiles } from '../domain/etoiles.js';
+import { declarerSeance } from '../domain/declarer.js';
 import { formaterMessagePublic } from '../domain/message.js';
 import { enregistrerCoeur } from '../domain/coeurs.js';
 import { mesDonnees, supprimerMesDonnees } from '../domain/donnees.js';
@@ -201,32 +200,13 @@ export function creerBot({ token, repo, groupChatId }: OptionsBot): Bot {
 
   async function finaliserDeclaration(chatId: number, idTelegramFrom: number, choix: ChoixDeclaration): Promise<void> {
     const idTelegram = String(idTelegramFrom);
-    const declaration = parserDeclaration(choix);
-    if (!declaration) {
+    const resultat = await declarerSeance(repo, idTelegram, choix);
+    if (!resultat) {
       await bot.api.sendMessage(chatId, MESSAGE_INCOMPRIS);
       return;
     }
-
+    const { seanceId, activite, etoiles } = resultat;
     const personne = await repo.getPersonne(idTelegram);
-    const historique = await repo.dernieresSeances(idTelegram, 6);
-    const charge = declaration.minutes * declaration.effort;
-    const etoiles = calculerEtoiles({
-      charge,
-      historiqueCharges: historique.map((s) => s.minutes * s.effort),
-      effortsRecents: historique.map((s) => s.effort),
-    });
-
-    const seanceId = `${idTelegram}-${Date.now()}`;
-    await repo.ajouterSeance({
-      id: seanceId,
-      personneId: idTelegram,
-      horodatage: new Date(),
-      activite: declaration.activite,
-      minutes: declaration.minutes,
-      effort: declaration.effort,
-      etoiles,
-      messageIdTelegram: null,
-    });
 
     if (etoiles === null) {
       // CA-04 : réponse strictement « enregistré » pendant la calibration.
@@ -234,7 +214,7 @@ export function creerBot({ token, repo, groupChatId }: OptionsBot): Bot {
       return;
     }
 
-    await bot.api.sendMessage(chatId, `Enregistré : ${declaration.activite}, ${'★'.repeat(etoiles)}.`);
+    await bot.api.sendMessage(chatId, `Enregistré : ${activite}, ${'★'.repeat(etoiles)}.`);
 
     // Groupe pas encore configuré (avant la création du vrai groupe Telegram du
     // pilote, ou pendant les tout premiers essais privés) : la séance reste
@@ -243,7 +223,7 @@ export function creerBot({ token, repo, groupChatId }: OptionsBot): Bot {
 
     const message = await bot.api.sendMessage(
       groupChatId,
-      formaterMessagePublic({ prenom: personne?.prenom ?? 'Quelqu\'un', etoiles, activite: declaration.activite }),
+      formaterMessagePublic({ prenom: personne?.prenom ?? 'Quelqu\'un', etoiles, activite }),
     );
     await repo.enregistrerMessageSeance(seanceId, message.message_id);
   }
