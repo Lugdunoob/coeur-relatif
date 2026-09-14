@@ -30,14 +30,20 @@ n'est touchée.
 4. ~~Câbler `src/telegram/webhook.ts` avec `grammY`.~~ Fait le 2026-09-14 (carte 17) :
    `src/telegram/bot.ts` (logique), `src/telegram/webhook.ts` (adaptateur Vercel),
    `api/telegram.ts` (point d'entrée), `api/cron/*.ts` (jobs planifiés).
-5. Configurer le webhook Telegram (`setWebhook` vers l'URL Vercel), avec
-   `allowed_updates` incluant `message_reaction` (ADR-0002) — pas encore fait, attend
-   l'URL de déploiement définitive.
+5. ~~Configurer le webhook Telegram (`setWebhook`).~~ Fait le 2026-09-14 :
+   `https://coeur-relatif.vercel.app/api/telegram`, `allowed_updates` incluant
+   `message_reaction`, protégé par `TELEGRAM_WEBHOOK_SECRET`. Vérifié via
+   `getWebhookInfo` (`pending_update_count: 0`) — plus besoin de relayer les mises à
+   jour à la main comme pendant les tout premiers essais.
 6. Créer le vrai groupe Telegram du pilote, y ajouter le bot, poser
    `TELEGRAM_GROUP_CHAT_ID`.
 7. Fixer la date de fin du pilote (décision du fondateur), poser `FIN_PILOTE`.
 8. Rejouer à la main les huit points du parcours de Recette (`docs/spec.md`, P1-P8)
    avec de vrais messages Telegram, pas la démo en mémoire (`scripts/demo-recette.ts`).
+   Point 1 (P1, consentement) déjà vérifié en conditions réelles le 2026-09-14 :
+   `/start` → texte de consentement → bouton « J'accepte » → ligne créée dans
+   `coeur_relatif.personne` avec `consentement_horodate` renseigné. Points suivants en
+   cours.
 
 ## Projet Vercel
 Créé le 2026-09-14 via l'API Vercel (token d'accès fourni par le fondateur, jamais
