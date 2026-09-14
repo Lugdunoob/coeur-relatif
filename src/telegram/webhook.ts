@@ -23,9 +23,12 @@
 //      de ce squelette, à faire au déploiement réel (lot 6, Recette).
 //   2. À réception d'une `MessageReactionUpdated` dont `new_reaction` contient ❤️ et
 //      `user` est renseigné (réaction d'un membre identifié, pas d'admin anonyme) :
-//      retrouver la séance correspondant à `message_id` dans le dépôt, puis appeler
-//      `coeurs.ts` (`enregistrerCoeur`) avec `{ id, seanceId, donneurId: user.id,
-//      horodatage: date }`.
+//      retrouver la séance visée par `message_id`, puis appeler `coeurs.ts`
+//      (`enregistrerCoeur`) avec `{ id, seanceId, donneurId: user.id, horodatage: date }`.
+//      Retrouver la séance à partir de `message_id` suppose de mémoriser ce lien au
+//      moment de l'envoi du message public (étape 4 ci-dessus) ; ni `docs/data-model.md`
+//      ni `Seance` (src/db/schema.ts) ne portent aujourd'hui ce champ — un point à
+//      trancher (ADR ou carte de changement) avant le câblage réel, pas avant.
 //   3. Aucun appel réseau, aucune dépendance `grammY` ajoutée à ce stade : aucun test
 //      ne l'exige encore (`test/coeurs.test.ts` teste `coeurs.ts` directement, sans
 //      passer par ce fichier).
