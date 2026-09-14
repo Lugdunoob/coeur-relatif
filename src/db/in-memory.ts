@@ -18,6 +18,30 @@ export class InMemoryRepository {
       .slice(-n);
   }
 
+  seancesDe(personneId: string): Seance[] {
+    return this.seances.filter((seance) => seance.personneId === personneId);
+  }
+
+  supprimerDonneesPersonne(personneId: string): void {
+    const idsSeances = new Set(this.seancesDe(personneId).map((seance) => seance.id));
+    this.seances = this.seances.filter((seance) => seance.personneId !== personneId);
+    this.coeurs = this.coeurs.filter(
+      (coeur) => coeur.donneurId !== personneId && !idsSeances.has(coeur.seanceId),
+    );
+    this.personnes.delete(personneId);
+    this.rappelsConsentement.delete(personneId);
+  }
+
+  purgerFinPilote(dateButoir: Date): void {
+    const idsSupprimees = new Set(
+      this.seances.filter((seance) => seance.horodatage < dateButoir).map((seance) => seance.id),
+    );
+    this.seances = this.seances.filter((seance) => seance.horodatage >= dateButoir);
+    this.coeurs = this.coeurs.filter((coeur) => !idsSupprimees.has(coeur.seanceId));
+    this.personnes.clear();
+    this.rappelsConsentement.clear();
+  }
+
   upsertPersonne(personne: Personne): void {
     this.personnes.set(personne.idTelegram, personne);
   }

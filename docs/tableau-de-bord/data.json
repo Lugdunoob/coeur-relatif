@@ -1,7 +1,7 @@
 {
   "idee": "Cœur relatif",
   "depot": "Lugdunoob/coeur-relatif",
-  "genere_le": "2026-09-14T09:25:44+00:00",
+  "genere_le": "2026-09-14T09:55:05+00:00",
   "a_prendre": [
     {
       "type": "veto",
@@ -913,7 +913,7 @@
         "CA-16",
         "CA-17"
       ],
-      "statut": "en_cours"
+      "statut": "termine"
     }
   ],
   "criteres_ids": [
@@ -951,9 +951,31 @@
     "CA-11bis",
     "CA-12",
     "CA-13",
+    "CA-14",
+    "CA-15",
+    "CA-16",
     "CA-17"
   ],
   "commits": [
-    "4d86a7e regie: lot 04 approuvé (carte 10)"
+    "701c3d1 etat: régénéré après fusion de main dans lot-05",
+    "c76a854 merge: main dans lot-05 pour résoudre le conflit de docs auto-générés",
+    "cc27108 chore: ignorer .loop/phase (marqueur éphémère, jamais destiné à être commité)",
+    "f261fd4 Lot 05 — Les droits (CA-14, CA-15, CA-16, CA-17)",
+    "6862f3d etat: régénéré [skip ci]",
+    "4d86a7e regie: lot 04 approuvé (carte 10)",
+    "8d85204 Lot 04 — Les signaux collectifs (#10)",
+    "b7d1338 lot-04 : push abouti (git push origin sans -u), lot terminé",
+    "dc55da9 lot-04 : note d'état — push origin/lot-04 bloqué par une invite d'approbation",
+    "5691321 lot-04 (sous-lot final) : revue contradictoire, résumé, prêt pour push",
+    "3ca3ded lot-04 (sous-lots 1-3) : signal du vendredi, rappel du lundi, squelette cron",
+    "9e1e18e lot-04 (sous-lot 0) : lecture carte/lot/tests rouges, plan écrit",
+    "ba1f120 regie: lot 03 approuvé (carte 09) — réserve notée sur le spike Telegram pour la Recette",
+    "3fbd5d5 Lot 03 — Les cœurs (#9)",
+    "cd1e051 lot-03 (sous-lot final) : revue contradictoire, résumé, prêt pour push",
+    "a145b93 lot-03 (sous-lots 2-3) : implémentation réelle des cœurs (CA-09, CA-10)",
+    "d0fb0c3 lot-03 (sous-lots 0-1) : plan et spike Telegram (message_reaction) positif",
+    "f08e5de docs: idée transmise (scores de groupe/total) mise en attente, pas dans le pilote",
+    "81c8344 fix: extraction complète des notes multi-lignes + tableau de bord reformulé en langage direct",
+    "5be7c73 fix: le workflow etat retente son push en cas de course avec un autre push"
   ]
 }

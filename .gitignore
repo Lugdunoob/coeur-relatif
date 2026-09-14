@@ -3,3 +3,4 @@ node_modules/
 dist/
 .vitest/
 .tableau-de-bord-vitest.json
+.loop/phase
