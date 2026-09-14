@@ -1,7 +1,7 @@
 {
   "idee": "Cœur relatif",
   "depot": "Lugdunoob/coeur-relatif",
-  "genere_le": "2026-09-14T14:57:13+00:00",
+  "genere_le": "2026-09-14T15:32:25+00:00",
   "a_prendre": [
     {
       "type": "veto",
@@ -113,6 +113,19 @@
       "nom": "Lot 6 : couche de données réelle (Repository, SupabaseRepository, schéma EU)",
       "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-15T15:45:00+00:00.",
       "veto_jusqu_au": "2026-09-15T15:45:00+00:00"
+    },
+    {
+      "type": "veto",
+      "carte": "17",
+      "nom": "Lot 6 : câblage grammY, Vercel, jobs planifiés",
+      "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-15T16:15:00+00:00.",
+      "veto_jusqu_au": "2026-09-15T16:15:00+00:00"
+    },
+    {
+      "type": "a_trancher",
+      "carte": "17",
+      "nom": "Lot 6 : câblage grammY, Vercel, jobs planifiés",
+      "texte": "founder doit décider/fournir `TELEGRAM_GROUP_CHAT_ID` (une fois le groupe créé) et `FIN_PILOTE` (date de fin du pilote) avant que les jobs planifiés soient pleinement fonctionnels ; et valider (ou réécrire) le texte de consentement provisoire avant tout vrai envoi à un collègue."
     }
   ],
   "cartes": [
@@ -765,6 +778,30 @@
         "trouve_pendant": "Lot 6, couche de données",
         "decideur": "fondateur (hébergement, go du lot) + agent (architecture Repository, ADR-0004 déjà accepté)"
       }
+    },
+    {
+      "carte": "17",
+      "nom": "Lot 6 : câblage grammY, Vercel, jobs planifiés",
+      "agent": "fondateur",
+      "statut": "approuvee",
+      "veto_jusqu_au": "2026-09-15T16:15:00+00:00",
+      "approuvee_le": "2026-09-14T16:15:00+00:00",
+      "livrable": "src/telegram/bot.ts, src/telegram/webhook.ts, api/telegram.ts, api/cron/*.ts, vercel.json, src/db/schema.ts, src/db/repository.ts, src/db/in-memory.ts, src/db/supabase.ts, docs/contracts.md, docs/data-model.md, docs/deploiement.md",
+      "porte": "les 43 tests du dépôt passent ; typecheck et lint propres ; bot.ts vérifié contre le vrai token (getMe) ; SupabaseRepository déjà vérifié de bout en bout (carte 16)",
+      "journal": "- **Décision** : câbler le bot réellement (grammY, Vercel, cron), avec un texte de\n  consentement provisoire et sans registre de relance automatique de consentement\n  (fonctionnalité pure déjà prête, jamais déclenchée faute de registre d'invités).\n- **Options considérées** (adaptateur Vercel) : utiliser `webhookCallback(bot, 'http')`\n  de grammY tel quel (écartée : piège connu, le corps de requête est déjà consommé par\n  Vercel) ; lire `req.body` directement et appeler `bot.handleUpdate()` (retenue).\n  Options considérées (lien message↔séance) : ne rien faire et laisser CA-09 non\n  câblable pour de vrai (écartée, contredit l'objectif du lot) ; ajouter le champ\n  maintenant, comme prévu par le commentaire de `webhook.ts` depuis le lot 2/3\n  (retenue).\n- **Qui a tranché** : le fondateur pour le go du câblage complet et la fourniture des\n  accès (Telegram, Supabase, Vercel), chacun vérifié avant usage. L'agent pour les\n  choix techniques découlant directement des ADR déjà acceptés (isolation logique\n  métier, dépôt async) : pas de nouvelle décision de fond.\n- **Réversible** : oui.\n- **Ce qui ferait revenir dessus** : un vrai message Telegram qui révèle un bug de\n  routage ou de format non couvert par les vérifications faites ici — à corriger dès\n  la première Recette réelle (voir docs/deploiement.md, point 8).\n- **Veto possible jusqu'à** : 2026-09-15T16:15:00+00:00.",
+      "challenge": "",
+      "reponses": "",
+      "a_trancher": [
+        "founder doit décider/fournir `TELEGRAM_GROUP_CHAT_ID` (une fois le groupe créé) et `FIN_PILOTE` (date de fin du pilote) avant que les jobs planifiés soient pleinement fonctionnels ; et valider (ou réécrire) le texte de consentement provisoire avant tout vrai envoi à un collègue."
+      ],
+      "veto_ouvert": true,
+      "metadata": {
+        "criteres_touches": [
+          "CA-09"
+        ],
+        "trouve_pendant": "Lot 6, câblage réel",
+        "decideur": "fondateur (accès, go) + agent (architecture découlant des ADR acceptés)"
+      }
     }
   ],
   "produit": {
@@ -1137,6 +1174,10 @@
     "CA-17"
   ],
   "commits": [
+    "f4eb3f9 Projet Vercel créé et lié au dépôt via l'API (token fondateur)",
+    "b4674c6 Clé Supabase service_role vérifiée de bout en bout contre domelo-dev",
+    "d97fe89 Bot Telegram créé et vérifié (@Coeursportbot)",
+    "03a0e5c Lot 6 : couche de données réelle (Repository, SupabaseRepository, EU)",
     "ecdb68d etat: régénéré [skip ci]",
     "be8a744 Rotation de phrases motivantes pour le rappel du lundi (CA-13)",
     "2c58852 etat: régénéré [skip ci]",
@@ -1152,10 +1193,6 @@
     "ca3f13b etat: régénéré [skip ci]",
     "07deda1 etat: régénéré [skip ci]",
     "36eab7c regie: lot 05 approuvé (carte 11) — les cinq lots du pilote sont terminés, 18/18 critères verts",
-    "287b0e4 Lot 05 — Les droits (#13)",
-    "3780702 merge: résolu en régénérant les fichiers auto (etat.md, data.json)",
-    "701c3d1 etat: régénéré après fusion de main dans lot-05",
-    "c76a854 merge: main dans lot-05 pour résoudre le conflit de docs auto-générés",
-    "cc27108 chore: ignorer .loop/phase (marqueur éphémère, jamais destiné à être commité)"
+    "287b0e4 Lot 05 — Les droits (#13)"
   ]
 }

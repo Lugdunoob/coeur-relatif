@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { genererSignalVendredi } from '../src/domain/signal-vendredi.js';
 
 const seance = (personneId: string) => ({
-  id: `s-${personneId}`, personneId, horodatage: new Date(), activite: 'course', minutes: 30, effort: 5, etoiles: 3,
+  id: `s-${personneId}`, personneId, horodatage: new Date(), activite: 'course', minutes: 30, effort: 5, etoiles: 3, messageIdTelegram: null,
 });
 const coeur = (id: string, seanceId: string) => ({ id, seanceId, donneurId: 'x', horodatage: new Date() });
 

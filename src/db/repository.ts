@@ -17,8 +17,14 @@ export interface Repository {
   supprimerDonneesPersonne(personneId: string): Promise<void>;
   purgerFinPilote(dateButoir: Date): Promise<void>;
 
+  // Lien message public ↔ séance (lot 6, carte 17), pour retrouver la séance visée par
+  // une réaction ❤️ (CA-09).
+  enregistrerMessageSeance(seanceId: string, messageId: number): Promise<void>;
+  seanceParMessage(messageId: number): Promise<Seance | undefined>;
+
   upsertPersonne(personne: Personne): Promise<void>;
   getPersonne(idTelegram: string): Promise<Personne | undefined>;
+  toutesLesPersonnes(): Promise<Personne[]>;
 
   enregistrerRappelConsentement(idTelegram: string, date: Date): Promise<void>;
   dernierRappelConsentement(idTelegram: string): Promise<Date | undefined>;
@@ -27,4 +33,9 @@ export interface Repository {
   coeursParSeance(seanceId: string): Promise<Coeur[]>;
   coeursDonnesParPersonne(donneurId: string): Promise<Coeur[]>;
   coeursRecusParPersonne(personneId: string): Promise<Coeur[]>;
+
+  // Requêtes globales (lot 6, carte 17) : signal du vendredi et résumé quotidien des
+  // cœurs portent sur l'ensemble du groupe, pas une personne à la fois.
+  seancesEntre(debut: Date, fin: Date): Promise<Seance[]>;
+  coeursEntre(debut: Date, fin: Date): Promise<Coeur[]>;
 }

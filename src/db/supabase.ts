@@ -16,6 +16,7 @@ interface SeanceLigne {
   minutes: number;
   effort: number;
   etoiles: number | null;
+  message_id_telegram: number | null;
 }
 
 interface PersonneLigne {
@@ -42,6 +43,7 @@ function seanceDepuisLigne(ligne: SeanceLigne): Seance {
     minutes: ligne.minutes,
     effort: ligne.effort,
     etoiles: ligne.etoiles,
+    messageIdTelegram: ligne.message_id_telegram,
   };
 }
 
@@ -87,6 +89,7 @@ export class SupabaseRepository implements Repository {
       minutes: seance.minutes,
       effort: seance.effort,
       etoiles: seance.etoiles,
+      message_id_telegram: seance.messageIdTelegram,
     });
     if (error) throw error;
   }
@@ -162,6 +165,12 @@ export class SupabaseRepository implements Repository {
     return data ? personneDepuisLigne(data as PersonneLigne) : undefined;
   }
 
+  async toutesLesPersonnes(): Promise<Personne[]> {
+    const { data, error } = await this.table('personne').select('*');
+    if (error) throw error;
+    return (data as PersonneLigne[]).map(personneDepuisLigne);
+  }
+
   async enregistrerRappelConsentement(idTelegram: string, date: Date): Promise<void> {
     // Suppose une fiche personne déjà créée par upsertPersonne au premier contact
     // (P1) : un rappel de consentement n'a de sens qu'après une invitation initiale.
@@ -215,6 +224,38 @@ export class SupabaseRepository implements Repository {
     if (idsSeances.length === 0) return [];
 
     const { data, error } = await this.table('coeur').select('*').in('seance_id', idsSeances);
+    if (error) throw error;
+    return (data as CoeurLigne[]).map(coeurDepuisLigne);
+  }
+
+  async enregistrerMessageSeance(seanceId: string, messageId: number): Promise<void> {
+    const { error } = await this.table('seance').update({ message_id_telegram: messageId }).eq('id', seanceId);
+    if (error) throw error;
+  }
+
+  async seanceParMessage(messageId: number): Promise<Seance | undefined> {
+    const { data, error } = await this.table('seance')
+      .select('*')
+      .eq('message_id_telegram', messageId)
+      .maybeSingle();
+    if (error) throw error;
+    return data ? seanceDepuisLigne(data as SeanceLigne) : undefined;
+  }
+
+  async seancesEntre(debut: Date, fin: Date): Promise<Seance[]> {
+    const { data, error } = await this.table('seance')
+      .select('*')
+      .gte('horodatage', debut.toISOString())
+      .lt('horodatage', fin.toISOString());
+    if (error) throw error;
+    return (data as SeanceLigne[]).map(seanceDepuisLigne);
+  }
+
+  async coeursEntre(debut: Date, fin: Date): Promise<Coeur[]> {
+    const { data, error } = await this.table('coeur')
+      .select('*')
+      .gte('horodatage', debut.toISOString())
+      .lt('horodatage', fin.toISOString());
     if (error) throw error;
     return (data as CoeurLigne[]).map(coeurDepuisLigne);
   }

@@ -8,7 +8,7 @@ describe('CA-09 et CA-10 : les cœurs', () => {
   let repo: InMemoryRepository;
   beforeEach(async () => {
     repo = new InMemoryRepository();
-    await repo.ajouterSeance({ id: 's1', personneId: 'noe', horodatage: new Date(), activite: 'course', minutes: 30, effort: 7, etoiles: 4 });
+    await repo.ajouterSeance({ id: 's1', personneId: 'noe', horodatage: new Date(), activite: 'course', minutes: 30, effort: 7, etoiles: 4, messageIdTelegram: null });
   });
 
   it('compte un cœur reçu sur une séance', async () => {
@@ -23,7 +23,7 @@ describe('CA-09 et CA-10 : les cœurs', () => {
   });
 
   it('regroupe par jour tous les cœurs reçus par une personne, toutes séances confondues', async () => {
-    await repo.ajouterSeance({ id: 's2', personneId: 'noe', horodatage: new Date(), activite: 'vélo', minutes: 45, effort: 4, etoiles: 3 });
+    await repo.ajouterSeance({ id: 's2', personneId: 'noe', horodatage: new Date(), activite: 'vélo', minutes: 45, effort: 4, etoiles: 3, messageIdTelegram: null });
     await enregistrerCoeur(repo, { id: 'c1', seanceId: 's1', donneurId: 'alex', horodatage: new Date('2026-09-14T09:00:00Z') });
     await enregistrerCoeur(repo, { id: 'c2', seanceId: 's2', donneurId: 'sam', horodatage: new Date('2026-09-14T18:00:00Z') });
     // Un cœur la veille ne doit pas être compté dans le résumé du 14.

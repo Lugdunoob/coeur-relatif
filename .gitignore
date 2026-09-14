@@ -6,5 +6,6 @@ dist/
 .loop/phase
 scripts/demo-recette.ts
 scripts/verif-supabase.ts
+scripts/verif-bot.ts
 .env
 .env.*

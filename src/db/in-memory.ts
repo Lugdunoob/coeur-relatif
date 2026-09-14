@@ -53,6 +53,10 @@ export class InMemoryRepository implements Repository {
     return this.personnes.get(idTelegram);
   }
 
+  async toutesLesPersonnes(): Promise<Personne[]> {
+    return [...this.personnes.values()];
+  }
+
   async enregistrerRappelConsentement(idTelegram: string, date: Date): Promise<void> {
     this.rappelsConsentement.set(idTelegram, date);
   }
@@ -76,5 +80,22 @@ export class InMemoryRepository implements Repository {
   async coeursRecusParPersonne(personneId: string): Promise<Coeur[]> {
     const idsSeances = new Set((await this.seancesDe(personneId)).map((seance) => seance.id));
     return this.coeurs.filter((coeur) => idsSeances.has(coeur.seanceId));
+  }
+
+  async enregistrerMessageSeance(seanceId: string, messageId: number): Promise<void> {
+    const seance = this.seances.find((s) => s.id === seanceId);
+    if (seance) seance.messageIdTelegram = messageId;
+  }
+
+  async seanceParMessage(messageId: number): Promise<Seance | undefined> {
+    return this.seances.find((s) => s.messageIdTelegram === messageId);
+  }
+
+  async seancesEntre(debut: Date, fin: Date): Promise<Seance[]> {
+    return this.seances.filter((s) => s.horodatage >= debut && s.horodatage < fin);
+  }
+
+  async coeursEntre(debut: Date, fin: Date): Promise<Coeur[]> {
+    return this.coeurs.filter((c) => c.horodatage >= debut && c.horodatage < fin);
   }
 }

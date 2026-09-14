@@ -1,0 +1,8 @@
+{
+  "crons": [
+    { "path": "/api/cron/lundi", "schedule": "0 7 * * 1" },
+    { "path": "/api/cron/vendredi", "schedule": "0 16 * * 5" },
+    { "path": "/api/cron/purge", "schedule": "0 3 * * *" },
+    { "path": "/api/cron/coeurs-digest", "schedule": "0 19 * * *" }
+  ]
+}

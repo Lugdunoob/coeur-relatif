@@ -22,6 +22,7 @@
 | minutes | entier > 0 | **oui** | ne sort jamais de la conversation privée (R2) |
 | effort | entier 1-10 | **oui** | idem |
 | etoiles | entier 1-5 ou vide | non | vide pendant la calibration (CA-04) ; c'est le seul nombre public |
+| message_id_telegram | identifiant Telegram ou vide | non | id du message publié dans le groupe (P4) ; vide tant qu'aucun message n'a été publié (calibration). Sert à retrouver la séance visée par une réaction ❤️ (CA-09). Point explicitement laissé ouvert par `src/telegram/webhook.ts` au lot 2/3, tranché au lot 6 (carte 17). |
 
 `charge` (minutes × effort) et la référence glissante ne sont **pas stockés** : ils se
 recalculent à la demande à partir des six dernières séances (R3), pour qu'aucun total ne
