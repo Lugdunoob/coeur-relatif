@@ -1,0 +1,862 @@
+{
+  "idee": "Cœur relatif",
+  "depot": "Lugdunoob/coeur-relatif",
+  "genere_le": "2026-09-14T07:20:53+00:00",
+  "a_prendre": [
+    {
+      "type": "veto",
+      "carte": "01",
+      "nom": "Cadrage",
+      "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-14T21:00:14+00:00.",
+      "veto_jusqu_au": "2026-09-14T21:00:14+00:00"
+    },
+    {
+      "type": "veto",
+      "carte": "02",
+      "nom": "Méthode Musk",
+      "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-14T21:00:50+00:00.",
+      "veto_jusqu_au": "2026-09-14T21:00:50+00:00"
+    },
+    {
+      "type": "a_trancher",
+      "carte": "02",
+      "nom": "Méthode Musk",
+      "texte": "Telegram ou Slack pour le groupe (version prudente : Telegram, déjà"
+    },
+    {
+      "type": "veto",
+      "carte": "03",
+      "nom": "Spécification",
+      "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-14T21:02:12+00:00.",
+      "veto_jusqu_au": "2026-09-14T21:02:12+00:00"
+    },
+    {
+      "type": "veto",
+      "carte": "05",
+      "nom": "Architecture et plan",
+      "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-14T21:12:50+00:00.",
+      "veto_jusqu_au": "2026-09-14T21:12:50+00:00"
+    },
+    {
+      "type": "veto",
+      "carte": "06",
+      "nom": "Tests d'acceptation",
+      "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-14T21:12:50+00:00.",
+      "veto_jusqu_au": "2026-09-14T21:12:50+00:00"
+    },
+    {
+      "type": "veto",
+      "carte": "07",
+      "nom": "Lot 01",
+      "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-14T21:24:20+00:00.",
+      "veto_jusqu_au": "2026-09-14T21:24:20+00:00"
+    }
+  ],
+  "cartes": [
+    {
+      "carte": "01",
+      "nom": "Cadrage",
+      "agent": "stratege",
+      "statut": "approuvee",
+      "veto_jusqu_au": "2026-09-14T21:00:14+00:00",
+      "approuvee_le": "2026-09-13T21:00:14+00:00",
+      "livrable": "docs/cadrage.md",
+      "porte": "chaque produit cité a une URL et une date ; le besoin tient en une phrase sans nom de fonctionnalité ; la question décisive a une réponse oui/non",
+      "journal": "- **Décision** : cadrage approuvé sans modification ; trois points du Contradicteur ne sont pas tranchés ici mais transmis en exigences à la carte 02 et en item de protocole à la carte Pilote.\n- **Options considérées** : (a) approuver tel quel sans notes ; (b) approuver en transmettant les trois points aux cartes suivantes (retenue) ; (c) bloquer le cadrage tant que la friction de déclaration n'est pas résolue, écartée car c'est un sujet d'exigence, pas de besoin.\n- **Qui a tranché** : Stratège — aucune des trois contestations n'était bloquante ni sur la liste réservée.\n- **Réversible** : oui. Reviendrait dessus si la carte 02 ou le protocole du pilote montrent que la friction de déclaration tue H3 avant même le test.\n- **Ce qui ferait revenir dessus** : un taux de déclaration observé très faible dès la semaine 1 du pilote.\n- **Veto possible jusqu'à** : 2026-09-14T21:00:14+00:00 (24 h après commit).",
+      "challenge": "**1 · Sérieuse · L'auto-déclaration sans montre est d'abord un risque de friction, pas seulement de triche.** Le cadrage suppose que taper \"course 30 min effort 7\" à un bot suffit ; sans rappel ni geste rapide, le risque le plus probable en 6 mois est l'abandon par oubli, pas la triche (H3 teste la triche, pas l'oubli).\nAlternative : un rappel bot quotidien optionnel et une déclaration en moins de 10 secondes, à spécifier dans les exigences (carte 02), pas ici.\nCe qui tranche : le taux de déclaration observé en semaine 1 du pilote.\n\n**2 · Sérieuse · Les cœurs pourraient recréer un classement caché.** « Être vu sans être exposé » vise les chiffres de performance ; rien n'empêche que le nombre de cœurs reçus devienne le nouveau critère de statut du groupe.\nAlternative : le nombre de cœurs reçus n'est jamais affiché en cumul public, seulement en privé à son destinataire ; exigence à porter dans la carte Méthode Musk.\nCe qui tranche : la question anonyme de fin de pilote, étendue à « as-tu regardé qui reçoit le plus de cœurs ? ».\n\n**3 · Mineure · Aucune règle pour une absence légitime (maladie, déplacement).** Un participant qui décroche pour une bonne raison n'est pas distingué de celui qui décroche par désintérêt, ce qui fausserait la lecture de H1.\nAlternative : le protocole de pilote (carte Pilote, programme D) demande à mi-parcours si une absence est due à un empêchement, sans le rendre visible aux autres.\nCe qui tranche : rien à trancher au cadrage ; c'est un item du protocole.\n\n**Verdict : solide.** Rien ne remet en cause le besoin ni la question décisive ; les trois points sont des exigences ou des items de protocole, pas des défauts de cadrage.",
+      "reponses": "1. **Accepte.** Transmis à la carte 02 : ajouter aux exigences un rappel léger et une déclaration très courte.\n2. **Accepte.** Transmis à la carte 02 : le nombre de cœurs reçus reste privé, jamais un total public ou classé.\n3. **Accepte.** Transmis au programme D (carte Pilote) : question de mi-parcours sur les empêchements.",
+      "a_trancher": [],
+      "veto_ouvert": true,
+      "metadata": {
+        "besoin_principal": "Être reconnu pour son effort réel, pas pour ses kilomètres, afin de ne pas abandonner par honte",
+        "besoins_secondaires": [
+          "revenir chaque semaine",
+          "être vu sans être exposé et encouragé par ses pairs (donner et recevoir des cœurs)",
+          "équité perçue par les sportifs",
+          "zéro surveillance"
+        ],
+        "hypotheses": [
+          "H1 note relative > classement pour les non-sportifs",
+          "H2 les sportifs acceptent la même note",
+          "H3 l'auto-déclaration suffit"
+        ],
+        "question_decisive": "≥ 8/12 participent encore en semaine 4 et veulent continuer",
+        "contrainte": "données UE, aucune visibilité hiérarchique, aucune API de montre disponible pour un pilote",
+        "points_transmis": [
+          {
+            "vers": "carte 02",
+            "point": "rappel léger + déclaration très courte"
+          },
+          {
+            "vers": "carte 02",
+            "point": "cœurs reçus jamais en cumul public ou classé"
+          },
+          {
+            "vers": "programme D, carte Pilote",
+            "point": "question de mi-parcours sur les absences légitimes"
+          }
+        ]
+      }
+    },
+    {
+      "carte": "02",
+      "nom": "Méthode Musk",
+      "agent": "musk",
+      "statut": "approuvee",
+      "veto_jusqu_au": "2026-09-14T21:00:50+00:00",
+      "approuvee_le": "2026-09-13T21:00:50+00:00",
+      "livrable": "docs/exigences.md",
+      "porte": "chaque suppression cite le besoin couvert ; un seul détail signature",
+      "journal": "- **Décision 1** : référence personnelle = médiane glissante des six dernières séances,\n  première étoile à la troisième séance.\n  **Options** : médiane de la semaine 1 (carte initiale) ; médiane glissante sur six\n  (Contradicteur, retenue).\n  **Qui a tranché** : Stratège — sert l'équité perçue (besoin protégé) et supprime la\n  semaine muette. **Réversible** en une ligne de configuration. Reviendrait dessus si le\n  pilote montre des étoiles jugées imméritées par le groupe.\n- **Décision 2** : plafond à quatre étoiles après deux déclarations consécutives à effort\n  10 ; règle invisible, le cœur du groupe reste le vrai jugement.\n  **Options** : rien, confiance seule ; plafond (Contradicteur, retenue) ; validation par\n  un pair, écartée car elle réintroduit du jugement sur la performance.\n  **Qui a tranché** : réservé, remonté par l'auteur — le fondateur a tranché le plafond\n  le 2026-09-11 (`golden/carte-2-musk.md`), parce qu'il est réversible et invisible.\n  Reviendrait dessus si la question anonyme de fin de pilote ne montre aucune triche perçue.\n- **Décision 3** : aucun message nominatif d'absence, aucun récapitulatif nominatif,\n  ajouté au hors périmètre. **Qui a tranché** : auteur, accepté sans remontée.\n- **Réservé au fondateur sur cette exécution** : rien de nouveau ; la décision 2 reprend\n  un arbitrage déjà rendu.\n- **Veto possible jusqu'à** : 2026-09-14T21:00:50+00:00.",
+      "challenge": "*Reprend le challenge du Contradicteur du run de référence (`golden/carte-2-challenge.md`),\ndéjà résolu et approuvé par le fondateur le 2026-09-11.*\n\n**1 · Sérieuse · La référence personnelle par médiane de la semaine 1 récompense celui qui\ncommence mollement.** Quelqu'un qui déclare deux séances faciles en semaine 1 aura cinq\nétoiles sur une séance normale en semaine 2 ; le sportif qui commence fort n'en aura\njamais plus de trois. L'équité perçue, besoin protégé, est menacée dans l'autre sens.\nAlternative : référence = médiane glissante sur les six dernières séances, sans\ndistinction de semaine, première étoile dès la troisième séance.\nCe qui tranche : rejouer les deux formules sur les données des deux premières semaines\ndu pilote ; regarder qui a cinq étoiles et si c'est mérité aux yeux du groupe.\n\n**2 · Sérieuse · L'effort ressenti est déclaratif ; rien ne contient la triche (H3).**\nPré-mortem le plus probable : un collègue met « effort 10 » à tout, reçoit cinq étoiles\nà chaque fois, les autres décrochent.\nAlternative : plafonner à quatre étoiles toute séance dont l'effort déclaré est 10 deux\nfois de suite ; le cœur du groupe reste le vrai jugement.\nCe qui tranche : la question anonyme de fin de pilote, plus une lecture des déclarations\nà effort 9-10 par personne.\n\n**3 · Mineure · Le bot de groupe expose les prénoms et le fait de bouger ou non ;\n« zéro surveillance » vaut pour le manager, pas pour les collègues.** Celui qui ne\ndéclare rien pendant deux semaines est visible par son absence.\nAlternative : le bot ne poste que les séances, jamais les absences, aucun récapitulatif\nnominatif ; l'unique message hebdomadaire est collectif.\nCe qui tranche : critère d'acceptation négatif dans la spec.\n\n**Verdict : à revoir sur la référence, puis approuvé.** La direction bot-sans-chiffres\ntient ; la formule de calibration était l'hypothèse la plus faible.",
+      "reponses": "1. **Accepte.** Formule changée : médiane glissante des six dernières séances, première\n   étoile à la troisième séance, calibration silencieuse abandonnée sur ce point précis\n   (mais gardée pour les trois toutes premières séances, faute d'historique).\n2. **Remonte au fondateur**, avec les deux options (rien / plafond). Décidé ci-dessous.\n3. **Accepte.** Ajouté au hors périmètre : aucun message nominatif d'absence, aucun\n   récapitulatif nominatif.",
+      "a_trancher": [
+        "Telegram ou Slack pour le groupe (version prudente : Telegram, déjà"
+      ],
+      "veto_ouvert": true,
+      "metadata": {
+        "besoins_proteges": [
+          "reconnaissance de l'effort réel",
+          "revenir chaque semaine",
+          "être vu sans être exposé",
+          "équité perçue",
+          "zéro surveillance"
+        ],
+        "detail_signature": {
+          "quoi": "Les chiffres n'existent pas : ni distance, ni allure, ni FC, pour personne, même pas pour soi. Étoiles et cœur seulement.",
+          "pourquoi": "Motion neutralise la comparaison mais garde les chiffres ; Apple les garde ailleurs ; personne ne les a supprimés."
+        },
+        "faits_premiers_principes": [
+          {
+            "fait": "les API de montre sont fermées à un pilote",
+            "source": "medianama.com 2024-11 ; developer.garmin.com ; support.coros.com ; sahha.ai"
+          },
+          {
+            "fait": "charge = minutes × effort ressenti est une mesure validée (session-RPE)",
+            "source": "à sourcer"
+          },
+          {
+            "fait": "le progrès par rapport à soi motive plus que le rang",
+            "source": "PMC5854141 ; Rawsthorne & Elliot 1999"
+          }
+        ],
+        "exigences_gardees": [
+          {
+            "exigence": "note en étoiles relative à sa propre référence",
+            "besoin": "reconnaissance de l'effort réel"
+          },
+          {
+            "exigence": "cœur des collègues sur la note, donné et reçu, compté en privé, jamais classé",
+            "besoin": "encouragement par les pairs"
+          },
+          {
+            "exigence": "signal collectif hebdomadaire sans prénom (séances, cœurs de l'équipe)",
+            "besoin": "appartenance, avancer à plusieurs"
+          },
+          {
+            "exigence": "déclaration privée activité + minutes + effort",
+            "besoin": "reconnaissance de l'effort réel"
+          },
+          {
+            "exigence": "un rappel le lundi",
+            "besoin": "revenir chaque semaine"
+          },
+          {
+            "exigence": "consentement, export, suppression",
+            "besoin": "obligation"
+          },
+          {
+            "exigence": "toute activité compte",
+            "besoin": "équité perçue"
+          }
+        ],
+        "exigences_supprimees": [
+          {
+            "exigence": "app mobile",
+            "raison": "aucun besoin ne l'exige",
+            "besoin_couvert_par": "bot de groupe"
+          },
+          {
+            "exigence": "montre / Strava / FC",
+            "raison": "accès fermé, données art. 9",
+            "besoin_couvert_par": "déclaration privée"
+          },
+          {
+            "exigence": "classement",
+            "raison": "contredit le besoin",
+            "besoin_couvert_par": "—"
+          },
+          {
+            "exigence": "défis, badges, séries",
+            "raison": "rétention artificielle",
+            "besoin_couvert_par": "cœur + rappel"
+          },
+          {
+            "exigence": "tableau de bord organisateur",
+            "raison": "surveillance",
+            "besoin_couvert_par": "—"
+          },
+          {
+            "exigence": "comptes, historique",
+            "raison": "Telegram identifie ; l'historique réintroduit des chiffres",
+            "besoin_couvert_par": "bot, étoiles de la semaine sur demande"
+          }
+        ],
+        "exigences_simplifiees": [
+          {
+            "avant": "capacité mesurée par la montre",
+            "apres": "référence = médiane des charges de la semaine 1, mise à jour sur 4 séances"
+          },
+          {
+            "avant": "multi-sport avec catalogue",
+            "apres": "activité nommée librement"
+          }
+        ],
+        "cycle": {
+          "boucle": "déclaration → étoiles → cœur",
+          "duree": "une heure ; pilote 4 semaines"
+        },
+        "automatiser_apres_pilote": [
+          "lecture Apple Santé / Health Connect",
+          "import de séances",
+          "rappels personnalisés",
+          "plusieurs groupes"
+        ],
+        "perimetre_mvp": "Un bot de groupe qui transforme une déclaration privée « 30 min, effort 7 » en une note en étoiles relative à ta propre semaine type, visible du groupe sans aucun chiffre, sur laquelle les collègues posent un cœur, et qui rend chaque vendredi ce que l'équipe a fait ensemble."
+      }
+    },
+    {
+      "carte": "03",
+      "nom": "Spécification",
+      "agent": "produit",
+      "statut": "approuvee",
+      "veto_jusqu_au": "2026-09-14T21:02:12+00:00",
+      "approuvee_le": "2026-09-13T21:02:12+00:00",
+      "livrable": "docs/spec.md",
+      "porte": "chaque exigence gardée a un CA-NN testable",
+      "journal": "- **Décision** : spécification approuvée avec un critère ajouté (CA-11bis) suite au\n  challenge ; aucune règle de la carte 02 n'est remise en cause.\n- **Options considérées** : (a) approuver telle quelle ; (b) approuver avec le critère\n  du cas zéro ajouté (retenue) ; (c) renvoyer la carte pour réécriture complète, écartée\n  car les deux points sérieux étaient des précisions, non des désaccords.\n- **Qui a tranché** : Stratège — aucune contestation bloquante, aucune décision réservée.\n- **Réversible** : oui, un critère de plus ne coûte rien à retirer.\n- **Ce qui ferait revenir dessus** : si l'architecte (carte 05) trouve un critère\n  impossible à tester tel quel.\n- **Veto possible jusqu'à** : 2026-09-14T21:02:12+00:00.",
+      "challenge": "**1 · Sérieuse · La référence glissante sur six séances mélange calibration et régime de\ncroisière sans que ce soit testé.** Si quelqu'un accélère son rythme en semaine 3, la\nréférence inclut encore des séances de calibration de la semaine 1 : la spec ne dit pas\nsi c'est voulu.\nAlternative : documenter explicitement (fait, dans CA-05 révisé) que la référence est\nglissante sans distinction de semaine, ce qui est le choix déjà tranché en carte 02 — la\nfaiblesse est que ce n'était pas assez explicite dans les critères, pas dans la règle.\nCe qui tranche : rien à re-trancher, un critère à préciser.\n\n**2 · Sérieuse · Le message du vendredi ne dit pas comment sont comptés les cœurs et\nséances si personne n'a rien déclaré cette semaine-là.** Une semaine à zéro doit\nproduire un message ou être silencieuse ; la spec ne le dit pas, et un silence total\npourrait être lu comme un bug du bot plutôt qu'un vrai zéro.\nAlternative : ajouter un critère explicite pour le cas zéro (le bot envoie quand même\nle message, avec « 0 séance, 0 cœur »).\nCe qui tranche : rien à trancher au fondateur, c'est un trou de spécification.\n\n**3 · Mineure · Le texte exact du consentement n'est pas dans cette carte.** C'est\ncorrectement renvoyé à la carte Pilote, mais un lecteur de la spec seule pourrait croire\nque P1 est complet.\nAlternative : la section « Ce qui n'est pas ici » suffit ; aucune alternative nécessaire.\nCe qui tranche : rien, déjà couvert.\n\n**Verdict : à revoir sur deux critères, mineurs à corriger.** Aucune contestation\nbloquante ; les deux points sérieux sont des précisions de critères, pas des désaccords\nsur les règles déjà approuvées en carte 02.",
+      "reponses": "1. **Accepte.** CA-05 précisé : « recalculée à chaque nouvelle déclaration, sans\n   distinction de semaine civile » (déjà dans R3, maintenant répété explicitement dans\n   le tableau des critères pour qu'un test ne puisse pas l'ignorer).\n2. **Accepte.** Ajout du critère CA-11 bis ci-dessous.\n3. **Accepte, sans modification** : la section « Ce qui n'est pas ici » est jugée suffisante.\n\n**Critère ajouté suite au challenge :**\n\n| ID | Critère | Parcours | Règle |\n|---|---|---|---|\n| CA-11bis | Si aucune séance n'est déclarée dans la semaine, le message du vendredi est quand même envoyé, avec « 0 séance, 0 cœur ». | P6 | R8 |",
+      "a_trancher": [],
+      "veto_ouvert": true,
+      "metadata": {
+        "parcours": [
+          "P1 consentement",
+          "P2 déclaration",
+          "P3 note en étoiles",
+          "P4 publication groupe",
+          "P5 cœurs",
+          "P6 signal du vendredi",
+          "P7 rappel du lundi",
+          "P8 mes données"
+        ],
+        "criteres": [
+          {
+            "id": "CA-01",
+            "texte": "aucune déclaration enregistrée avant consentement",
+            "parcours": "P1",
+            "regle": "R1"
+          },
+          {
+            "id": "CA-02",
+            "texte": "relance de consentement au plus une fois par 7 jours",
+            "parcours": "P1",
+            "regle": "R1"
+          },
+          {
+            "id": "CA-03",
+            "texte": "validation des champs de déclaration",
+            "parcours": "P2",
+            "regle": null
+          },
+          {
+            "id": "CA-04",
+            "texte": "silence des deux premières séances",
+            "parcours": "P3",
+            "regle": "R4"
+          },
+          {
+            "id": "CA-05",
+            "texte": "référence = médiane glissante des six dernières séances, sans distinction de semaine",
+            "parcours": "P3",
+            "regle": "R3"
+          },
+          {
+            "id": "CA-06",
+            "texte": "message public sans aucun chiffre de performance",
+            "parcours": "P4",
+            "regle": "R2"
+          },
+          {
+            "id": "CA-07",
+            "texte": "seuils d'étoiles exacts",
+            "parcours": "P3",
+            "regle": "R5"
+          },
+          {
+            "id": "CA-08",
+            "texte": "plafond à quatre étoiles après deux efforts 10 consécutifs",
+            "parcours": "P3",
+            "regle": "R6"
+          },
+          {
+            "id": "CA-09",
+            "texte": "cœur compté en privé, jamais public",
+            "parcours": "P5",
+            "regle": "R7"
+          },
+          {
+            "id": "CA-10",
+            "texte": "cœurs donnés communiqués en privé, jamais comparés",
+            "parcours": "P5",
+            "regle": "R7"
+          },
+          {
+            "id": "CA-11",
+            "texte": "message du vendredi sans prénom",
+            "parcours": "P6",
+            "regle": "R8"
+          },
+          {
+            "id": "CA-11bis",
+            "texte": "message du vendredi envoyé même à zéro séance",
+            "parcours": "P6",
+            "regle": "R8"
+          },
+          {
+            "id": "CA-12",
+            "texte": "aucun message ne signale une absence nominative",
+            "parcours": "P6",
+            "regle": "R8"
+          },
+          {
+            "id": "CA-13",
+            "texte": "message du lundi fixe, sans donnée personnelle",
+            "parcours": "P7",
+            "regle": null
+          },
+          {
+            "id": "CA-14",
+            "texte": "/mesdonnees limité à la personne qui invoque",
+            "parcours": "P8",
+            "regle": "R2"
+          },
+          {
+            "id": "CA-15",
+            "texte": "/supprimer efface et confirme",
+            "parcours": "P8",
+            "regle": "R9"
+          },
+          {
+            "id": "CA-16",
+            "texte": "suppression automatique fin de pilote + 30 jours",
+            "parcours": "P8",
+            "regle": "R9"
+          },
+          {
+            "id": "CA-17",
+            "texte": "aucun champ de santé au sens strict dans le modèle de données",
+            "parcours": null,
+            "regle": "R10"
+          }
+        ],
+        "donnees_sensibles": [
+          "effort ressenti",
+          "minutes d'activité"
+        ],
+        "hors_perimetre": [
+          "application mobile",
+          "connexion montre/Strava",
+          "classement d'équipe",
+          "défis hebdomadaires",
+          "badges",
+          "tableau de bord organisateur",
+          "comptes au-delà de Telegram",
+          "historique au-delà de la semaine en cours",
+          "message nominatif d'absence"
+        ]
+      }
+    },
+    {
+      "carte": "05",
+      "nom": "Architecture et plan",
+      "agent": "architecte",
+      "statut": "approuvee",
+      "veto_jusqu_au": "2026-09-14T21:12:50+00:00",
+      "approuvee_le": "2026-09-13T21:12:50+00:00",
+      "livrable": "docs/adr/, docs/data-model.md, docs/contracts.md, docs/lots.md",
+      "porte": "chaque critère de la spec apparaît dans un lot et dans le plan de tests ; chaque ADR a au moins deux options comparées",
+      "journal": "- **Décision** : architecture approuvée, avec un spike de vérification ajouté au lot 3\n  et un point transmis au programme D.\n- **Options considérées** : (a) approuver telle quelle ; (b) approuver avec le spike\n  ajouté au lot 3 (retenue) ; (c) bloquer l'architecture entière tant que la vérification\n  Telegram n'est pas faite, écartée car les lots 0, 1 et 2 (squelette, détail signature,\n  chemin critique de déclaration et de publication) ne dépendent pas des réactions et\n  n'ont aucune raison d'attendre.\n- **Qui a tranché** : Stratège — aucune contestation bloquante, aucune décision réservée.\n- **Réversible** : oui.\n- **Ce qui ferait revenir dessus** : si le spike du lot 3 montre que les réactions ne\n  sont pas exploitables par un bot dans les conditions du pilote, une carte de\n  changement remplacera CA-09/CA-10 par un mécanisme de repli.\n- **Veto possible jusqu'à** : 2026-09-14T21:12:50+00:00.",
+      "challenge": "**1 · Sérieuse · L'ADR-0002 marque « à vérifier » la réception des réactions ❤️ par un\nbot, et deux critères du produit (CA-09, CA-10, le mécanisme des cœurs, cœur du besoin\n« encouragement par les pairs ») en dépendent entièrement.** Si l'API Telegram ne permet\npas à un bot de recevoir les réactions dans les conditions prévues, toute l'architecture\ndu lot 3 est à revoir.\nAlternative : ajouter une étape de vérification explicite (« spike ») en tête du lot 3,\navant d'écrire le code métier des cœurs, plutôt que de découvrir le problème en cours de\nlot. Si la vérification échoue, prévoir une exigence de repli : réponse par un message\ntexte « ❤️ » au lieu d'une réaction native, à trancher alors en carte de changement.\nCe qui tranche : le résultat du spike, avant d'écrire `src/domain/coeurs.ts` en\nimplémentation réelle (les tests, eux, peuvent déjà être écrits contre l'interface prévue).\n\n**2 · Sérieuse · Le rappel individuel léger transmis par la carte 01 (« rappel léger +\ndéclaration très courte ») n'a pas de contrepartie architecturale au-delà du message\ncollectif du lundi.** Ce n'est pas nécessairement un défaut : la carte 02 a déjà jugé le\npoint couvert par l'existant. Mais l'architecture ne tranche pas explicitement si c'est\nsuffisant ou si un rappel individuel manque.\nAlternative : ne rien ajouter ici, et transmettre explicitement le point à la carte\nPilote (programme D) qui peut ajuster l'engagement pendant le pilote sans changer le code.\nCe qui tranche : le taux de déclaration réel en semaine 1, observé par le Pilote.\n\n**3 · Mineure · `docs/lots.md` ne précise pas quel mécanisme de loop (session ou\ncontexte frais) utiliser par lot.** Cohérence à ajouter avec la skill `boucle-regie`.\nAlternative : préciser que tout lot sous 25 itérations tourne par défaut en contexte\nfrais (`bash .loop/ralph.sh lot-NN N`), cohérent avec les lots ici, tous sous ce seuil.\nCe qui tranche : rien, c'est une précision de documentation.\n\n**Verdict : à revoir sur un point technique (1), le reste transmis ou précisé sans\nblocage.**",
+      "reponses": "1. **Accepte.** Ajouté au lot 3 dans `docs/lots.md` : un spike de vérification avant le\n   code métier des cœurs. Les tests CA-09/CA-10 restent écrits dès maintenant contre\n   l'interface prévue (ils ne dépendent pas de Telegram, voir ADR-0004) ; seule\n   l'implémentation réelle de l'adaptateur attend le spike.\n2. **Accepte.** Transmis au programme D, carte Pilote : évaluer en semaine 1 si un\n   rappel individuel est nécessaire.\n3. **Accepte.** Précisé dans `docs/lots.md`.",
+      "a_trancher": [],
+      "veto_ouvert": true,
+      "metadata": {
+        "adrs": [
+          "0001-pile-et-hebergement",
+          "0002-telegram-bot-api",
+          "0003-region-donnees",
+          "0004-isolation-logique-metier"
+        ],
+        "lots": [
+          "lot-00-squelette",
+          "lot-01-detail-signature",
+          "lot-02-chemin-critique",
+          "lot-03-coeurs",
+          "lot-04-signaux-collectifs",
+          "lot-05-droits",
+          "lot-06-recette"
+        ],
+        "points_transmis": [
+          {
+            "vers": "programme D, carte Pilote",
+            "point": "évaluer en semaine 1 si un rappel individuel est nécessaire"
+          }
+        ],
+        "point_a_verifier": {
+          "quoi": "réception des message_reaction par un bot Telegram",
+          "quand": "avant le code métier du lot 3",
+          "repli_si_echec": "réponse texte au lieu de réaction native"
+        }
+      }
+    },
+    {
+      "carte": "06",
+      "nom": "Tests d'acceptation",
+      "agent": "architecte",
+      "statut": "approuvee",
+      "veto_jusqu_au": "2026-09-14T21:12:50+00:00",
+      "approuvee_le": "2026-09-13T21:12:50+00:00",
+      "livrable": "test/*.test.ts (18 critères)",
+      "porte": "les tests d'acceptation sont rouges, pas absents",
+      "journal": "- **Décision** : les dix-huit tests d'acceptation sont approuvés tels quels.\n- **Options considérées** : (a) approuver tels quels (retenue) ; (b) attendre le spike\n  Telegram avant d'écrire CA-09/CA-10, écartée car ces tests ne dépendent d'aucun accès\n  réseau (ADR-0004) et peuvent être écrits et lus dès maintenant.\n- **Qui a tranché** : Stratège, contestation mineure sans conséquence.\n- **Réversible** : oui, deux tests à réécrire si le spike échoue.\n- **Ce qui ferait revenir dessus** : l'échec du spike du lot 3.\n- **Veto possible jusqu'à** : 2026-09-14T21:12:50+00:00.",
+      "challenge": "**1 · Mineure · Les tests CA-09/CA-10 (les cœurs) sont écrits contre l'interface\n`Repository` prévue par l'ADR-0004, avant que le spike de vérification Telegram (carte\n05) n'ait confirmé que les réactions sont exploitables.** Si le spike échoue, ces deux\ntests seront à réécrire contre le mécanisme de repli.\nAlternative : aucune, c'est un risque accepté et déjà tracé dans la carte 05 ; réécrire\ndeux tests coûte peu.\nCe qui tranche : le spike du lot 3.\n\n**Verdict : solide.** Les dix-huit critères ont un test, tous rouges sauf celui déjà\ncouvert par le lot 0.",
+      "reponses": "1. **Accepte, sans modification.** Risque déjà tracé et accepté en carte 05.",
+      "a_trancher": [],
+      "veto_ouvert": true,
+      "metadata": {
+        "tests_rouges": 11,
+        "tests_verts": 1,
+        "criteres_couverts": [
+          "CA-01",
+          "CA-02",
+          "CA-03",
+          "CA-04",
+          "CA-05",
+          "CA-06",
+          "CA-07",
+          "CA-08",
+          "CA-09",
+          "CA-10",
+          "CA-11",
+          "CA-11bis",
+          "CA-12",
+          "CA-13",
+          "CA-14",
+          "CA-15",
+          "CA-16",
+          "CA-17"
+        ]
+      }
+    },
+    {
+      "carte": "07",
+      "nom": "Lot 01",
+      "agent": "dev",
+      "statut": "approuvee",
+      "veto_jusqu_au": "2026-09-14T21:24:20+00:00",
+      "approuvee_le": "2026-09-13T21:24:20+00:00",
+      "livrable": "src/domain/reference.ts, src/domain/etoiles.ts",
+      "porte": "CA-04, CA-05, CA-07, CA-08 verts ; typecheck et lint propres sur le périmètre du lot ; docs/ intact",
+      "journal": "- **Décision** : lot 1 approuvé ; fusionné dans `main` en local faute de dépôt distant.\n- **Options considérées** : (a) attendre que le fondateur crée un dépôt GitHub avant de\n  continuer, retardant tout ; (b) fusionner en local maintenant, en le documentant comme\n  écart accepté, et garder les lots suivants derrière la vraie règle de PR dès que le\n  dépôt existe (retenue) ; (c) considérer le lot comme non terminé tant qu'il n'y a pas\n  de PR, écartée car le code est vérifié vert et la seule chose manquante est un moyen\n  d'héberger la revue, pas la revue elle-même.\n- **Qui a tranché** : Stratège. Aucune décision de la liste réservée n'est concernée\n  (fusionner du code déjà écrit et testé n'est ni publier, ni envoyer à un tiers).\n- **Réversible** : oui, `git revert` du commit de fusion si besoin.\n- **Ce qui ferait revenir dessus** : si une régression liée à ce lot apparaît au lot 2.\n- **Veto possible jusqu'à** : 2026-09-14T21:24:20+00:00.",
+      "challenge": "",
+      "reponses": "",
+      "a_trancher": [],
+      "veto_ouvert": true,
+      "metadata": {
+        "criteres_couverts": [
+          "CA-04",
+          "CA-05",
+          "CA-07",
+          "CA-08"
+        ],
+        "iterations": 1,
+        "iterations_max": 8,
+        "tests_avant": "0/1 (seul health vert)",
+        "tests_apres": "10/10 dans le périmètre du lot (12 suites totales, 9 hors périmètre encore rouges)",
+        "ecart_process": "fusion locale au lieu d'une PR, faute de dépôt distant ; à corriger dès que le dépôt existe"
+      }
+    }
+  ],
+  "produit": {
+    "cadrage": {
+      "besoin_principal": "Être reconnu pour son effort réel, pas pour ses kilomètres, afin de ne pas abandonner par honte",
+      "besoins_secondaires": [
+        "revenir chaque semaine",
+        "être vu sans être exposé et encouragé par ses pairs (donner et recevoir des cœurs)",
+        "équité perçue par les sportifs",
+        "zéro surveillance"
+      ],
+      "hypotheses": [
+        "H1 note relative > classement pour les non-sportifs",
+        "H2 les sportifs acceptent la même note",
+        "H3 l'auto-déclaration suffit"
+      ],
+      "question_decisive": "≥ 8/12 participent encore en semaine 4 et veulent continuer",
+      "contrainte": "données UE, aucune visibilité hiérarchique, aucune API de montre disponible pour un pilote",
+      "points_transmis": [
+        {
+          "vers": "carte 02",
+          "point": "rappel léger + déclaration très courte"
+        },
+        {
+          "vers": "carte 02",
+          "point": "cœurs reçus jamais en cumul public ou classé"
+        },
+        {
+          "vers": "programme D, carte Pilote",
+          "point": "question de mi-parcours sur les absences légitimes"
+        }
+      ]
+    },
+    "exigences": {
+      "besoins_proteges": [
+        "reconnaissance de l'effort réel",
+        "revenir chaque semaine",
+        "être vu sans être exposé",
+        "équité perçue",
+        "zéro surveillance"
+      ],
+      "detail_signature": {
+        "quoi": "Les chiffres n'existent pas : ni distance, ni allure, ni FC, pour personne, même pas pour soi. Étoiles et cœur seulement.",
+        "pourquoi": "Motion neutralise la comparaison mais garde les chiffres ; Apple les garde ailleurs ; personne ne les a supprimés."
+      },
+      "faits_premiers_principes": [
+        {
+          "fait": "les API de montre sont fermées à un pilote",
+          "source": "medianama.com 2024-11 ; developer.garmin.com ; support.coros.com ; sahha.ai"
+        },
+        {
+          "fait": "charge = minutes × effort ressenti est une mesure validée (session-RPE)",
+          "source": "à sourcer"
+        },
+        {
+          "fait": "le progrès par rapport à soi motive plus que le rang",
+          "source": "PMC5854141 ; Rawsthorne & Elliot 1999"
+        }
+      ],
+      "exigences_gardees": [
+        {
+          "exigence": "note en étoiles relative à sa propre référence",
+          "besoin": "reconnaissance de l'effort réel"
+        },
+        {
+          "exigence": "cœur des collègues sur la note, donné et reçu, compté en privé, jamais classé",
+          "besoin": "encouragement par les pairs"
+        },
+        {
+          "exigence": "signal collectif hebdomadaire sans prénom (séances, cœurs de l'équipe)",
+          "besoin": "appartenance, avancer à plusieurs"
+        },
+        {
+          "exigence": "déclaration privée activité + minutes + effort",
+          "besoin": "reconnaissance de l'effort réel"
+        },
+        {
+          "exigence": "un rappel le lundi",
+          "besoin": "revenir chaque semaine"
+        },
+        {
+          "exigence": "consentement, export, suppression",
+          "besoin": "obligation"
+        },
+        {
+          "exigence": "toute activité compte",
+          "besoin": "équité perçue"
+        }
+      ],
+      "exigences_supprimees": [
+        {
+          "exigence": "app mobile",
+          "raison": "aucun besoin ne l'exige",
+          "besoin_couvert_par": "bot de groupe"
+        },
+        {
+          "exigence": "montre / Strava / FC",
+          "raison": "accès fermé, données art. 9",
+          "besoin_couvert_par": "déclaration privée"
+        },
+        {
+          "exigence": "classement",
+          "raison": "contredit le besoin",
+          "besoin_couvert_par": "—"
+        },
+        {
+          "exigence": "défis, badges, séries",
+          "raison": "rétention artificielle",
+          "besoin_couvert_par": "cœur + rappel"
+        },
+        {
+          "exigence": "tableau de bord organisateur",
+          "raison": "surveillance",
+          "besoin_couvert_par": "—"
+        },
+        {
+          "exigence": "comptes, historique",
+          "raison": "Telegram identifie ; l'historique réintroduit des chiffres",
+          "besoin_couvert_par": "bot, étoiles de la semaine sur demande"
+        }
+      ],
+      "exigences_simplifiees": [
+        {
+          "avant": "capacité mesurée par la montre",
+          "apres": "référence = médiane des charges de la semaine 1, mise à jour sur 4 séances"
+        },
+        {
+          "avant": "multi-sport avec catalogue",
+          "apres": "activité nommée librement"
+        }
+      ],
+      "cycle": {
+        "boucle": "déclaration → étoiles → cœur",
+        "duree": "une heure ; pilote 4 semaines"
+      },
+      "automatiser_apres_pilote": [
+        "lecture Apple Santé / Health Connect",
+        "import de séances",
+        "rappels personnalisés",
+        "plusieurs groupes"
+      ],
+      "perimetre_mvp": "Un bot de groupe qui transforme une déclaration privée « 30 min, effort 7 » en une note en étoiles relative à ta propre semaine type, visible du groupe sans aucun chiffre, sur laquelle les collègues posent un cœur, et qui rend chaque vendredi ce que l'équipe a fait ensemble."
+    },
+    "spec": {
+      "parcours": [
+        "P1 consentement",
+        "P2 déclaration",
+        "P3 note en étoiles",
+        "P4 publication groupe",
+        "P5 cœurs",
+        "P6 signal du vendredi",
+        "P7 rappel du lundi",
+        "P8 mes données"
+      ],
+      "criteres": [
+        {
+          "id": "CA-01",
+          "texte": "aucune déclaration enregistrée avant consentement",
+          "parcours": "P1",
+          "regle": "R1"
+        },
+        {
+          "id": "CA-02",
+          "texte": "relance de consentement au plus une fois par 7 jours",
+          "parcours": "P1",
+          "regle": "R1"
+        },
+        {
+          "id": "CA-03",
+          "texte": "validation des champs de déclaration",
+          "parcours": "P2",
+          "regle": null
+        },
+        {
+          "id": "CA-04",
+          "texte": "silence des deux premières séances",
+          "parcours": "P3",
+          "regle": "R4"
+        },
+        {
+          "id": "CA-05",
+          "texte": "référence = médiane glissante des six dernières séances, sans distinction de semaine",
+          "parcours": "P3",
+          "regle": "R3"
+        },
+        {
+          "id": "CA-06",
+          "texte": "message public sans aucun chiffre de performance",
+          "parcours": "P4",
+          "regle": "R2"
+        },
+        {
+          "id": "CA-07",
+          "texte": "seuils d'étoiles exacts",
+          "parcours": "P3",
+          "regle": "R5"
+        },
+        {
+          "id": "CA-08",
+          "texte": "plafond à quatre étoiles après deux efforts 10 consécutifs",
+          "parcours": "P3",
+          "regle": "R6"
+        },
+        {
+          "id": "CA-09",
+          "texte": "cœur compté en privé, jamais public",
+          "parcours": "P5",
+          "regle": "R7"
+        },
+        {
+          "id": "CA-10",
+          "texte": "cœurs donnés communiqués en privé, jamais comparés",
+          "parcours": "P5",
+          "regle": "R7"
+        },
+        {
+          "id": "CA-11",
+          "texte": "message du vendredi sans prénom",
+          "parcours": "P6",
+          "regle": "R8"
+        },
+        {
+          "id": "CA-11bis",
+          "texte": "message du vendredi envoyé même à zéro séance",
+          "parcours": "P6",
+          "regle": "R8"
+        },
+        {
+          "id": "CA-12",
+          "texte": "aucun message ne signale une absence nominative",
+          "parcours": "P6",
+          "regle": "R8"
+        },
+        {
+          "id": "CA-13",
+          "texte": "message du lundi fixe, sans donnée personnelle",
+          "parcours": "P7",
+          "regle": null
+        },
+        {
+          "id": "CA-14",
+          "texte": "/mesdonnees limité à la personne qui invoque",
+          "parcours": "P8",
+          "regle": "R2"
+        },
+        {
+          "id": "CA-15",
+          "texte": "/supprimer efface et confirme",
+          "parcours": "P8",
+          "regle": "R9"
+        },
+        {
+          "id": "CA-16",
+          "texte": "suppression automatique fin de pilote + 30 jours",
+          "parcours": "P8",
+          "regle": "R9"
+        },
+        {
+          "id": "CA-17",
+          "texte": "aucun champ de santé au sens strict dans le modèle de données",
+          "parcours": null,
+          "regle": "R10"
+        }
+      ],
+      "donnees_sensibles": [
+        "effort ressenti",
+        "minutes d'activité"
+      ],
+      "hors_perimetre": [
+        "application mobile",
+        "connexion montre/Strava",
+        "classement d'équipe",
+        "défis hebdomadaires",
+        "badges",
+        "tableau de bord organisateur",
+        "comptes au-delà de Telegram",
+        "historique au-delà de la semaine en cours",
+        "message nominatif d'absence"
+      ]
+    }
+  },
+  "lots": [
+    {
+      "titre": "Lot 1 — Le détail signature : la note, sans aucun chiffre",
+      "criteres": [
+        "CA-04",
+        "CA-05",
+        "CA-07",
+        "CA-08"
+      ],
+      "statut": "termine"
+    },
+    {
+      "titre": "Lot 2 — Chemin critique : déclarer, être vu du groupe",
+      "criteres": [
+        "CA-01",
+        "CA-02",
+        "CA-03",
+        "CA-06"
+      ],
+      "statut": "a_faire"
+    },
+    {
+      "titre": "Lot 3 — Les cœurs",
+      "criteres": [
+        "CA-09",
+        "CA-10"
+      ],
+      "statut": "a_faire"
+    },
+    {
+      "titre": "Lot 4 — Les signaux collectifs",
+      "criteres": [
+        "CA-11",
+        "CA-11bis",
+        "CA-12",
+        "CA-13"
+      ],
+      "statut": "a_faire"
+    },
+    {
+      "titre": "Lot 5 — Les droits",
+      "criteres": [
+        "CA-14",
+        "CA-15",
+        "CA-16",
+        "CA-17"
+      ],
+      "statut": "en_cours"
+    }
+  ],
+  "criteres_ids": [
+    "CA-01",
+    "CA-02",
+    "CA-03",
+    "CA-04",
+    "CA-05",
+    "CA-06",
+    "CA-07",
+    "CA-08",
+    "CA-09",
+    "CA-10",
+    "CA-11",
+    "CA-11bis",
+    "CA-12",
+    "CA-13",
+    "CA-14",
+    "CA-15",
+    "CA-16",
+    "CA-17"
+  ],
+  "criteres_verts": [
+    "CA-04",
+    "CA-05",
+    "CA-07",
+    "CA-08",
+    "CA-17"
+  ],
+  "commits": [
+    "b54ff2b etat: régénéré [skip ci]",
+    "c4291fd etat: régénéré après le correctif CI",
+    "366f508 fix: stubs typés pour les modules des lots 2-5, CI ajustée à la méthode tests-d'abord",
+    "4086412 etat: régénéré [skip ci]",
+    "d043a3c regie: lot 01 approuvé (carte 07), état régénéré",
+    "c7fd1fa merge: lot-01 — référence glissante et calcul des étoiles (CA-04, CA-05, CA-07, CA-08)",
+    "d88d7f5 lot-01: signale le blocage sur l'ouverture de la PR (pas de remote git)",
+    "99d94b7 lot-01: référence glissante et calcul des étoiles (CA-04, CA-05, CA-07, CA-08)",
+    "15d0726 fix: settings.json avec les vraies commandes de vérification, prêt pour le loop",
+    "8509f74 regie: programme B — architecture, ADR, modèle de données, contrats, lots, 18 tests d'acceptation rouges",
+    "dd0e532 regie: programme A exécuté — cartes 01 Cadrage, 02 Méthode Musk, 03 Spécification approuvées",
+    "261b01d regie: dépôt préparé pour « Cœur relatif »",
+    "4cbbff0 init"
+  ]
+}

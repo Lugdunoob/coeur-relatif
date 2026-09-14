@@ -1,3 +1,5 @@
 .loop/runs/
 node_modules/
 dist/
+.vitest/
+.tableau-de-bord-vitest.json

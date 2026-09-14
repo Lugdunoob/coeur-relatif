@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Poste de contrôle · Cœur relatif</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --ink:#12181a; --ink-soft:#3c4749; --ink-faint:#71807e;
+    --paper:#eef2f1; --surface:#ffffff; --line:#d9e0de;
+    --accent:#0e8a7d; --accent-ink:#ffffff; --accent-soft:#dff1ee;
+    --warn:#b8791f; --warn-soft:#f7ecd8;
+    --danger:#c23f3f; --danger-soft:#f8e2e0;
+    --idle:#9aa6a4; --idle-soft:#e7ebea;
+    --shadow: 0 1px 2px rgba(18,24,26,.06), 0 6px 20px -8px rgba(18,24,26,.12);
+    --radius:14px;
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#eef3f2; --ink-soft:#b7c4c2; --ink-faint:#7c8a88;
+      --paper:#0f1516; --surface:#171f20; --line:#293233;
+      --accent:#3fd6c3; --accent-ink:#08201c; --accent-soft:#153431;
+      --warn:#f0b453; --warn-soft:#2c2412;
+      --danger:#ef7a76; --danger-soft:#2c1615;
+      --idle:#5c6969; --idle-soft:#1c2425;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 10px 30px -10px rgba(0,0,0,.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#eef3f2; --ink-soft:#b7c4c2; --ink-faint:#7c8a88;
+    --paper:#0f1516; --surface:#171f20; --line:#293233;
+    --accent:#3fd6c3; --accent-ink:#08201c; --accent-soft:#153431;
+    --warn:#f0b453; --warn-soft:#2c2412;
+    --danger:#ef7a76; --danger-soft:#2c1615;
+    --idle:#5c6969; --idle-soft:#1c2425;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 10px 30px -10px rgba(0,0,0,.55);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+    font-size:15px; line-height:1.55;
+    padding-inline:20px; padding-block:28px 64px;
+  }
+  .mono{ font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-variant-numeric:tabular-nums; }
+  .wrap{ max-width:920px; margin-inline:auto; }
+  a{ color:var(--accent); }
+  p{ margin:0 0 10px; }
+  h2.section{ font-size:12px; margin:0 0 12px; text-transform:uppercase; letter-spacing:.09em; color:var(--ink-faint); font-weight:600; }
+  section.block{ margin-bottom:30px; }
+
+  header.top{
+    display:flex; flex-wrap:wrap; gap:14px 24px; align-items:flex-end; justify-content:space-between;
+    padding-bottom:18px; margin-bottom:26px; border-bottom:1px solid var(--line);
+  }
+  .eyebrow{ text-transform:uppercase; letter-spacing:.09em; font-size:11.5px; font-weight:600; color:var(--ink-faint); margin:0 0 6px; }
+  h1{ font-size:25px; font-weight:700; margin:0; letter-spacing:-.01em; text-wrap:balance; }
+  .subline{ color:var(--ink-soft); font-size:13.5px; margin-top:5px; }
+  .hstats{ display:flex; gap:20px; flex-wrap:wrap; }
+  .hstat{ text-align:right; }
+  .hstat .num{ font-family:"IBM Plex Mono"; font-size:21px; font-weight:600; line-height:1; }
+  .hstat .lbl{ font-size:10.5px; color:var(--ink-faint); text-transform:uppercase; letter-spacing:.06em; margin-top:3px; }
+
+  /* ---- décisions à prendre ---- */
+  .decision-card{
+    display:flex; gap:12px; align-items:flex-start; background:var(--surface); border:1px solid var(--line);
+    border-left:4px solid var(--warn); border-radius:10px; padding:12px 14px; margin-bottom:8px; box-shadow:var(--shadow);
+  }
+  .decision-card.veto{ border-left-color:var(--idle); }
+  .decision-card .ico{ font-size:16px; line-height:1.4; }
+  .decision-card .txt{ font-size:13.5px; color:var(--ink); }
+  .decision-card .txt b{ font-weight:600; }
+  .decision-card .cd{ margin-left:auto; font-family:"IBM Plex Mono"; font-size:12px; color:var(--ink-faint); white-space:nowrap; }
+  .empty-ok{ display:flex; align-items:center; gap:10px; background:var(--accent-soft); color:var(--accent);
+    border-radius:10px; padding:12px 14px; font-size:13.5px; font-weight:500; }
+
+  /* ---- stratégie & produit ---- */
+  .produit-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  @media (max-width:640px){ .produit-grid{ grid-template-columns:1fr; } }
+  .pcard{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:16px 18px; box-shadow:var(--shadow); }
+  .pcard h3{ margin:0 0 8px; font-size:13px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-faint); font-weight:600; }
+  .pcard .lead{ font-size:15px; font-weight:500; line-height:1.5; }
+  .pcard.signature{ grid-column:1 / -1; background:var(--accent-soft); border-color:transparent; }
+  .pcard.signature h3{ color:var(--accent); }
+  .pcard.signature .lead{ font-size:16px; }
+  .taglist{ display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+  .tag{ font-size:11.5px; background:var(--idle-soft); color:var(--ink-soft); padding:4px 9px; border-radius:999px; }
+  .tag.off{ text-decoration:line-through; color:var(--ink-faint); }
+  .qd{ margin-top:10px; font-size:12.5px; color:var(--ink-faint); }
+  .qd b{ color:var(--ink-soft); font-weight:600; }
+
+  /* ---- chantier (lots/critères) ---- */
+  .chantier{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  @media (max-width:640px){ .chantier{ grid-template-columns:1fr; } }
+  .panel{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:14px 16px 16px; box-shadow:var(--shadow); }
+  .panel h3{ margin:0 0 10px; font-size:12px; text-transform:uppercase; letter-spacing:.07em; color:var(--ink-faint); font-weight:600; }
+  .criteria-grid{ display:grid; grid-template-columns:repeat(6,1fr); gap:6px; }
+  .crit-cell{ aspect-ratio:1; border-radius:7px; display:flex; align-items:center; justify-content:center;
+    font-family:"IBM Plex Mono"; font-size:9.5px; font-weight:600; background:var(--idle-soft); color:var(--ink-faint); border:1px solid var(--line); }
+  .crit-cell.done{ background:var(--accent); color:var(--accent-ink); border-color:transparent; }
+  .lots{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px; }
+  .lot-row{ display:grid; grid-template-columns:16px 1fr auto; align-items:center; gap:9px; padding:7px 0; border-top:1px dashed var(--line); font-size:12.5px; }
+  .lot-row:first-child{ border-top:none; }
+  .lot-mark{ width:14px; height:14px; border-radius:4px; border:1.5px solid var(--line); }
+  .lot-mark.termine{ background:var(--accent); border-color:var(--accent); }
+  .lot-mark.en_cours{ background:var(--warn); border-color:var(--warn); }
+  .lot-count{ font-family:"IBM Plex Mono"; font-size:11px; color:var(--ink-faint); }
+
+  /* ---- journal ---- */
+  details.carte{ background:var(--surface); border:1px solid var(--line); border-radius:12px; margin-bottom:8px; box-shadow:var(--shadow); overflow:hidden; }
+  details.carte summary{ cursor:pointer; padding:12px 16px; display:flex; align-items:center; gap:10px; list-style:none; font-size:13.5px; }
+  details.carte summary::-webkit-details-marker{ display:none; }
+  details.carte summary .chev{ transition:transform .15s; color:var(--ink-faint); }
+  details.carte[open] summary .chev{ transform:rotate(90deg); }
+  details.carte summary .name{ font-weight:600; }
+  details.carte summary .agent{ font-family:"IBM Plex Mono"; font-size:11.5px; color:var(--ink-faint); }
+  details.carte summary .badge{ margin-left:auto; font-size:10px; text-transform:uppercase; letter-spacing:.05em; font-weight:600;
+    background:var(--accent-soft); color:var(--accent); padding:3px 8px; border-radius:999px; }
+  .carte-body{ padding:0 16px 16px; font-size:13px; color:var(--ink-soft); }
+  .carte-body h4{ font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-faint); margin:12px 0 6px; }
+  .carte-body h4:first-child{ margin-top:0; }
+  .carte-body pre{ white-space:pre-wrap; font-family:inherit; margin:0; font-size:13px; line-height:1.6; }
+
+  footer.gen{ margin-top:10px; font-size:11.5px; color:var(--ink-faint); text-align:center; }
+  #loading{ text-align:center; padding:60px 0; color:var(--ink-faint); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="loading">Chargement…</div>
+  <div id="app" hidden>
+    <header class="top">
+      <div>
+        <p class="eyebrow">Poste de contrôle · la Régie</p>
+        <h1 id="h1-idee">—</h1>
+        <p class="subline">Pilote sur 12 collègues · <a id="repo-link" href="#" target="_blank" rel="noopener" class="mono"></a></p>
+      </div>
+      <div class="hstats">
+        <div class="hstat"><div class="num" id="stat-crit">–</div><div class="lbl">critères verts</div></div>
+        <div class="hstat"><div class="num" id="stat-decisions">–</div><div class="lbl">à ton avis</div></div>
+      </div>
+    </header>
+
+    <section class="block">
+      <h2 class="section">Décisions à ton avis</h2>
+      <div id="decisions-list"></div>
+    </section>
+
+    <section class="block">
+      <h2 class="section">Stratégie &amp; produit</h2>
+      <div class="produit-grid" id="produit-grid"></div>
+    </section>
+
+    <section class="block">
+      <h2 class="section">Avancement du chantier</h2>
+      <div class="chantier">
+        <div class="panel">
+          <h3 id="crit-head">Critères d'acceptation</h3>
+          <div class="criteria-grid" id="crit-grid"></div>
+        </div>
+        <div class="panel">
+          <h3 id="lots-head">Lots de code</h3>
+          <ul class="lots" id="lots-list"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2 class="section">Journal des décisions, carte par carte</h2>
+      <div id="cartes-list"></div>
+    </section>
+
+    <footer class="gen" id="gen-footer"></footer>
+  </div>
+</div>
+
+<script>
+function el(tag, cls, html){ const e = document.createElement(tag); if(cls) e.className = cls; if(html !== undefined) e.innerHTML = html; return e; }
+function esc(s){ return (s ?? "").toString().replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+function fmtDate(iso){
+  if(!iso) return "—";
+  return new Date(iso).toLocaleString("fr-FR", { day:"2-digit", month:"short", hour:"2-digit", minute:"2-digit" });
+}
+function fmtCountdown(iso){
+  const diff = new Date(iso).getTime() - Date.now();
+  if(diff <= 0) return "délai écoulé";
+  const h = Math.floor(diff/3600000), m = Math.floor((diff%3600000)/60000);
+  return h + " h " + String(m).padStart(2,"0") + " min restantes";
+}
+
+fetch('./data.json?t=' + Date.now())
+  .then(r => r.json())
+  .then(render)
+  .catch(e => { document.getElementById('loading').textContent = "Impossible de charger data.json : " + e; });
+
+function render(DATA){
+  document.getElementById('loading').hidden = true;
+  document.getElementById('app').hidden = false;
+
+  document.getElementById('h1-idee').textContent = DATA.idee;
+  const repoLink = document.getElementById('repo-link');
+  repoLink.href = "https://github.com/" + DATA.depot;
+  repoLink.textContent = "github.com/" + DATA.depot;
+  document.getElementById('stat-crit').textContent = DATA.criteres_verts.length + " / " + DATA.criteres_ids.length;
+  document.getElementById('stat-decisions').textContent = DATA.a_prendre.filter(a => a.type !== 'veto').length;
+
+  // ---- décisions à prendre ----
+  const dList = document.getElementById('decisions-list');
+  const reelles = DATA.a_prendre.filter(a => a.type !== 'veto');
+  const vetos = DATA.a_prendre.filter(a => a.type === 'veto');
+  if(reelles.length === 0 && vetos.length === 0){
+    dList.appendChild(el('div', 'empty-ok', '✓ Rien n\'attend ton avis en ce moment.'));
+  } else {
+    reelles.forEach(a => {
+      const icon = a.type === 'bloque' ? '⛔' : '❓';
+      const card = el('div', 'decision-card');
+      card.appendChild(el('span', 'ico', icon));
+      const txt = el('div', 'txt');
+      txt.innerHTML = (a.nom ? '<b>' + esc(a.nom) + '</b> — ' : '') + esc(a.texte);
+      card.appendChild(txt);
+      dList.appendChild(card);
+    });
+    vetos.forEach(a => {
+      const card = el('div', 'decision-card veto');
+      card.appendChild(el('span', 'ico', '⏳'));
+      const txt = el('div', 'txt');
+      txt.innerHTML = '<b>' + esc(a.nom) + '</b> approuvée — silence = accord';
+      card.appendChild(txt);
+      const cd = el('span', 'cd mono', fmtCountdown(a.veto_jusqu_au));
+      card.appendChild(cd);
+      dList.appendChild(card);
+    });
+  }
+
+  // ---- stratégie & produit ----
+  const pg = document.getElementById('produit-grid');
+  const c = DATA.produit.cadrage || {}, e = DATA.produit.exigences || {}, s = DATA.produit.spec || {};
+  if(c.besoin_principal){
+    const card = el('div', 'pcard');
+    card.appendChild(el('h3', '', 'Le besoin (carte Cadrage)'));
+    card.appendChild(el('div', 'lead', esc(c.besoin_principal)));
+    if(c.question_decisive) card.appendChild(el('div', 'qd', '<b>Question qui décide</b> : ' + esc(c.question_decisive)));
+    pg.appendChild(card);
+  }
+  if(c.besoins_secondaires){
+    const card = el('div', 'pcard');
+    card.appendChild(el('h3', '', 'Besoins secondaires'));
+    const tl = el('div', 'taglist');
+    c.besoins_secondaires.forEach(b => tl.appendChild(el('span', 'tag', esc(b))));
+    card.appendChild(tl);
+    pg.appendChild(card);
+  }
+  if(e.detail_signature){
+    const card = el('div', 'pcard signature');
+    card.appendChild(el('h3', '', 'Le détail signature (carte Méthode Musk)'));
+    card.appendChild(el('div', 'lead', esc(e.detail_signature.quoi)));
+    card.appendChild(el('div', 'qd', esc(e.detail_signature.pourquoi)));
+    pg.appendChild(card);
+  }
+  if(e.exigences_supprimees){
+    const card = el('div', 'pcard');
+    card.appendChild(el('h3', '', 'Volontairement écarté'));
+    const tl = el('div', 'taglist');
+    e.exigences_supprimees.forEach(x => tl.appendChild(el('span', 'tag off', esc(x.exigence))));
+    card.appendChild(tl);
+    pg.appendChild(card);
+  }
+  if(s.hors_perimetre){
+    const card = el('div', 'pcard');
+    card.appendChild(el('h3', '', 'Hors périmètre du pilote'));
+    const tl = el('div', 'taglist');
+    s.hors_perimetre.forEach(x => tl.appendChild(el('span', 'tag off', esc(x))));
+    card.appendChild(tl);
+    pg.appendChild(card);
+  }
+  if(s.criteres){
+    const card = el('div', 'pcard');
+    card.appendChild(el('h3', '', 'Ce que le produit fait, concrètement'));
+    const tl = el('div', 'taglist');
+    (s.parcours || []).forEach(x => tl.appendChild(el('span', 'tag', esc(x))));
+    card.appendChild(tl);
+    card.appendChild(el('div', 'qd', s.criteres.length + ' critères d\'acceptation numérotés — détail dans le journal ci-dessous.'));
+    pg.appendChild(card);
+  }
+
+  // ---- chantier ----
+  document.getElementById('crit-head').textContent = "Critères d'acceptation (" + DATA.criteres_verts.length + "/" + DATA.criteres_ids.length + ")";
+  const grid = document.getElementById('crit-grid');
+  DATA.criteres_ids.forEach(id => {
+    const done = DATA.criteres_verts.includes(id);
+    const cell = el('div', 'crit-cell' + (done ? ' done' : ''), esc(id.replace('CA-','')));
+    cell.title = id + (done ? ' · vert' : ' · à faire');
+    grid.appendChild(cell);
+  });
+  const lotsDone = DATA.lots.filter(l => l.statut === 'termine').length;
+  document.getElementById('lots-head').textContent = "Lots de code (" + lotsDone + "/" + DATA.lots.length + ")";
+  const lotsList = document.getElementById('lots-list');
+  DATA.lots.forEach(l => {
+    const row = el('li', 'lot-row');
+    row.appendChild(el('div', 'lot-mark ' + l.statut));
+    row.appendChild(el('div', '', esc(l.titre)));
+    row.appendChild(el('div', 'lot-count mono', l.criteres.filter(x=>x).length ? l.criteres.filter(x=>x).length + ' CA' : '—'));
+    lotsList.appendChild(row);
+  });
+
+  // ---- journal des cartes ----
+  const cartesList = document.getElementById('cartes-list');
+  DATA.cartes.forEach(c => {
+    const d = el('details', 'carte');
+    const sum = el('summary');
+    sum.innerHTML = '<span class="chev">▸</span> <span class="name">Carte ' + esc(c.carte) + ' · ' + esc(c.nom) + '</span> <span class="agent mono">@' + esc(c.agent) + '</span>';
+    const badge = el('span', 'badge', c.statut === 'approuvee' ? 'Approuvée' : esc(c.statut));
+    sum.appendChild(badge);
+    d.appendChild(sum);
+    const body = el('div', 'carte-body');
+    if(c.journal){ body.appendChild(el('h4', '', 'Journal de décision')); body.appendChild(el('pre', '', esc(c.journal))); }
+    if(c.challenge){ body.appendChild(el('h4', '', 'Contestation du Contradicteur')); body.appendChild(el('pre', '', esc(c.challenge))); }
+    if(c.reponses){ body.appendChild(el('h4', '', 'Réponse de l\'auteur')); body.appendChild(el('pre', '', esc(c.reponses))); }
+    d.appendChild(body);
+    cartesList.appendChild(d);
+  });
+
+  document.getElementById('gen-footer').textContent = "Généré " + fmtDate(DATA.genere_le) + " par l'assistant de direction · republié automatiquement quand un agent travaille";
+}
+</script>
+</body>
+</html>
