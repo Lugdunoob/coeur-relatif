@@ -14,4 +14,22 @@
 //      sans jamais y faire figurer minutes, effort, ni aucun autre chiffre (CA-06).
 //   5. Le dépôt (`InMemoryRepository` en test, `SupabaseRepository` en production,
 //      ADR-0004) : persister la séance une fois tout ce qui précède validé.
+//
+// Branchement futur (lot 03) pour une mise à jour `message_reaction` (réaction ❤️ sur
+// un message du groupe, spike de vérification positif — voir
+// .loop/lot-03-progress.md) : distinct du flux ci-dessus, aucun texte à parser.
+//   1. Le webhook doit être configuré avec `allowed_updates` incluant
+//      `"message_reaction"` (absent par défaut, comme `chat_member`) : hors périmètre
+//      de ce squelette, à faire au déploiement réel (lot 6, Recette).
+//   2. À réception d'une `MessageReactionUpdated` dont `new_reaction` contient ❤️ et
+//      `user` est renseigné (réaction d'un membre identifié, pas d'admin anonyme) :
+//      retrouver la séance visée par `message_id`, puis appeler `coeurs.ts`
+//      (`enregistrerCoeur`) avec `{ id, seanceId, donneurId: user.id, horodatage: date }`.
+//      Retrouver la séance à partir de `message_id` suppose de mémoriser ce lien au
+//      moment de l'envoi du message public (étape 4 ci-dessus) ; ni `docs/data-model.md`
+//      ni `Seance` (src/db/schema.ts) ne portent aujourd'hui ce champ — un point à
+//      trancher (ADR ou carte de changement) avant le câblage réel, pas avant.
+//   3. Aucun appel réseau, aucune dépendance `grammY` ajoutée à ce stade : aucun test
+//      ne l'exige encore (`test/coeurs.test.ts` teste `coeurs.ts` directement, sans
+//      passer par ce fichier).
 export {};
