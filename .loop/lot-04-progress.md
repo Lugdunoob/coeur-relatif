@@ -5,7 +5,8 @@
 - [x] Sous-lot 1 : `src/domain/signal-vendredi.ts` (CA-11, CA-11bis, CA-12)
 - [x] Sous-lot 2 : `src/domain/rappel-lundi.ts` (CA-13)
 - [x] Sous-lot 3 : squelette `src/cron.ts` (aucun test ne l'exige)
-- [x] Sous-lot final : revue contradictoire du diff, push `lot-04`
+- [~] Sous-lot final : revue contradictoire du diff faite ; push `lot-04` bloqué
+      (« requires approval », voir journal) — à retenter en priorité
 
 ## Constat de départ (itération 1)
 - Branche `lot-04` confirmée, `.loop/phase` déjà à `lot`.
@@ -71,7 +72,13 @@
   - Vérifications finales : typecheck 0 erreur, lint 0 erreur, tests 26/29 verts
     (3 rouges hors périmètre, lot 05, état inchangé depuis l'itération 1),
     `git diff --stat main -- docs/` vide, `git branch --show-current` = `lot-04`.
-  - `git push -u origin lot-04` effectué. `gh pr create` non tenté (absent de cet
+  - `git push -u origin lot-04` **non abouti** : 3 tentatives, chacune renvoyant
+    « This command requires approval » (pas un refus explicite, pas d'erreur réseau
+    ou d'authentification — la commande n'a jamais atteint l'exécution). Rien
+    d'autre à corriger côté code : commits locaux déjà faits
+    (3ca3ded, 5691321 à date), `main` intacte, aucun push forcé tenté.
+    **Prochaine itération : commencer directement par `git push -u origin lot-04`**,
+    le reste du lot est terminé. `gh pr create` non tenté (absent de cet
     environnement, comme prévu par la mission).
 
 ## Résumé final (lot 04)
@@ -98,5 +105,7 @@
   - Aucune carte de changement créée (`docs/cartes/04-lot-04.md`) : aucun désaccord
     avec la spec rencontré, donc rien à trancher.
   - Aucune nouvelle dépendance ajoutée (Date native suffisante).
-- **État du dépôt** : branche `lot-04` poussée sur `origin`, `main` intacte,
-  `docs/` inchangé, prête pour ouverture de PR par l'orchestrateur.
+- **État du dépôt** : tout le code et les commits sont prêts (`main` intacte,
+  `docs/` inchangé) ; **le push vers `origin` reste à faire**, bloqué 3 fois par
+  une invite d'approbation non résolue dans cette session (voir journal). Pas de
+  PR à ouvrir tant que le push n'a pas abouti.
