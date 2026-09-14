@@ -1,7 +1,7 @@
 {
   "idee": "Cœur relatif",
   "depot": "Lugdunoob/coeur-relatif",
-  "genere_le": "2026-09-14T09:25:28+00:00",
+  "genere_le": "2026-09-14T09:35:44+00:00",
   "a_prendre": [
     {
       "type": "veto",
@@ -913,7 +913,7 @@
         "CA-16",
         "CA-17"
       ],
-      "statut": "en_cours"
+      "statut": "termine"
     }
   ],
   "criteres_ids": [
@@ -951,28 +951,12 @@
     "CA-11bis",
     "CA-12",
     "CA-13",
+    "CA-14",
+    "CA-15",
+    "CA-16",
     "CA-17"
   ],
   "commits": [
-    "8d85204 Lot 04 — Les signaux collectifs (#10)",
-    "b7d1338 lot-04 : push abouti (git push origin sans -u), lot terminé",
-    "dc55da9 lot-04 : note d'état — push origin/lot-04 bloqué par une invite d'approbation",
-    "5691321 lot-04 (sous-lot final) : revue contradictoire, résumé, prêt pour push",
-    "3ca3ded lot-04 (sous-lots 1-3) : signal du vendredi, rappel du lundi, squelette cron",
-    "9e1e18e lot-04 (sous-lot 0) : lecture carte/lot/tests rouges, plan écrit",
-    "ba1f120 regie: lot 03 approuvé (carte 09) — réserve notée sur le spike Telegram pour la Recette",
-    "3fbd5d5 Lot 03 — Les cœurs (#9)",
-    "cd1e051 lot-03 (sous-lot final) : revue contradictoire, résumé, prêt pour push",
-    "a145b93 lot-03 (sous-lots 2-3) : implémentation réelle des cœurs (CA-09, CA-10)",
-    "d0fb0c3 lot-03 (sous-lots 0-1) : plan et spike Telegram (message_reaction) positif",
-    "f08e5de docs: idée transmise (scores de groupe/total) mise en attente, pas dans le pilote",
-    "81c8344 fix: extraction complète des notes multi-lignes + tableau de bord reformulé en langage direct",
-    "5be7c73 fix: le workflow etat retente son push en cas de course avec un autre push",
-    "b6127d9 regie: lot 02 approuvé (carte 08), tableau de bord et état régénérés",
-    "cea80b2 Lot 02 — Chemin critique : déclarer, être vu du groupe (#7)",
-    "30871e9 feat: tableau de bord HTML neutre (assistant de direction), publié via GitHub Pages",
-    "3c0eed8 etat: régénéré [skip ci]",
-    "8281bfb lot-02 : reponse au memo du Contradicteur, resume final",
-    "24c710a lot-02 : progression mise a jour (sous-lots 3-5 coches)"
+    "f261fd4 Lot 05 — Les droits (CA-14, CA-15, CA-16, CA-17)"
   ]
 }
