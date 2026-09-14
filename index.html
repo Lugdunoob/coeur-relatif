@@ -122,6 +122,52 @@
   .etoiles .case-etoile.pleine { color: var(--or-vif); text-shadow: 0 0 10px rgba(246,207,110,.4); }
   @keyframes bascule { from { transform: rotateX(90deg); opacity: 0; } to { transform: rotateX(0); opacity: 1; } }
   .retour { background: none; border: none; box-shadow: none; color: var(--creme-douce); padding: 0 0 18px; text-align: left; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  /* Sélecteur à roues (façon combinaison / horloge à bascule) */
+  .roues { display: flex; gap: 10px; margin: 10px 0 20px; }
+  .roue-colonne { flex: 1; min-width: 0; }
+  .roue-entete { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--creme-douce); text-align: center; margin-bottom: 6px; }
+  .roue-cadre {
+    position: relative;
+    height: 180px;
+    background: var(--case);
+    border: 1px solid var(--case-bord);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .roue-bande {
+    position: absolute; left: 0; right: 0; top: 72px; height: 36px;
+    border-top: 1px solid rgba(232,184,75,.4);
+    border-bottom: 1px solid rgba(232,184,75,.4);
+    background: rgba(232,184,75,.06);
+    pointer-events: none;
+    z-index: 2;
+  }
+  .roue-scroll {
+    height: 100%;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 40px, #000 140px, transparent 180px);
+    mask-image: linear-gradient(to bottom, transparent 0, #000 40px, #000 140px, transparent 180px);
+    scrollbar-width: none;
+  }
+  .roue-scroll::-webkit-scrollbar { display: none; }
+  .roue-remplissage { height: 72px; }
+  .roue-item {
+    height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    scroll-snap-align: center;
+    font-size: 0.78rem;
+    color: var(--creme-douce);
+    opacity: .4;
+    transition: opacity .15s, color .15s, font-size .15s;
+    text-align: center;
+    padding: 0 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .roue-item.actif { opacity: 1; color: var(--or-vif); font-weight: 700; font-size: 0.95rem; }
   .chargement, .erreur { text-align: center; color: var(--creme-douce); margin-top: 40vh; font-size: 0.85rem; letter-spacing: 0.05em; }
   .erreur { color: var(--coeur); }
 </style>
@@ -211,63 +257,83 @@ function afficherMenu(prenom) {
   document.getElementById('supprimer').onclick = confirmerSuppression;
 }
 
+const HAUTEUR_LIGNE = 36;
+
 async function demarrerDeclaration() {
   const options = await api('/api/web/options');
-  afficherActivites(options);
+  afficherRoues(options);
 }
 
-function afficherActivites(options) {
-  const boutons = options.activites.map((a) =>
-    `<button data-v="${a}">${a}</button>`
-  ).join('') + `<button data-v="__autre__">Autre</button>`;
+// Trois roues côte à côte (activité, durée, effort), comme une combinaison : on
+// scrolle chaque colonne, l'élément centré (dans la bande dorée) est le choix retenu.
+function afficherRoues(options) {
+  const activites = [...options.activites, 'Autre'];
+  const durees = options.durees.map((d) => d.label);
+  const efforts = options.efforts;
+
+  const colonne = (id, entete, valeurs) => `
+    <div class="roue-colonne">
+      <div class="roue-entete">${entete}</div>
+      <div class="roue-cadre">
+        <div class="roue-bande"></div>
+        <div class="roue-scroll" id="${id}">
+          <div class="roue-remplissage"></div>
+          ${valeurs.map((v) => `<div class="roue-item">${v}</div>`).join('')}
+          <div class="roue-remplissage"></div>
+        </div>
+      </div>
+    </div>
+  `;
+
   carte(`
     <button class="retour" id="retour">← Menu</button>
-    <h1>Quelle activité ?</h1>
-    <div class="boutons">${boutons}</div>
+    <h1>Déclarer</h1>
+    <p class="sous-titre">Fais défiler chaque colonne</p>
+    <div class="roues">
+      ${colonne('roue-activite', 'Activité', activites)}
+      ${colonne('roue-duree', 'Durée', durees)}
+      ${colonne('roue-effort', 'Effort', efforts)}
+    </div>
+    <div class="boutons"><button class="principal" id="valider">Valider</button></div>
   `);
   document.getElementById('retour').onclick = () => afficherMenu();
-  app.querySelectorAll('button[data-v]').forEach((b) => {
-    b.onclick = () => {
-      if (b.dataset.v === '__autre__') {
-        const nom = prompt("Quelle activité ?");
-        if (nom && nom.trim()) afficherDurees(options, nom.trim().slice(0, 30));
-      } else {
-        afficherDurees(options, b.dataset.v);
-      }
-    };
-  });
+
+  const roues = ['roue-activite', 'roue-duree', 'roue-effort'].map((id) => initRoue(id));
+
+  document.getElementById('valider').onclick = () => {
+    const iActivite = roues[0].index();
+    const iDuree = roues[1].index();
+    const iEffort = roues[2].index();
+    let activite = activites[iActivite];
+    if (activite === 'Autre') {
+      const nom = prompt("Quelle activité ?");
+      if (!nom || !nom.trim()) return;
+      activite = nom.trim().slice(0, 30);
+    }
+    envoyerDeclaration(activite, options.durees[iDuree].minutes, efforts[iEffort]);
+  };
 }
 
-function afficherDurees(options, activite) {
-  const boutons = options.durees.map((d) =>
-    `<button data-v="${d.minutes}">${d.label}</button>`
-  ).join('');
-  carte(`
-    <button class="retour" id="retour">← Activité</button>
-    <h1>${activite}</h1>
-    <p class="sous-titre">Combien de temps ?</p>
-    <div class="boutons">${boutons}</div>
-  `);
-  document.getElementById('retour').onclick = () => afficherActivites(options);
-  app.querySelectorAll('button[data-v]').forEach((b) => {
-    b.onclick = () => afficherEfforts(options, activite, Number(b.dataset.v));
-  });
-}
+// Marque l'élément centré comme actif ; scrollTop = index * HAUTEUR_LIGNE (voir CSS :
+// remplissage haut/bas de deux lignes, donc scrollTop=0 centre déjà l'élément 0).
+function initRoue(id) {
+  const scroll = document.getElementById(id);
+  const items = scroll.querySelectorAll('.roue-item');
+  let indexActif = 0;
 
-function afficherEfforts(options, activite, minutes) {
-  const boutons = options.efforts.map((e) =>
-    `<button data-v="${e}">${e}</button>`
-  ).join('');
-  carte(`
-    <button class="retour" id="retour">← Durée</button>
-    <h1>${activite}</h1>
-    <p class="sous-titre">Effort ressenti ?</p>
-    <div class="boutons">${boutons}</div>
-  `);
-  document.getElementById('retour').onclick = () => afficherDurees(options, activite);
-  app.querySelectorAll('button[data-v]').forEach((b) => {
-    b.onclick = () => envoyerDeclaration(activite, minutes, b.dataset.v);
+  function maj() {
+    indexActif = Math.max(0, Math.min(items.length - 1, Math.round(scroll.scrollTop / HAUTEUR_LIGNE)));
+    items.forEach((el, i) => el.classList.toggle('actif', i === indexActif));
+  }
+
+  let ticheme;
+  scroll.addEventListener('scroll', () => {
+    clearTimeout(ticheme);
+    ticheme = setTimeout(maj, 60);
   });
+  maj();
+
+  return { index: () => indexActif };
 }
 
 async function envoyerDeclaration(activite, minutes, effortMot) {
