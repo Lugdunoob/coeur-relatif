@@ -5,7 +5,7 @@
 - [x] Sous-lot 1 : `src/domain/signal-vendredi.ts` (CA-11, CA-11bis, CA-12)
 - [x] Sous-lot 2 : `src/domain/rappel-lundi.ts` (CA-13)
 - [x] Sous-lot 3 : squelette `src/cron.ts` (aucun test ne l'exige)
-- [ ] Sous-lot final : revue contradictoire du diff, push `lot-04`
+- [x] Sous-lot final : revue contradictoire du diff, push `lot-04`
 
 ## Constat de départ (itération 1)
 - Branche `lot-04` confirmée, `.loop/phase` déjà à `lot`.
@@ -56,3 +56,47 @@
     qu'à l'itération 1. `npm run typecheck` et `npm run lint` : 0 erreur.
     `git diff --stat main -- docs/` : vide.
   - Aucune nouvelle dépendance ajoutée.
+- Itération 2 (suite) : sous-lot final.
+  - Agent `regie:contradicteur` non disponible dans cet environnement (aucun agent ni
+    skill de ce nom dans la liste fournie) : revue contradictoire faite directement,
+    sur `git diff main...lot-04 -- src/` (diff complet relu ligne à ligne).
+  - Constat corrigé : guillemets doubles dans `rappel-lundi.ts` alors que le reste du
+    code (`coeurs.ts`, `signal-vendredi.ts`) utilise des guillemets simples — corrigé
+    par cohérence de style (aucun impact fonctionnel, `npm run lint` était déjà vert
+    avant et après, pas de règle `quotes` configurée).
+  - Aucune autre anomalie trouvée : les deux fonctions n'accèdent à aucun champ
+    nominatif (`personneId`, `donneurId`) par construction — l'absence de prénom dans
+    les messages n'est pas un hasard de formulation mais une conséquence du typage
+    d'entrée utilisé (seuls `.length` sont lus).
+  - Vérifications finales : typecheck 0 erreur, lint 0 erreur, tests 26/29 verts
+    (3 rouges hors périmètre, lot 05, état inchangé depuis l'itération 1),
+    `git diff --stat main -- docs/` vide, `git branch --show-current` = `lot-04`.
+  - `git push -u origin lot-04` effectué. `gh pr create` non tenté (absent de cet
+    environnement, comme prévu par la mission).
+
+## Résumé final (lot 04)
+
+- **Critères couverts** : CA-11, CA-11bis, CA-12 (`src/domain/signal-vendredi.ts`,
+  `test/signal-vendredi.test.ts`), CA-13 (`src/domain/rappel-lundi.ts`,
+  `test/rappel-lundi.test.ts`). Les 4 critères du lot sont verts.
+- **Itérations utilisées** : 2 sur un budget de 15 (sous-lot 0 à l'itération 1 ;
+  sous-lots 1, 2, 3 et final à l'itération 2 — regroupés car chacun était une
+  implémentation courte et indépendante, sans obstacle rencontré).
+- **Laissé de côté, et pourquoi** :
+  - `test/donnees.test.ts` (CA-14, CA-15) et `test/purge.test.ts` (CA-16) restent
+    rouges : lot 5 « Les droits », explicitement hors périmètre du lot 04
+    (`docs/lots.md`), non modifiés, dans le même état qu'au départ.
+  - `src/cron.ts` reste un squelette commentaire (`export {}`), sans branchement
+    réel ni configuration Vercel Cron : aucun test ne l'exige au lot 04, et le
+    câblage réel (route HTTP, fuseau horaire, secret de déclenchement) est un point
+    de déploiement renvoyé au lot 6 « Recette » par la mission elle-même.
+  - Le lien entre le message envoyé au groupe le vendredi et l'appel réel au dépôt
+    (`Repository`) n'est pas câblé : seules les fonctions pures `genererSignalVendredi`
+    et `genererRappelLundi` étaient demandées ; leur consommation par un vrai
+    adaptateur Telegram suit le même schéma que `src/telegram/webhook.ts` (lots 2/3),
+    non réécrit ici faute de nécessité prouvée.
+  - Aucune carte de changement créée (`docs/cartes/04-lot-04.md`) : aucun désaccord
+    avec la spec rencontré, donc rien à trancher.
+  - Aucune nouvelle dépendance ajoutée (Date native suffisante).
+- **État du dépôt** : branche `lot-04` poussée sur `origin`, `main` intacte,
+  `docs/` inchangé, prête pour ouverture de PR par l'orchestrateur.
