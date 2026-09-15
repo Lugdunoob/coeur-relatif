@@ -1,8 +1,11 @@
 # /loop : programme B — Lot 7 (cœurs sociaux) de « Cœur relatif »
 
-> Lancement : `bash .loop/ralph.sh plan-lot7 15`
+> Lancement : `bash .loop/ralph-plan.sh plan-lot7 15`
 > Préalable : carte 18 (cadrage Lot 7) approuvée. Ne pas attendre sa fenêtre de veto —
 > le fondateur a explicitement demandé de lancer la méthode loop dès l'approbation.
+> Chaque itération démarre sans mémoire (contexte frais, comme les loops de lot).
+> Termine chaque réponse par exactement une ligne : `STATUS: CONTINUE` ou
+> `STATUS: PLAN_LOT7_DONE` ou `STATUS: PLAN_LOT7_BLOCKED`.
 
 ## MISSION
 Décider comment construire le Lot 7 (envoi de cœurs, flux d'activité, signal
@@ -33,7 +36,7 @@ commités pour chaque nouveau `CA-NN`.
 
 ## RÈGLES ABSOLUES
 1. `main` est intouchable. Première action de chaque itération : `git branch
-   --show-current` ; si `main`, crée ou bascule sur `regie/plan-lot7`.
+   --show-current` ; si `main`, crée ou bascule sur `plan-lot7`.
 2. Zéro push forcé, zéro merge dans `main`. Le push de la branche est autorisé.
 3. Un commit par carte approuvée : `carte(NN): approuvée`, et un par renvoi :
    `carte(NN): renvoyée, <motif>`.
@@ -49,7 +52,7 @@ commités pour chaque nouveau `CA-NN`.
 Fichier d'état : `.loop/coeur-relatif-progress.md` (même fichier que le programme
 initial, nouvelle section à ajouter pour ce loop). Tu démarres sans souvenir des
 itérations précédentes. Première action : le lire, puis `git log --oneline -15` sur
-la branche `regie/plan-lot7`. S'il montre des cartes cochées, fais-lui confiance :
+la branche `plan-lot7`. S'il montre des cartes cochées, fais-lui confiance :
 reprends à la première non cochée. Dernière action de chaque itération : le mettre à
 jour (checklist, journal, idées rejetées).
 
@@ -82,15 +85,17 @@ jour (checklist, journal, idées rejetées).
 3. `git diff --stat main -- docs/spec.md` : seules les sections P9, P1 (révision) et
    les nouveaux `CA-NN`/R7 ont bougé ; rien d'autre du pilote existant n'est modifié
    sans justification.
-4. `git branch --show-current` → `regie/plan-lot7`.
+4. `git branch --show-current` → `plan-lot7`.
 5. La règle de conversion qualitative (point 1) et la limite de cloisonnement (point
    2) apparaissent toutes les deux, en toutes lettres, dans le diff.
 
 ## SI BLOQUÉ
 Même obstacle après 3 itérations, ou extension de périmètre au-delà de ce que la
 carte 18 a acté (ex. classement à un niveau équipe/entreprise, R7 levée plus loin
-qu'un signal qualitatif pays/région) : `BLOCKED.md`, puis
-`<promise>REGIE_PLAN_LOT7_BLOCKED</promise>`.
+qu'un signal qualitatif pays/région) : `BLOCKED.md`, carte concernée en
+`changements_demandes`, puis `STATUS: PLAN_LOT7_BLOCKED`. À l'itération 12
+(3 avant la fin du budget) : stabilise, documente plutôt que d'ouvrir un nouveau
+chantier.
 
 ## DEFINITION OF DONE
 - Cartes 19 (si applicable), 20, 21, 22 approuvées avec challenge et journal.
@@ -101,4 +106,4 @@ qu'un signal qualitatif pays/région) : `BLOCKED.md`, puis
 - `docs/programme.md` liste le loop `lot-07` avec son nombre d'itérations.
 - `main` intacte.
 
-<promise>REGIE_PLAN_LOT7_DONE</promise>
+Alors, et seulement alors : `STATUS: PLAN_LOT7_DONE`.
