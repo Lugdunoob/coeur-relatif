@@ -1,55 +1,13 @@
 {
   "idee": "Cœur relatif",
   "depot": "Lugdunoob/coeur-relatif",
-  "genere_le": "2026-09-14T15:32:25+00:00",
+  "genere_le": "2026-09-15T06:06:02+00:00",
   "a_prendre": [
-    {
-      "type": "veto",
-      "carte": "01",
-      "nom": "Cadrage",
-      "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-14T21:00:14+00:00.",
-      "veto_jusqu_au": "2026-09-14T21:00:14+00:00"
-    },
-    {
-      "type": "veto",
-      "carte": "02",
-      "nom": "Méthode Musk",
-      "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-14T21:00:50+00:00.",
-      "veto_jusqu_au": "2026-09-14T21:00:50+00:00"
-    },
     {
       "type": "a_trancher",
       "carte": "02",
       "nom": "Méthode Musk",
       "texte": "Telegram ou Slack pour le groupe (version prudente : Telegram, déjà utilisé par le fondateur pour la Régie)."
-    },
-    {
-      "type": "veto",
-      "carte": "03",
-      "nom": "Spécification",
-      "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-14T21:02:12+00:00.",
-      "veto_jusqu_au": "2026-09-14T21:02:12+00:00"
-    },
-    {
-      "type": "veto",
-      "carte": "05",
-      "nom": "Architecture et plan",
-      "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-14T21:12:50+00:00.",
-      "veto_jusqu_au": "2026-09-14T21:12:50+00:00"
-    },
-    {
-      "type": "veto",
-      "carte": "06",
-      "nom": "Tests d'acceptation",
-      "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-14T21:12:50+00:00.",
-      "veto_jusqu_au": "2026-09-14T21:12:50+00:00"
-    },
-    {
-      "type": "veto",
-      "carte": "07",
-      "nom": "Lot 01",
-      "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-14T21:24:20+00:00.",
-      "veto_jusqu_au": "2026-09-14T21:24:20+00:00"
     },
     {
       "type": "veto",
@@ -142,7 +100,7 @@
       "challenge": "**1 · Sérieuse · L'auto-déclaration sans montre est d'abord un risque de friction, pas seulement de triche.** Le cadrage suppose que taper \"course 30 min effort 7\" à un bot suffit ; sans rappel ni geste rapide, le risque le plus probable en 6 mois est l'abandon par oubli, pas la triche (H3 teste la triche, pas l'oubli).\nAlternative : un rappel bot quotidien optionnel et une déclaration en moins de 10 secondes, à spécifier dans les exigences (carte 02), pas ici.\nCe qui tranche : le taux de déclaration observé en semaine 1 du pilote.\n\n**2 · Sérieuse · Les cœurs pourraient recréer un classement caché.** « Être vu sans être exposé » vise les chiffres de performance ; rien n'empêche que le nombre de cœurs reçus devienne le nouveau critère de statut du groupe.\nAlternative : le nombre de cœurs reçus n'est jamais affiché en cumul public, seulement en privé à son destinataire ; exigence à porter dans la carte Méthode Musk.\nCe qui tranche : la question anonyme de fin de pilote, étendue à « as-tu regardé qui reçoit le plus de cœurs ? ».\n\n**3 · Mineure · Aucune règle pour une absence légitime (maladie, déplacement).** Un participant qui décroche pour une bonne raison n'est pas distingué de celui qui décroche par désintérêt, ce qui fausserait la lecture de H1.\nAlternative : le protocole de pilote (carte Pilote, programme D) demande à mi-parcours si une absence est due à un empêchement, sans le rendre visible aux autres.\nCe qui tranche : rien à trancher au cadrage ; c'est un item du protocole.\n\n**Verdict : solide.** Rien ne remet en cause le besoin ni la question décisive ; les trois points sont des exigences ou des items de protocole, pas des défauts de cadrage.",
       "reponses": "1. **Accepte.** Transmis à la carte 02 : ajouter aux exigences un rappel léger et une déclaration très courte.\n2. **Accepte.** Transmis à la carte 02 : le nombre de cœurs reçus reste privé, jamais un total public ou classé.\n3. **Accepte.** Transmis au programme D (carte Pilote) : question de mi-parcours sur les empêchements.",
       "a_trancher": [],
-      "veto_ouvert": true,
+      "veto_ouvert": false,
       "metadata": {
         "besoin_principal": "Être reconnu pour son effort réel, pas pour ses kilomètres, afin de ne pas abandonner par honte",
         "besoins_secondaires": [
@@ -189,7 +147,7 @@
       "a_trancher": [
         "Telegram ou Slack pour le groupe (version prudente : Telegram, déjà utilisé par le fondateur pour la Régie)."
       ],
-      "veto_ouvert": true,
+      "veto_ouvert": false,
       "metadata": {
         "besoins_proteges": [
           "reconnaissance de l'effort réel",
@@ -314,7 +272,7 @@
       "challenge": "**1 · Sérieuse · La référence glissante sur six séances mélange calibration et régime de\ncroisière sans que ce soit testé.** Si quelqu'un accélère son rythme en semaine 3, la\nréférence inclut encore des séances de calibration de la semaine 1 : la spec ne dit pas\nsi c'est voulu.\nAlternative : documenter explicitement (fait, dans CA-05 révisé) que la référence est\nglissante sans distinction de semaine, ce qui est le choix déjà tranché en carte 02 — la\nfaiblesse est que ce n'était pas assez explicite dans les critères, pas dans la règle.\nCe qui tranche : rien à re-trancher, un critère à préciser.\n\n**2 · Sérieuse · Le message du vendredi ne dit pas comment sont comptés les cœurs et\nséances si personne n'a rien déclaré cette semaine-là.** Une semaine à zéro doit\nproduire un message ou être silencieuse ; la spec ne le dit pas, et un silence total\npourrait être lu comme un bug du bot plutôt qu'un vrai zéro.\nAlternative : ajouter un critère explicite pour le cas zéro (le bot envoie quand même\nle message, avec « 0 séance, 0 cœur »).\nCe qui tranche : rien à trancher au fondateur, c'est un trou de spécification.\n\n**3 · Mineure · Le texte exact du consentement n'est pas dans cette carte.** C'est\ncorrectement renvoyé à la carte Pilote, mais un lecteur de la spec seule pourrait croire\nque P1 est complet.\nAlternative : la section « Ce qui n'est pas ici » suffit ; aucune alternative nécessaire.\nCe qui tranche : rien, déjà couvert.\n\n**Verdict : à revoir sur deux critères, mineurs à corriger.** Aucune contestation\nbloquante ; les deux points sérieux sont des précisions de critères, pas des désaccords\nsur les règles déjà approuvées en carte 02.",
       "reponses": "1. **Accepte.** CA-05 précisé : « recalculée à chaque nouvelle déclaration, sans\n   distinction de semaine civile » (déjà dans R3, maintenant répété explicitement dans\n   le tableau des critères pour qu'un test ne puisse pas l'ignorer).\n2. **Accepte.** Ajout du critère CA-11 bis ci-dessous.\n3. **Accepte, sans modification** : la section « Ce qui n'est pas ici » est jugée suffisante.\n\n**Critère ajouté suite au challenge :**\n\n| ID | Critère | Parcours | Règle |\n|---|---|---|---|\n| CA-11bis | Si aucune séance n'est déclarée dans la semaine, le message du vendredi est quand même envoyé, avec « 0 séance, 0 cœur ». | P6 | R8 |",
       "a_trancher": [],
-      "veto_ouvert": true,
+      "veto_ouvert": false,
       "metadata": {
         "parcours": [
           "P1 consentement",
@@ -466,7 +424,7 @@
       "challenge": "**1 · Sérieuse · L'ADR-0002 marque « à vérifier » la réception des réactions ❤️ par un\nbot, et deux critères du produit (CA-09, CA-10, le mécanisme des cœurs, cœur du besoin\n« encouragement par les pairs ») en dépendent entièrement.** Si l'API Telegram ne permet\npas à un bot de recevoir les réactions dans les conditions prévues, toute l'architecture\ndu lot 3 est à revoir.\nAlternative : ajouter une étape de vérification explicite (« spike ») en tête du lot 3,\navant d'écrire le code métier des cœurs, plutôt que de découvrir le problème en cours de\nlot. Si la vérification échoue, prévoir une exigence de repli : réponse par un message\ntexte « ❤️ » au lieu d'une réaction native, à trancher alors en carte de changement.\nCe qui tranche : le résultat du spike, avant d'écrire `src/domain/coeurs.ts` en\nimplémentation réelle (les tests, eux, peuvent déjà être écrits contre l'interface prévue).\n\n**2 · Sérieuse · Le rappel individuel léger transmis par la carte 01 (« rappel léger +\ndéclaration très courte ») n'a pas de contrepartie architecturale au-delà du message\ncollectif du lundi.** Ce n'est pas nécessairement un défaut : la carte 02 a déjà jugé le\npoint couvert par l'existant. Mais l'architecture ne tranche pas explicitement si c'est\nsuffisant ou si un rappel individuel manque.\nAlternative : ne rien ajouter ici, et transmettre explicitement le point à la carte\nPilote (programme D) qui peut ajuster l'engagement pendant le pilote sans changer le code.\nCe qui tranche : le taux de déclaration réel en semaine 1, observé par le Pilote.\n\n**3 · Mineure · `docs/lots.md` ne précise pas quel mécanisme de loop (session ou\ncontexte frais) utiliser par lot.** Cohérence à ajouter avec la skill `boucle-regie`.\nAlternative : préciser que tout lot sous 25 itérations tourne par défaut en contexte\nfrais (`bash .loop/ralph.sh lot-NN N`), cohérent avec les lots ici, tous sous ce seuil.\nCe qui tranche : rien, c'est une précision de documentation.\n\n**Verdict : à revoir sur un point technique (1), le reste transmis ou précisé sans\nblocage.**",
       "reponses": "1. **Accepte.** Ajouté au lot 3 dans `docs/lots.md` : un spike de vérification avant le\n   code métier des cœurs. Les tests CA-09/CA-10 restent écrits dès maintenant contre\n   l'interface prévue (ils ne dépendent pas de Telegram, voir ADR-0004) ; seule\n   l'implémentation réelle de l'adaptateur attend le spike.\n2. **Accepte.** Transmis au programme D, carte Pilote : évaluer en semaine 1 si un\n   rappel individuel est nécessaire.\n3. **Accepte.** Précisé dans `docs/lots.md`.",
       "a_trancher": [],
-      "veto_ouvert": true,
+      "veto_ouvert": false,
       "metadata": {
         "adrs": [
           "0001-pile-et-hebergement",
@@ -509,7 +467,7 @@
       "challenge": "**1 · Mineure · Les tests CA-09/CA-10 (les cœurs) sont écrits contre l'interface\n`Repository` prévue par l'ADR-0004, avant que le spike de vérification Telegram (carte\n05) n'ait confirmé que les réactions sont exploitables.** Si le spike échoue, ces deux\ntests seront à réécrire contre le mécanisme de repli.\nAlternative : aucune, c'est un risque accepté et déjà tracé dans la carte 05 ; réécrire\ndeux tests coûte peu.\nCe qui tranche : le spike du lot 3.\n\n**Verdict : solide.** Les dix-huit critères ont un test, tous rouges sauf celui déjà\ncouvert par le lot 0.",
       "reponses": "1. **Accepte, sans modification.** Risque déjà tracé et accepté en carte 05.",
       "a_trancher": [],
-      "veto_ouvert": true,
+      "veto_ouvert": false,
       "metadata": {
         "tests_rouges": 11,
         "tests_verts": 1,
@@ -548,7 +506,7 @@
       "challenge": "",
       "reponses": "",
       "a_trancher": [],
-      "veto_ouvert": true,
+      "veto_ouvert": false,
       "metadata": {
         "criteres_couverts": [
           "CA-04",
@@ -1174,6 +1132,16 @@
     "CA-17"
   ],
   "commits": [
+    "65b231a Remplace les étoiles par des cœurs, restaure le caractère signage",
+    "e78f42e Vraie mise en page desktop : utilise la largeur de l'écran",
+    "cf7bb02 Fix : le texte des roues débordait dans la colonne voisine",
+    "982b965 Roues infinies avec inertie, palette claire bleu Klein",
+    "ab3ce92 Déclaration par trois roues (façon combinaison) au lieu d'écrans successifs",
+    "6a7791a Refonte visuelle : identité panneau d'aéroport / horloge à bascule",
+    "c46acd8 ADR-0006 : PWA remplace Telegram comme canal (carte 18 à venir)",
+    "f42fc2b Webhook Telegram enregistré, consentement vérifié en conditions réelles",
+    "b5e7fea Fix : le webhook répond toujours 200, jamais un crash",
+    "aa9f99d Lot 6 : câblage réel grammY, webhook Vercel, jobs planifiés (carte 17)",
     "f4eb3f9 Projet Vercel créé et lié au dépôt via l'API (token fondateur)",
     "b4674c6 Clé Supabase service_role vérifiée de bout en bout contre domelo-dev",
     "d97fe89 Bot Telegram créé et vérifié (@Coeursportbot)",
@@ -1183,16 +1151,6 @@
     "2c58852 etat: régénéré [skip ci]",
     "fbf89bc Résumé quotidien des cœurs + mécanisme de style de message (CA-09bis)",
     "5c7bd37 etat: régénéré [skip ci]",
-    "b7b94bd Note backlog : totaux de cœurs par niveau hiérarchique + classement pays",
-    "5391332 etat: régénéré [skip ci]",
-    "3c701d3 Ajout du libellé \"90+\" sur le dernier palier de durée",
-    "caa448f etat: régénéré [skip ci]",
-    "537f4a2 Deuxième correction Recette : déclaration par boutons, sans texte libre",
-    "e0e3edb etat: régénéré [skip ci]",
-    "1ee88b9 recette: format de déclaration en liste à trois lignes (carte 12)",
-    "ca3f13b etat: régénéré [skip ci]",
-    "07deda1 etat: régénéré [skip ci]",
-    "36eab7c regie: lot 05 approuvé (carte 11) — les cinq lots du pilote sont terminés, 18/18 critères verts",
-    "287b0e4 Lot 05 — Les droits (#13)"
+    "b7b94bd Note backlog : totaux de cœurs par niveau hiérarchique + classement pays"
   ]
 }
