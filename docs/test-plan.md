@@ -25,3 +25,16 @@ Supabase ni Telegram (ADR-0004, `InMemoryRepository`).*
 | CA-15 | intégration | `test/donnees.test.ts` | suppression puis relecture, doit être vide |
 | CA-16 | unitaire | `test/purge.test.ts` | séance datée avant et après le seuil fin-pilote + 30 jours |
 | CA-17 | statique | `test/schema.test.ts` | introspection des types du modèle, recherche des noms de champs interdits |
+| CA-18 | unitaire | `test/signal-pays.test.ts` | exemple chiffré de la carte 20 (pays A/B/C), pays sans étoile cette semaine |
+| CA-19 | unitaire | `test/signal-pays.test.ts` | deux pays ex æquo, vérification qu'aucune valeur renvoyée n'est un nombre |
+| CA-20 | statique | `test/signal-pays.test.ts` | liste blanche des niveaux d'agrégation autorisés |
+| CA-21 | intégration | `test/anti-abus.test.ts` | envoi « tous » à moins de 24h, puis à plus de 24h |
+| CA-22 | intégration | `test/anti-abus.test.ts` | deux destinataires, un cœur de type "tous" chacun |
+| CA-23 | unitaire | `test/flux-anonymise.test.ts` | recherche de prénom/nom d'activité dans une carte générée |
+| CA-24 | unitaire | `test/flux-anonymise.test.ts` | trois personnes, versions de consentement différentes |
+| CA-25 | intégration | `test/fond-ecran.test.ts` | avant/après `/supprimer`, avant/après purge de fin de pilote |
+| CA-26 | statique | `test/schema-lot7.test.ts` | introspection des champs `pays`/`entreprise`/`equipe`/`personne.equipe_id` |
+
+*Lot 7 (cartes 18-22) : voir `docs/adr/0007-limite-cloisonnement-multi-entreprises.md`
+pour la limite explicite du modèle à trois niveaux, et `docs/spec.md` (R13) pour la règle
+de conversion qualitative pays/région avec son exemple chiffré.*
