@@ -6,11 +6,19 @@ premier vrai test de la skill.*
 
 ## Parcours
 
-### P1 — Premier contact et consentement
+### P1 — Premier contact et consentement (révisé, Lot 7 — carte 20)
 Le bot écrit en privé à chaque collègue invité : le texte de consentement (ce qui est
 stocké, ce qui ne l'est jamais, la durée de conservation, comment supprimer), et attend
 « J'accepte ». Sans réponse positive, rien n'est enregistré et le bot ne redemande pas
 plus d'une fois par semaine.
+
+Depuis le Lot 7, le texte de consentement (`consentement_version` 2) ajoute une clause :
+les séances de la personne peuvent apparaître, anonymisées (aucun prénom, aucun nom
+d'activité — R12), dans la zone d'envoi de cœurs vue par les collègues (P9). Les
+personnes déjà inscrites doivent redonner « J'accepte » à ce texte version 2 avant que
+leurs séances n'apparaissent dans ce flux et avant de pouvoir envoyer un cœur
+elles-mêmes (CA-24) ; tant qu'elles n'ont pas réaccepté, P2 à P8 restent inchangés pour
+elles.
 
 ### P2 — Déclarer une séance
 Aucun texte libre. Trois choix par boutons, dans cet ordre :
@@ -56,6 +64,20 @@ semaine à l'autre.
 `/mesdonnees` renvoie en privé les étoiles de la semaine en cours. `/supprimer` efface
 tout ce qui concerne la personne et le confirme.
 
+### P9 — Envoyer un cœur (nouveau, Lot 7 — carte 20)
+Dans la zone d'envoi de cœurs (bas de l'écran d'accueil), la personne voit des cartes
+d'activités anonymisées d'autres membres de son équipe : ni prénom ni nom d'activité,
+seulement un indicateur d'intensité à deux paliers (petit cœur / gros cœur) dérivé de
+l'étoile déjà calculée de la séance (R12). Trois options d'envoi :
+1. **Cœur simple**, sur une carte précise.
+2. **Gros cœur** (félicitations), sur une carte précise — poids visuel plus fort
+   uniquement dans l'affichage privé du destinataire, aucun changement de comptage.
+3. **Cœur à tout le monde** : crédite un cœur, individuellement, à chaque personne ayant
+   une activité active dans le flux du moment ; au plus une fois par 24h par expéditeur
+   (R11).
+Le destinataire reçoit la notification privée existante (P5), inchangée : jamais de
+cumul public, jamais de classement (R7).
+
 ## Règles
 
 - R1. Aucune donnée n'est enregistrée avant consentement explicite (P1).
@@ -69,13 +91,33 @@ tout ce qui concerne la personne et le confirme.
 - R5. Seuils : charge / référence < 0,6 → ★ ; 0,6-0,9 → ★★ ; 0,9-1,1 → ★★★ ; 1,1-1,4 → ★★★★ ; > 1,4 → ★★★★★.
 - R6. Si les deux dernières séances de la personne ont un effort déclaré de 10, la note
   de la séance suivante est plafonnée à ★★★★, quel que soit le calcul.
-- R7. Le nombre de cœurs, reçus ou donnés, n'est jamais affiché en cumul public ni classé
-  entre collègues.
+- R7. (amendée, Lot 7 — carte 20) Le nombre de cœurs ou d'étoiles, reçus ou donnés,
+  n'est jamais affiché en cumul ni classé au niveau équipe ou entreprise. Un signal
+  agrégé est autorisé au seul niveau pays/région : une bande qualitative à trois
+  paliers (R13), jamais un nombre, une somme, une moyenne ou une position individuelle
+  de pays. Le détail signature de la carte 02 (« les chiffres n'existent pas »)
+  s'applique encore à ce niveau : seule la bande existe, jamais le niveau qui la
+  produit.
 - R8. Aucun message ne mentionne l'absence d'une personne, individuellement ou dans un
   récapitulatif nominatif.
 - R9. Les données personnelles sont conservées jusqu'à la fin du pilote plus 30 jours,
   puis supprimées automatiquement.
 - R10. Ne sont jamais stockés : fréquence cardiaque, distance, allure, position, âge, poids.
+- R11. (nouvelle, Lot 7 — carte 20) Une personne ne peut envoyer un « cœur à tout le
+  monde » plus d'une fois par période de 24 heures ; toute tentative supplémentaire est
+  refusée sans qu'aucun cœur ne soit enregistré.
+- R12. (nouvelle, Lot 7 — carte 20) Une carte d'activité de la zone d'envoi de cœurs ne
+  montre ni prénom ni nom d'activité, seulement un indicateur d'intensité à deux paliers
+  dérivé de l'étoile de la séance (R5), jamais le chiffre d'étoiles ni aucune autre
+  donnée.
+- R13. (nouvelle, Lot 7 — carte 20) Le signal pays/région se calcule ainsi : pour chaque
+  personne ayant au moins une étoile cette semaine, on prend la médiane de ses étoiles
+  de la semaine ; le niveau du pays est la médiane de ces valeurs pour toutes les
+  personnes du pays ayant au moins une étoile cette semaine (jamais une somme, jamais
+  une moyenne pondérée par le nombre de personnes). Ce niveau est converti en bande :
+  calme si < 2,5 ; actif si 2,5 à moins de 3,5 ; très actif si ≥ 3,5. Seule la bande est
+  exposée. Un pays sans aucune étoile cette semaine n'a pas de bande du tout (pas de
+  valeur par défaut). Règle et exemple chiffré vérifié à la main : carte 20.
 
 ## Critères d'acceptation
 
@@ -99,6 +141,15 @@ tout ce qui concerne la personne et le confirme.
 | CA-15 | `/supprimer` efface toutes les données de la personne et le bot confirme la suppression dans le même message. | P8 | R9 |
 | CA-16 | Toute donnée d'une personne est effacée automatiquement à la date fin-du-pilote + 30 jours, sans action requise. | P8 | R9 |
 | CA-17 | Aucun champ de fréquence cardiaque, distance, allure, position, âge ou poids n'existe dans le modèle de données. | — | R10 |
+| CA-18 | Le niveau pays/région est la médiane des niveaux hebdomadaires (eux-mêmes une médiane d'étoiles par personne) des personnes du pays ayant au moins une étoile cette semaine — jamais une somme ni une moyenne pondérée — converti en une bande parmi {calme, actif, très actif} selon les seuils de R13 ; un pays sans aucune étoile cette semaine n'a pas de bande. | P9 | R13 |
+| CA-19 | Deux pays de même bande ne sont jamais départagés par un ordre individuel : la fonction de signal ne renvoie qu'un regroupement par bande, aucune position ni tri par niveau caché. | P9 | R13, R7 |
+| CA-20 | Aucune fonction du domaine ne calcule ni n'expose un agrégat de cœurs ou d'étoiles au niveau équipe ou entreprise ; seul le niveau pays/région est une granularité d'agrégation autorisée. | — | R7 |
+| CA-21 | Un « cœur à tout le monde » envoyé il y a moins de 24h par la même personne fait refuser toute nouvelle tentative, sans qu'aucun cœur supplémentaire ne soit enregistré. | P9 | R11 |
+| CA-22 | Un « cœur à tout le monde » accepté crédite un cœur, individuellement, à chaque personne ayant une activité active de la période visée — jamais un total groupé ni un cœur unique partagé. | P9 | R11 |
+| CA-23 | Une carte d'activité de la zone d'envoi ne contient ni prénom ni nom d'activité : seul un indicateur d'intensité à deux paliers dérivé de l'étoile de la séance (R5) est présent. | P9 | R12 |
+| CA-24 | Tant qu'une personne n'a pas accepté la version courante du consentement, ses séances sont absentes du flux d'activités anonymisées des autres et elle ne peut envoyer aucun cœur. | P1, P9 | R1, R12 |
+| CA-25 | Le fond d'écran qualitatif des cœurs reçus d'une personne suit la même purge que le reste de ses données : rien n'en subsiste après `/supprimer` ou après fin-du-pilote + 30 jours. | P8 | R9 |
+| CA-26 | Le modèle de données porte trois niveaux (`equipe` → `entreprise` → `pays`) et `personne.equipe_id` ; le pilote n'en peuple qu'une ligne par niveau ; aucun de ces niveaux n'implique un cloisonnement d'accès entre entreprises (voir ADR-0007). | — | — |
 
 ## Hors périmètre (confirmé, carte 02)
 
