@@ -1,25 +1,20 @@
 # État de l'idée
 
-_Généré le 2026-09-14 15:32 UTC par `scripts/etat.py`. Ne pas éditer._
+_Généré le 2026-09-15 07:14 UTC par `scripts/etat.py`. Ne pas éditer._
 
 ## Veto possible maintenant
 
-- **Carte 01 Cadrage** : encore 5 h. Décision : cadrage approuvé sans modification ; trois points du Contradicteur ne sont pas tranchés ici mais transmis en exigences à la carte 02 et en item de protocole à la carte Pilote.. `/regie:veto 01 <raison>`
-- **Carte 02 Méthode Musk** : encore 5 h. Décision : référence personnelle = médiane glissante des six dernières séances,. `/regie:veto 02 <raison>`
-- **Carte 03 Spécification** : encore 5 h. Décision : spécification approuvée avec un critère ajouté (CA-11bis) suite au. `/regie:veto 03 <raison>`
-- **Carte 05 Architecture et plan** : encore 5 h. Décision : architecture approuvée, avec un spike de vérification ajouté au lot 3. `/regie:veto 05 <raison>`
-- **Carte 06 Tests d'acceptation** : encore 5 h. Décision : les dix-huit tests d'acceptation sont approuvés tels quels.. `/regie:veto 06 <raison>`
-- **Carte 07 Lot 01** : encore 5 h. Décision : lot 1 approuvé ; fusionné dans `main` en local faute de dépôt distant.. `/regie:veto 07 <raison>`
-- **Carte 08 Lot 02** : encore 15 h. Décision : lot 2 approuvé et fusionné par PR (première PR réelle du projet,. `/regie:veto 08 <raison>`
-- **Carte 09 Lot 03** : encore 16 h. Décision : lot 3 approuvé malgré la réserve sur le spike, parce que rien de codé. `/regie:veto 09 <raison>`
-- **Carte 10 Lot 04** : encore 17 h. Décision : lot 4 approuvé sans réserve.. `/regie:veto 10 <raison>`
-- **Carte 11 Lot 05** : encore 18 h. Décision : lot 5 approuvé. Programme C (les cinq lots) terminé.. `/regie:veto 11 <raison>`
-- **Carte 12 Correction Recette — format de déclaration en trois lignes** : encore 22 h. Décision : le format de déclaration devient une liste à trois lignes, ordre libre,. `/regie:veto 12 <raison>`
-- **Carte 13 Correction Recette — déclaration par boutons, sans texte libre** : encore 22 h. Décision : la déclaration d'une séance se fait par trois choix de boutons. `/regie:veto 13 <raison>`
-- **Carte 14 Correction Recette — cœurs groupés par jour et mécanisme de style de message** : encore 23 h. Décision : les cœurs reçus sont annoncés en un seul message par jour (toutes. `/regie:veto 14 <raison>`
-- **Carte 15 Correction Recette — rotation de phrases motivantes le lundi** : encore 23 h. Décision : le message du lundi tourne parmi une liste fixe de 4 phrases. `/regie:veto 15 <raison>`
-- **Carte 16 Lot 6 : couche de données réelle (Repository, SupabaseRepository, schéma EU)** : encore 24 h. Décision : extraire `Repository` (interface async) comme prévu par l'ADR-0004,. `/regie:veto 16 <raison>`
-- **Carte 17 Lot 6 : câblage grammY, Vercel, jobs planifiés** : encore 24 h. Décision : câbler le bot réellement (grammY, Vercel, cron), avec un texte de. `/regie:veto 17 <raison>`
+- **Carte 08 Lot 02** : encore 0 h. Décision : lot 2 approuvé et fusionné par PR (première PR réelle du projet,. `/regie:veto 08 <raison>`
+- **Carte 09 Lot 03** : encore 1 h. Décision : lot 3 approuvé malgré la réserve sur le spike, parce que rien de codé. `/regie:veto 09 <raison>`
+- **Carte 10 Lot 04** : encore 2 h. Décision : lot 4 approuvé sans réserve.. `/regie:veto 10 <raison>`
+- **Carte 11 Lot 05** : encore 2 h. Décision : lot 5 approuvé. Programme C (les cinq lots) terminé.. `/regie:veto 11 <raison>`
+- **Carte 12 Correction Recette — format de déclaration en trois lignes** : encore 6 h. Décision : le format de déclaration devient une liste à trois lignes, ordre libre,. `/regie:veto 12 <raison>`
+- **Carte 13 Correction Recette — déclaration par boutons, sans texte libre** : encore 7 h. Décision : la déclaration d'une séance se fait par trois choix de boutons. `/regie:veto 13 <raison>`
+- **Carte 14 Correction Recette — cœurs groupés par jour et mécanisme de style de message** : encore 7 h. Décision : les cœurs reçus sont annoncés en un seul message par jour (toutes. `/regie:veto 14 <raison>`
+- **Carte 15 Correction Recette — rotation de phrases motivantes le lundi** : encore 8 h. Décision : le message du lundi tourne parmi une liste fixe de 4 phrases. `/regie:veto 15 <raison>`
+- **Carte 16 Lot 6 : couche de données réelle (Repository, SupabaseRepository, schéma EU)** : encore 8 h. Décision : extraire `Repository` (interface async) comme prévu par l'ADR-0004,. `/regie:veto 16 <raison>`
+- **Carte 17 Lot 6 : câblage grammY, Vercel, jobs planifiés** : encore 9 h. Décision : câbler le bot réellement (grammY, Vercel, cron), avec un texte de. `/regie:veto 17 <raison>`
+- **Carte 18 Lot 7 — Cadrage des cœurs sociaux (envoi, flux d'activité, classement pays)** : encore 23 h. Décision : le Lot 7 (cœurs sociaux — envoi, flux d'activité, classement pays/région. `/regie:veto 18 <raison>`
 
 ## Où on en est
 
@@ -41,6 +36,7 @@ _Généré le 2026-09-14 15:32 UTC par `scripts/etat.py`. Ne pas éditer._
 | Recette (fondateur) | 15 Correction Recette — rotation de phrases motivantes le lundi | fondateur | ✓ approuvee | le message du lundi tourne parmi une liste fixe de 4 phrases |
 | C lots | 16 Lot 6 : couche de données réelle (Repository, SupabaseRepository, schéma EU) | fondateur | ✓ approuvee | extraire `Repository` (interface async) comme prévu par l'ADR-0004, |
 | C lots | 17 Lot 6 : câblage grammY, Vercel, jobs planifiés | fondateur | ✓ approuvee | câbler le bot réellement (grammY, Vercel, cron), avec un texte de |
+| C lots | 18 Lot 7 — Cadrage des cœurs sociaux (envoi, flux d'activité, classement pays) | fondateur | ✓ approuvee | le Lot 7 (cœurs sociaux — envoi, flux d'activité, classement pays/région |
 
 ## Prochaines étapes
 

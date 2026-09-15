@@ -1,7 +1,7 @@
 {
   "idee": "Cœur relatif",
   "depot": "Lugdunoob/coeur-relatif",
-  "genere_le": "2026-09-15T06:06:02+00:00",
+  "genere_le": "2026-09-15T07:14:07+00:00",
   "a_prendre": [
     {
       "type": "a_trancher",
@@ -84,6 +84,19 @@
       "carte": "17",
       "nom": "Lot 6 : câblage grammY, Vercel, jobs planifiés",
       "texte": "founder doit décider/fournir `TELEGRAM_GROUP_CHAT_ID` (une fois le groupe créé) et `FIN_PILOTE` (date de fin du pilote) avant que les jobs planifiés soient pleinement fonctionnels ; et valider (ou réécrire) le texte de consentement provisoire avant tout vrai envoi à un collègue."
+    },
+    {
+      "type": "veto",
+      "carte": "18",
+      "nom": "Lot 7 — Cadrage des cœurs sociaux (envoi, flux d'activité, classement pays)",
+      "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-16T07:13:00+00:00.",
+      "veto_jusqu_au": "2026-09-16T07:13:00+00:00"
+    },
+    {
+      "type": "a_trancher",
+      "carte": "18",
+      "nom": "Lot 7 — Cadrage des cœurs sociaux (envoi, flux d'activité, classement pays)",
+      "texte": "les quatre points « ce qui manque » ci-dessus, dans la carte de spécification à venir (carte 19, proposée)."
     }
   ],
   "cartes": [
@@ -760,6 +773,37 @@
         "trouve_pendant": "Lot 6, câblage réel",
         "decideur": "fondateur (accès, go) + agent (architecture découlant des ADR acceptés)"
       }
+    },
+    {
+      "carte": "18",
+      "nom": "Lot 7 — Cadrage des cœurs sociaux (envoi, flux d'activité, classement pays)",
+      "agent": "fondateur",
+      "statut": "approuvee",
+      "veto_jusqu_au": "2026-09-16T07:13:00+00:00",
+      "approuvee_le": "2026-09-15T07:13:00+00:00",
+      "livrable": "docs/cartes/18-lot7-cadrage-coeurs-sociaux.md (ce document), docs/programme.md mis à jour",
+      "porte": "toute levée de R7 ou du détail signature (carte 02) est nommée explicitement, pas glissée dans un écran",
+      "journal": "- **Décision** : le Lot 7 (cœurs sociaux — envoi, flux d'activité, classement pays/région\n  qualitatif, fond d'écran valorisant) est cadré et devient le prochain chantier après le\n  pilote actuel. R7 est amendée pour autoriser un signal agrégé qualitatif au niveau\n  pays/région uniquement (jamais équipe ni entreprise, jamais un nombre affiché). Le\n  modèle de données porte la hiérarchie équipe → entreprise → pays dès la prochaine\n  carte d'architecture, sans que cela implique un cloisonnement d'accès multi-entreprises\n  réel (chantier distinct).\n- **Options considérées** :\n  (a) garder R7 intacte, aucun classement, seulement le fond d'écran individuel qualitatif\n  (écartée : ne répond pas à la demande explicite du fondateur d'un signal au niveau\n  pays) ;\n  (b) classement à trois niveaux (équipe/entreprise/pays), tel que proposé initialement\n  (écartée par le fondateur lui-même : « pas de classement équipe, pas de classement au\n  niveau entreprise ») ;\n  (c) signal qualitatif au seul niveau pays/région, calculé sans jamais exposer ni trier\n  sur un nombre agrégé de cœurs (retenue).\n  Pour l'échelle des données : (a) schéma plat, un seul niveau, ajusté plus tard\n  (écartée par le fondateur : « pensé multi-entreprises ») ; (b) trois niveaux dès\n  maintenant, sans cloisonnement d'accès réel, documenté comme tel (retenue).\n- **Qui a tranché** : le fondateur, en direct dans cette conversation, sur les trois\n  questions de cadrage ; la règle de conversion qualitative (réponse au challenge 1) et\n  la limite du cloisonnement (réponse au challenge 2) restent à valider par le fondateur\n  à la carte 19, ce ne sont pas encore des décisions actées.\n- **Réversible** : oui, aucune ligne de code n'est encore écrite.\n- **Ce qui ferait revenir dessus** : si la règle de conversion qualitative écrite en\n  carte 19 s'avère, à l'usage, indiscernable d'un classement chiffré (ex. l'ordre est\n  toujours le même que celui d'un tri par somme de cœurs) — auquel cas R7 resterait\n  violée en pratique malgré l'intention.\n- **Veto possible jusqu'à** : 2026-09-16T07:13:00+00:00. Le fondateur a demandé de\n  passer directement à la méthode loop validée pour ce projet plutôt que de rester en\n  échange manuel ; les deux points du Challenge encore ouverts (règle de conversion\n  qualitative, limite du cloisonnement) ne bloquent pas cette approbation — ils sont\n  des livrables obligatoires de la carte 19, pas des conditions de la carte 18 elle-même\n  (même schéma que le spike Telegram de la carte 05, déjà accepté sans bloquer).",
+      "challenge": "**1 · Sérieuse · Le signal pays/région, même qualitatif, réintroduit une comparaison\nentre groupes que rien dans le produit actuel ne sait présenter sans chiffre.** Toute\nl'app existante encode l'intensité par des étoiles individuelles (R5, seuils fixes par\npersonne) ; il n'existe aucune règle de conversion d'un agrégat de plusieurs personnes en\nune seule intensité qualitative. Sans cette règle, l'implémentation la plus rapide est un\ntri par somme ou moyenne des cœurs — un chiffre caché dans le tri, donc une violation de\nR7 en pratique même si rien n'est affiché.\nAlternative : définir la règle de conversion dans la carte de spécification (ex. médiane\ndes étoiles individuelles du pays cette semaine, jamais une somme de cœurs) avant\nd'écrire le moindre critère d'acceptation, pour que le calcul respecte l'esprit de la\ncarte 02 et pas seulement son affichage.\nCe qui tranche : la carte 19 doit contenir cette règle explicitement, avec un exemple\nchiffré vérifié à la main, avant tout code.\n\n**2 · Sérieuse · « Multi-entreprises dès maintenant » est une échelle de produit, pas\nseulement un schéma de données.** Trois tables (`equipe`, `entreprise`, `pays`) sans\nauthentification, sans notion d'administrateur par entreprise, et sans cloisonnement\nd'accès (aujourd'hui : un jeton = une personne = un accès total à son propre lien) ne\nsuffisent pas à isoler réellement deux entreprises l'une de l'autre si le pilote reste sur\nla même base Supabase partagée (ADR-0005). Construire les tables sans ce cloisonnement\ndonne une fausse impression d'être prêt pour plusieurs entreprises.\nAlternative : documenter explicitement, dans la carte d'architecture qui suivra, que le\nLot 7 pose la *forme* des données (trois niveaux) pour un pilote élargi à une seule\nentreprise, et que l'isolement réel entre plusieurs entreprises (accès, RLS Supabase) est\nun chantier distinct, pas livré ici.\nCe qui tranche : rien à trancher dans cette carte ; à écrire noir sur blanc dans la carte\nd'architecture pour qu'un futur lecteur ne croie pas le cloisonnement déjà fait.\n\n**3 · Mineure · Le flux « activités des autres pour inciter à envoyer des cœurs »\nélargit qui voit quoi, sans que le texte de consentement (P1) en parle.** Le consentement\nactuel décrit ce qui est stocké, pas un nouveau flux social visible par les collègues.\nAlternative : une nouvelle version du texte de consentement, avec un nouveau\n`consentement_version` si le produit doit re-demander l'accord aux personnes déjà\ninscrites au moment du Lot 7.\nCe qui tranche : rien à trancher ici ; item de spécification pour la carte 19 (P1 révisé).\n\n**Verdict : à revoir sur un point technique (1), le reste transmis à la carte suivante\nsans blocage.**",
+      "reponses": "1. **Accepte.** La règle de conversion agrégat → signal qualitatif pays/région (ex.\n   médiane des étoiles du pays sur la semaine, jamais une somme de cœurs) sera écrite et\n   vérifiée à la main dans la carte 19, avant tout critère d'acceptation touchant ce\n   signal.\n2. **Accepte.** La carte d'architecture qui suivra le Lot 7 documentera explicitement que\n   la forme des données (équipe/entreprise/pays) n'implique pas un cloisonnement d'accès\n   réel entre entreprises ; ce cloisonnement reste un chantier séparé, non couvert ici.\n3. **Accepte.** P1 (consentement) sera révisé dans la carte 19 pour couvrir le nouveau\n   flux social, avec la question ouverte de re-consentement pour les personnes déjà\n   inscrites transmise au fondateur à ce moment-là.",
+      "a_trancher": [
+        "les quatre points « ce qui manque » ci-dessus, dans la carte de spécification à venir (carte 19, proposée)."
+      ],
+      "veto_ouvert": true,
+      "metadata": {
+        "type": "cadrage",
+        "lot_propose": "Lot 7 — Cœurs sociaux",
+        "r7_amendee": true,
+        "niveaux_classement_autorises": [
+          "pays_region"
+        ],
+        "niveaux_classement_exclus": [
+          "equipe",
+          "entreprise"
+        ],
+        "carte_suivante_proposee": "19 (spécification Lot 7)",
+        "decideur": "fondateur"
+      }
     }
   ],
   "produit": {
@@ -1132,6 +1176,7 @@
     "CA-17"
   ],
   "commits": [
+    "912d26a Rapport quotidien 2026-09-15 : 6 fenêtres de veto acquises, 18/18 verts",
     "65b231a Remplace les étoiles par des cœurs, restaure le caractère signage",
     "e78f42e Vraie mise en page desktop : utilise la largeur de l'écran",
     "cf7bb02 Fix : le texte des roues débordait dans la colonne voisine",
@@ -1150,7 +1195,6 @@
     "be8a744 Rotation de phrases motivantes pour le rappel du lundi (CA-13)",
     "2c58852 etat: régénéré [skip ci]",
     "fbf89bc Résumé quotidien des cœurs + mécanisme de style de message (CA-09bis)",
-    "5c7bd37 etat: régénéré [skip ci]",
-    "b7b94bd Note backlog : totaux de cœurs par niveau hiérarchique + classement pays"
+    "5c7bd37 etat: régénéré [skip ci]"
   ]
 }
