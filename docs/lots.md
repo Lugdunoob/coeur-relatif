@@ -47,3 +47,36 @@ projet UE réel, parcours de la spec rejoués à la main. Pas de nouveau critèr
 carte Recette de `PROCESS.md`.
 
 Tous les dix-huit critères (CA-01 à CA-17 + CA-11bis) sont couverts, une fois chacun.
+
+## Lot 7 — Cœurs sociaux (carte 18 cadrage, carte 20 spécification, carte 21 architecture)
+
+Quatre sous-lots ; un critère appartient à exactement un sous-lot. Limite explicite
+(carte 21, ADR-0007) : ces sous-lots posent la forme des données multi-entreprises, pas
+un cloisonnement d'accès réel.
+
+### Lot 7.1 — Modèle de données et signal pays/région
+**Critères** : CA-18, CA-19, CA-20, CA-26.
+**Fichiers** : `src/db/schema.ts` (`pays`, `entreprise`, `equipe`, `personne.equipe_id`),
+`src/domain/signal-pays.ts`, leurs tests.
+**Dépendances** : lot 5 (droits). **Budget** : 20 itérations.
+
+### Lot 7.2 — Envoi de cœurs et anti-abus
+**Critères** : CA-21, CA-22.
+**Fichiers** : `src/db/schema.ts` (`coeur.type`), `src/domain/anti-abus.ts`, mise à jour
+de `src/domain/coeurs.ts`, leurs tests.
+**Dépendances** : lot 3 (les cœurs), lot 7.1. **Budget** : 15 itérations.
+
+### Lot 7.3 — Flux anonymisé et consentement révisé
+**Critères** : CA-23, CA-24.
+**Fichiers** : `src/domain/flux-anonymise.ts`, mise à jour de
+`src/domain/consentement.ts` (`consentement_version`), leurs tests.
+**Dépendances** : lot 2 (consentement), lot 7.2. **Budget** : 15 itérations.
+
+### Lot 7.4 — Fond d'écran et purge
+**Critères** : CA-25.
+**Fichiers** : `src/domain/fond-ecran.ts`, mise à jour de `src/domain/purge.ts`, leurs
+tests.
+**Dépendances** : lot 5 (purge), lot 7.1. **Budget** : 10 itérations.
+
+Les neuf critères du Lot 7 (CA-18 à CA-26) sont couverts, une fois chacun, dans un des
+quatre sous-lots ci-dessus.

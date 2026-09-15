@@ -35,6 +35,44 @@ puisse être exposé par erreur ailleurs que dans le calcul du moment.
 | seance_id | référence `seance` | non | |
 | donneur_id_telegram | identifiant Telegram | non | jamais affiché en cumul (R7) |
 | horodatage | date/heure | non | |
+| type | `simple` \| `grand` \| `tous` ou vide | non | carte 21 (Lot 7, P9) ; vide = équivalent `simple` pour les cœurs antérieurs au Lot 7. Un « cœur à tout le monde » produit plusieurs lignes (une par destinataire), jamais une ligne groupée (CA-22) ; sert aussi à vérifier la limite de fréquence R11 (CA-21). |
+
+## Entités `pays`, `entreprise`, `equipe` (carte 21, Lot 7)
+
+Trois niveaux, ajoutés pour porter la hiérarchie multi-entreprises annoncée par le
+fondateur (carte 18) sans qu'aucune fonctionnalité multi-tenant (facturation, admin par
+entreprise) ne soit livrée. **Ces tables posent une forme, pas un cloisonnement d'accès
+réel entre entreprises — voir `docs/adr/0007-limite-cloisonnement-multi-entreprises.md`
+pour la limite explicite, à lire avant de considérer que l'isolement est fait.**
+
+| Table | Champs | Note |
+|---|---|---|
+| `pays` | `id`, `nom`, `region` (optionnel) | `region` permet un futur regroupement plus fin sans nouvelle table. |
+| `entreprise` | `id`, `nom`, `pays_id` (réf. `pays`) | |
+| `equipe` | `id`, `nom`, `entreprise_id` (réf. `entreprise`) | |
+
+Le pilote actuel peuple **exactement une ligne à chaque niveau**.
+
+## Entité `personne` — champs ajoutés (carte 21, Lot 7)
+
+| Champ | Type | Sensible | Note |
+|---|---|---|---|
+| equipe_id | référence `equipe` ou vide | non | optionnel : les personnes inscrites avant le Lot 7 n'en ont pas tant que le lot de code ne les a pas migrées. |
+| consentement_version_acceptee | entier ou vide | non | comparé à `VERSION_CONSENTEMENT_ACTUELLE` (2, `src/domain/flux-anonymise.ts`) pour appliquer CA-24 ; absent = traité comme version 1 (inférieure à la version courante), donc comme non réaccepté. |
+
+## Signal qualitatif pays/région (R13, carte 20)
+
+N'est **pas stocké** : calculé à la demande à partir des étoiles déjà présentes sur
+`seance.etoiles` de la semaine en cours, filtrées par `pays_id` via
+`equipe.entreprise_id` → `entreprise.pays_id`. Le résultat exposé est une bande
+(`calme` | `actif` | `tres_actif`), jamais le niveau numérique intermédiaire — voir
+`docs/spec.md` (R13) pour la règle de conversion et son exemple chiffré.
+
+## Fond d'écran qualitatif (carte 21, conséquence R9)
+
+N'est **pas un stockage séparé** : lecture calculée de la table `coeur` (tous les cœurs
+reçus par la personne). Suit donc automatiquement la purge de la section « Conservation »
+ci-dessous, sans mécanisme supplémentaire (CA-25).
 
 ## Champs explicitement absents (CA-17)
 Fréquence cardiaque, distance, allure, position, âge, poids : aucun champ, aucune table,
