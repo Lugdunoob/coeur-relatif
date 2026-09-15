@@ -9,10 +9,17 @@ Branche par programme : `regie/<programme>`. Mémoire : `.loop/coeur-relatif-pro
 | B | plan | 04 Design (si écrans) · 05 Architecture · 06 Tests rouges | `/ralph-loop "$(cat .loop/prompts/loop-plan.md)" --max-iterations 15 --completion-promise "REGIE_PLAN_DONE"` | 15 | après veto A |
 | C1…Cn | lot-NN | un loop par lot de `docs/lots.md` | `bash .loop/ralph.sh lot-01 25` (contexte frais) | 2,5 × sous-lots | après veto B |
 | D | pilote | Marketing · Pilote | `/ralph-loop "$(cat .loop/prompts/loop-pilote.md)" --max-iterations 10 --completion-promise "REGIE_PILOTE_DONE"` | 10 | après recette |
+| lot-07 | plan (cadrage Lot 7) | 19 Design · 20 Spécification · 21 Architecture · 22 Tests rouges | `bash .loop/ralph-plan.sh plan-lot7 15` | 15 | en cours (voir `.loop/coeur-relatif-progress.md`) |
 | R | rétro | après chaque programme | `/regie:retro <programme>` | 5 | |
 
 Arrêt d'un loop : `/ralph-loop:cancel-ralph` ou Échap. Reprise : relancer la même commande,
 la progression fait foi. Sortie bloquée : lire `BLOCKED.md`, trancher, relancer.
+
+Le loop `lot-07` utilise `.loop/ralph-plan.sh` plutôt que `.loop/ralph.sh` : c'est un loop
+de **plan** (cartes 19-22, aucun code applicatif), pas un loop de **lot** de code — il ne
+marque jamais `.loop/phase=lot`, pour pouvoir écrire dans `docs/` sans déclencher le
+garde-fou `garde-docs`. Les quatre sous-lots de code qu'il produit (7.1 à 7.4,
+`docs/lots.md`) seront lancés séparément avec `.loop/ralph.sh`, comme les lots 0 à 5.
 
 ## Après la Recette, si le pilote est concluant
 
