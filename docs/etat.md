@@ -1,20 +1,20 @@
 # État de l'idée
 
-_Généré le 2026-09-15 07:14 UTC par `scripts/etat.py`. Ne pas éditer._
+_Généré le 2026-09-15 12:27 UTC par `scripts/etat.py`. Ne pas éditer._
 
 ## Veto possible maintenant
 
-- **Carte 08 Lot 02** : encore 0 h. Décision : lot 2 approuvé et fusionné par PR (première PR réelle du projet,. `/regie:veto 08 <raison>`
-- **Carte 09 Lot 03** : encore 1 h. Décision : lot 3 approuvé malgré la réserve sur le spike, parce que rien de codé. `/regie:veto 09 <raison>`
-- **Carte 10 Lot 04** : encore 2 h. Décision : lot 4 approuvé sans réserve.. `/regie:veto 10 <raison>`
-- **Carte 11 Lot 05** : encore 2 h. Décision : lot 5 approuvé. Programme C (les cinq lots) terminé.. `/regie:veto 11 <raison>`
-- **Carte 12 Correction Recette — format de déclaration en trois lignes** : encore 6 h. Décision : le format de déclaration devient une liste à trois lignes, ordre libre,. `/regie:veto 12 <raison>`
-- **Carte 13 Correction Recette — déclaration par boutons, sans texte libre** : encore 7 h. Décision : la déclaration d'une séance se fait par trois choix de boutons. `/regie:veto 13 <raison>`
-- **Carte 14 Correction Recette — cœurs groupés par jour et mécanisme de style de message** : encore 7 h. Décision : les cœurs reçus sont annoncés en un seul message par jour (toutes. `/regie:veto 14 <raison>`
-- **Carte 15 Correction Recette — rotation de phrases motivantes le lundi** : encore 8 h. Décision : le message du lundi tourne parmi une liste fixe de 4 phrases. `/regie:veto 15 <raison>`
-- **Carte 16 Lot 6 : couche de données réelle (Repository, SupabaseRepository, schéma EU)** : encore 8 h. Décision : extraire `Repository` (interface async) comme prévu par l'ADR-0004,. `/regie:veto 16 <raison>`
-- **Carte 17 Lot 6 : câblage grammY, Vercel, jobs planifiés** : encore 9 h. Décision : câbler le bot réellement (grammY, Vercel, cron), avec un texte de. `/regie:veto 17 <raison>`
-- **Carte 18 Lot 7 — Cadrage des cœurs sociaux (envoi, flux d'activité, classement pays)** : encore 23 h. Décision : le Lot 7 (cœurs sociaux — envoi, flux d'activité, classement pays/région. `/regie:veto 18 <raison>`
+- **Carte 12 Correction Recette — format de déclaration en trois lignes** : encore 1 h. Décision : le format de déclaration devient une liste à trois lignes, ordre libre,. `/regie:veto 12 <raison>`
+- **Carte 13 Correction Recette — déclaration par boutons, sans texte libre** : encore 2 h. Décision : la déclaration d'une séance se fait par trois choix de boutons. `/regie:veto 13 <raison>`
+- **Carte 14 Correction Recette — cœurs groupés par jour et mécanisme de style de message** : encore 2 h. Décision : les cœurs reçus sont annoncés en un seul message par jour (toutes. `/regie:veto 14 <raison>`
+- **Carte 15 Correction Recette — rotation de phrases motivantes le lundi** : encore 3 h. Décision : le message du lundi tourne parmi une liste fixe de 4 phrases. `/regie:veto 15 <raison>`
+- **Carte 16 Lot 6 : couche de données réelle (Repository, SupabaseRepository, schéma EU)** : encore 3 h. Décision : extraire `Repository` (interface async) comme prévu par l'ADR-0004,. `/regie:veto 16 <raison>`
+- **Carte 17 Lot 6 : câblage grammY, Vercel, jobs planifiés** : encore 3 h. Décision : câbler le bot réellement (grammY, Vercel, cron), avec un texte de. `/regie:veto 17 <raison>`
+- **Carte 18 Lot 7 — Cadrage des cœurs sociaux (envoi, flux d'activité, classement pays)** : encore 18 h. Décision : le Lot 7 (cœurs sociaux — envoi, flux d'activité, classement pays/région. `/regie:veto 18 <raison>`
+- **Carte 19 Lot 7 — Design des écrans (cœurs sociaux)** : encore 19 h. Décision : les quatre écrans/zones et leurs états (peuplé, vide, erreur,. `/regie:veto 19 <raison>`
+- **Carte 20 Lot 7 — Spécification (cœurs sociaux)** : encore 20 h. Décision : P9 spécifié, P1 révisé (consentement v2 avec re-consentement requis. `/regie:veto 20 <raison>`
+- **Carte 21 Lot 7 — Architecture et plan (cœurs sociaux)** : encore 20 h. Décision : modèle à trois niveaux (`pays` → `entreprise` → `equipe` →. `/regie:veto 21 <raison>`
+- **Carte 22 Lot 7 — Tests d'acceptation (cœurs sociaux)** : encore 21 h. Décision : 9 tests rouges écrits (un par CA-18 à CA-26), 4 squelettes minimaux. `/regie:veto 22 <raison>`
 
 ## Où on en est
 
@@ -37,6 +37,10 @@ _Généré le 2026-09-15 07:14 UTC par `scripts/etat.py`. Ne pas éditer._
 | C lots | 16 Lot 6 : couche de données réelle (Repository, SupabaseRepository, schéma EU) | fondateur | ✓ approuvee | extraire `Repository` (interface async) comme prévu par l'ADR-0004, |
 | C lots | 17 Lot 6 : câblage grammY, Vercel, jobs planifiés | fondateur | ✓ approuvee | câbler le bot réellement (grammY, Vercel, cron), avec un texte de |
 | C lots | 18 Lot 7 — Cadrage des cœurs sociaux (envoi, flux d'activité, classement pays) | fondateur | ✓ approuvee | le Lot 7 (cœurs sociaux — envoi, flux d'activité, classement pays/région |
+| C lots | 19 Lot 7 — Design des écrans (cœurs sociaux) | architecte | ✓ approuvee | les quatre écrans/zones et leurs états (peuplé, vide, erreur, |
+| C lots | 20 Lot 7 — Spécification (cœurs sociaux) | produit | ✓ approuvee | P9 spécifié, P1 révisé (consentement v2 avec re-consentement requis |
+| C lots | 21 Lot 7 — Architecture et plan (cœurs sociaux) | architecte | ✓ approuvee | modèle à trois niveaux (`pays` → `entreprise` → `equipe` → |
+| C lots | 22 Lot 7 — Tests d'acceptation (cœurs sociaux) | architecte | ✓ approuvee | 9 tests rouges écrits (un par CA-18 à CA-26), 4 squelettes minimaux |
 
 ## Prochaines étapes
 

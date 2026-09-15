@@ -1,41 +1,13 @@
 {
   "idee": "Cœur relatif",
   "depot": "Lugdunoob/coeur-relatif",
-  "genere_le": "2026-09-15T07:14:07+00:00",
+  "genere_le": "2026-09-15T12:27:07+00:00",
   "a_prendre": [
     {
       "type": "a_trancher",
       "carte": "02",
       "nom": "Méthode Musk",
       "texte": "Telegram ou Slack pour le groupe (version prudente : Telegram, déjà utilisé par le fondateur pour la Régie)."
-    },
-    {
-      "type": "veto",
-      "carte": "08",
-      "nom": "Lot 02",
-      "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-15T07:22:06+00:00.",
-      "veto_jusqu_au": "2026-09-15T07:22:06+00:00"
-    },
-    {
-      "type": "veto",
-      "carte": "09",
-      "nom": "Lot 03",
-      "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-15T08:24:00+00:00.",
-      "veto_jusqu_au": "2026-09-15T08:24:00+00:00"
-    },
-    {
-      "type": "veto",
-      "carte": "10",
-      "nom": "Lot 04",
-      "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-15T09:25:28+00:00.",
-      "veto_jusqu_au": "2026-09-15T09:25:28+00:00"
-    },
-    {
-      "type": "veto",
-      "carte": "11",
-      "nom": "Lot 05",
-      "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-15T09:56:16+00:00.",
-      "veto_jusqu_au": "2026-09-15T09:56:16+00:00"
     },
     {
       "type": "veto",
@@ -97,6 +69,34 @@
       "carte": "18",
       "nom": "Lot 7 — Cadrage des cœurs sociaux (envoi, flux d'activité, classement pays)",
       "texte": "les quatre points « ce qui manque » ci-dessus, dans la carte de spécification à venir (carte 19, proposée)."
+    },
+    {
+      "type": "veto",
+      "carte": "19",
+      "nom": "Lot 7 — Design des écrans (cœurs sociaux)",
+      "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-16T08:00:00+00:00.",
+      "veto_jusqu_au": "2026-09-16T08:00:00+00:00"
+    },
+    {
+      "type": "veto",
+      "carte": "20",
+      "nom": "Lot 7 — Spécification (cœurs sociaux)",
+      "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-16T08:30:00+00:00.",
+      "veto_jusqu_au": "2026-09-16T08:30:00+00:00"
+    },
+    {
+      "type": "veto",
+      "carte": "21",
+      "nom": "Lot 7 — Architecture et plan (cœurs sociaux)",
+      "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-16T09:00:00+00:00.",
+      "veto_jusqu_au": "2026-09-16T09:00:00+00:00"
+    },
+    {
+      "type": "veto",
+      "carte": "22",
+      "nom": "Lot 7 — Tests d'acceptation (cœurs sociaux)",
+      "texte": "Fenêtre de veto ouverte jusqu'au 2026-09-16T09:30:00+00:00.",
+      "veto_jusqu_au": "2026-09-16T09:30:00+00:00"
     }
   ],
   "cartes": [
@@ -547,7 +547,7 @@
       "challenge": "",
       "reponses": "",
       "a_trancher": [],
-      "veto_ouvert": true,
+      "veto_ouvert": false,
       "metadata": {
         "criteres_couverts": [
           "CA-01",
@@ -574,7 +574,7 @@
       "challenge": "",
       "reponses": "",
       "a_trancher": [],
-      "veto_ouvert": true,
+      "veto_ouvert": false,
       "metadata": {
         "criteres_couverts": [
           "CA-09",
@@ -599,7 +599,7 @@
       "challenge": "",
       "reponses": "",
       "a_trancher": [],
-      "veto_ouvert": true,
+      "veto_ouvert": false,
       "metadata": {
         "criteres_couverts": [
           "CA-11",
@@ -625,7 +625,7 @@
       "challenge": "",
       "reponses": "",
       "a_trancher": [],
-      "veto_ouvert": true,
+      "veto_ouvert": false,
       "metadata": {
         "criteres_couverts": [
           "CA-14",
@@ -803,6 +803,155 @@
         ],
         "carte_suivante_proposee": "19 (spécification Lot 7)",
         "decideur": "fondateur"
+      }
+    },
+    {
+      "carte": "19",
+      "nom": "Lot 7 — Design des écrans (cœurs sociaux)",
+      "agent": "architecte",
+      "statut": "approuvee",
+      "veto_jusqu_au": "2026-09-16T08:00:00+00:00",
+      "approuvee_le": "2026-09-15T08:00:00+00:00",
+      "livrable": "docs/cartes/19-lot7-design.md (ce document)",
+      "porte": "aucun écran ne montre un chiffre de cœurs, d'étoiles cumulées ou de position numérique (R7, détail signature carte 02)",
+      "journal": "- **Décision** : les quatre écrans/zones et leurs états (peuplé, vide, erreur,\n  consentement non à jour, calibration) sont actés tels que décrits ci-dessus. Aucun\n  écran n'affiche de chiffre de cœurs, d'étoiles cumulées ou de position de pays.\n- **Options considérées** : confirmation à deux temps généralisée à toutes les options\n  d'envoi (écartée : alourdit l'usage courant du cœur simple, qui doit rester un geste\n  léger, sans bénéfice de sécurité supplémentaire puisque seule la portée « tout le\n  monde » est risquée) ; confirmation seulement pour « cœur à tout le monde » (retenue).\n- **Qui a tranché** : le Stratège, après challenge, sur la base des trois options déjà\n  fixées par le fondateur en carte 18 (rien de nouveau tranché ici sur le fond produit).\n- **Réversible** : oui, aucun code d'interface écrit dans cette carte.\n- **Ce qui ferait revenir dessus** : si l'usage réel du pilote montre que la confirmation\n  à deux temps est ignorée ou contournée par les utilisateurs (mesurable seulement après\n  recette du Lot 7, pas avant).\n- **Veto possible jusqu'à** : 2026-09-16T08:00:00+00:00.",
+      "challenge": "**1 · Sérieuse · Le bouton global « cœur à tout le monde », posé sur le même écran que\nles boutons individuels « cœur simple »/« gros cœur », risque un envoi de masse\naccidentel** (un tap de trop, sans distinction visuelle suffisante entre cibler une\npersonne et cibler tout le monde). C'est exactement le risque que R11 (anti-abus) doit\ncouvrir côté données, mais le design peut réduire le risque avant même la limite de\nfréquence.\nAlternative : exiger une confirmation à deux temps (un deuxième tap explicite) pour\n« cœur à tout le monde » seulement, pas pour les deux options individuelles.\nCe qui tranche : confirmation à deux temps retenue pour « cœur à tout le monde »,\ndocumentée ici comme consigne au lot de code (pas un critère testable en soi, c'est un\ndétail d'interaction, mais R11 reste le filet de sécurité testable si elle est\ncontournée ou absente).\n\n**2 · Mineure · L'écran de signal pays/région est peu utile tant que le pilote ne compte\nqu'un seul pays.** Ce n'est pas un défaut de design à corriger, c'est une conséquence\nconnue de l'échelle actuelle (12 personnes, un bureau) documentée dans la carte 18.\nCe qui tranche : rien à changer, état « un seul pays existant » documenté ci-dessus pour\nqu'un futur lecteur ne le prenne pas pour un bug.\n\n**Verdict : accepté avec la confirmation à deux temps pour l'envoi de masse.**",
+      "reponses": "1. **Accepte.** Confirmation à deux temps pour « cœur à tout le monde » uniquement,\n   ajoutée à la description de l'état ci-dessus.\n2. **Accepte.** État « un seul pays » documenté tel quel, aucune action requise.",
+      "a_trancher": [],
+      "veto_ouvert": true,
+      "metadata": {
+        "type": "design",
+        "ecrans": [
+          "accueil",
+          "zone-envoi-coeurs",
+          "signal-pays",
+          "fond-ecran"
+        ],
+        "confirmation_deux_temps": "coeur_a_tout_le_monde uniquement",
+        "carte_suivante_proposee": "20 (spécification Lot 7)"
+      }
+    },
+    {
+      "carte": "20",
+      "nom": "Lot 7 — Spécification (cœurs sociaux)",
+      "agent": "produit",
+      "statut": "approuvee",
+      "veto_jusqu_au": "2026-09-16T08:30:00+00:00",
+      "approuvee_le": "2026-09-15T08:30:00+00:00",
+      "livrable": "docs/cartes/20-lot7-specification.md (ce document), docs/spec.md mis à jour (P9, révision P1, R7 amendée, R11-R13, CA-18 à CA-26)",
+      "porte": "toute levée de R7 au-delà du signal qualitatif pays/région, tout classement équipe ou entreprise, est bloquant",
+      "journal": "- **Décision** : P9 spécifié, P1 révisé (consentement v2 avec re-consentement requis\n  pour le flux social), R7 amendée au texte final ci-dessus, R11-R13 ajoutées, CA-18 à\n  CA-26 ajoutés à `docs/spec.md`. La règle de conversion pays/région (R13) est la\n  médiane des médianes d'étoiles hebdomadaires, jamais une somme, vérifiée à la main\n  ci-dessus sur trois pays.\n- **Options considérées pour le signal pays** : (a) somme des cœurs ou étoiles du pays\n  (écartée : chiffre caché, avantage les pays peuplés, contre-exemple ci-dessus) ;\n  (b) moyenne simple des étoiles individuelles, pas par personne mais par séance\n  (écartée : une personne qui déclare plus de séances pèserait plus lourd qu'une autre,\n  contraire à « valorisant à 1 comme à 1000 ») ; (c) médiane des niveaux hebdomadaires\n  par personne, puis médiane par pays (retenue, exemple vérifié ci-dessus).\n- **Qui a tranché** : le Stratège, après challenge du Contradicteur, sur le mandat de la\n  carte 18 (les deux points ouverts devaient être tranchés ici, pas glissés).\n- **Réversible** : oui pour le calcul (fonction pure, changeable sans migration) ; non\n  trivialement réversible pour le re-consentement demandé aux douze personnes déjà\n  inscrites (une fois redemandé, on ne « dé-redemande » pas), d'où le risque L1.\n- **Ce qui ferait revenir dessus** : si le fondateur juge que redemander le consentement\n  aux douze personnes déjà engagées dans le pilote actuel casse la dynamique en cours —\n  auquel cas une variante « opt-in au fil de l'eau, pas de blocage immédiat » serait à\n  redécider avant le lot de code correspondant (Lot 7.3, `docs/lots.md`).\n- **Veto possible jusqu'à** : 2026-09-16T08:30:00+00:00.",
+      "challenge": "**1 · Sérieuse · La règle R13 (médiane des médianes) suppose qu'« au moins une étoile\ncette semaine » est un ensemble non vide par pays — que se passe-t-il pour un pays sans\naucune étoile cette semaine ?** Sans réponse, l'implémentation la plus rapide renverrait\nsoit une erreur, soit une bande par défaut arbitraire (ex. « calme » par défaut), ce qui\nfausserait discrètement le signal (un pays sans activité déclarée n'est pas forcément\n« calme », il est simplement sans donnée).\nAlternative : un pays sans aucune étoile cette semaine n'a **pas de bande du tout**\n(état « pas encore de signal cette semaine », déjà décrit en carte 19), plutôt qu'une\nbande par défaut.\nCe qui tranche : retenu tel quel, ajouté à R13 ci-dessus implicitement (la fonction ne\nproduit une bande que pour les pays ayant au moins une personne avec une étoile cette\nsemaine) et rendu explicite dans le critère CA-18.\n\n**2 · Sérieuse · Faut-il un « cœur à tout le monde » compté comme plusieurs `coeur`\nindividuels (un par destinataire) ou un enregistrement unique ?** Un enregistrement\nunique casserait CA-09/CA-10 existants (comptage par séance, par personne) qui supposent\nun cœur = un donneur = un receveur = une séance.\nAlternative : un `coeur` individuel par destinataire, avec un champ `type` marquant\n« tous » plutôt qu'un nouveau mécanisme de comptage.\nCe qui tranche : retenu — un cœur à tout le monde crédite N cœurs individuels (un par\ndestinataire actif), réutilisant `enregistrerCoeur` existant sans le modifier ; seule\nl'action d'envoi est groupée, jamais le comptage (CA-22).\n\n**3 · Mineure · Le re-consentement (CA-24) bloque-t-il aussi la réception de cœurs pour\nune personne qui n'a pas encore réaccepté ?** Le texte proposé ne bloque que\nl'apparition dans le flux des autres et l'envoi, pas la réception : une personne pourrait\nrecevoir un cœur sans avoir réaccepté, si un collègue la voyait encore via un autre\ncanal — mais comme elle est absente du flux tant qu'elle n'a pas réaccepté (côté\némission), ce cas ne peut pas se produire dans P9 tel que spécifié.\nCe qui tranche : rien à changer, la cohérence est déjà assurée par construction (une\npersonne absente du flux ne peut pas être ciblée).\n\n**Verdict : accepté avec la précision « pas de bande sans donnée » ajoutée à R13/CA-18.**",
+      "reponses": "1. **Accepte.** Précision ajoutée : aucune bande n'est produite pour un pays sans aucune\n   étoile cette semaine (CA-18 le rend explicite).\n2. **Accepte.** Un cœur à tout le monde = N cœurs individuels avec `type: 'tous'`.\n3. **Accepte.** Rien à changer, déjà cohérent par construction.",
+      "a_trancher": [],
+      "veto_ouvert": true,
+      "metadata": {
+        "type": "specification",
+        "nouveaux_parcours": [
+          "P9"
+        ],
+        "parcours_revises": [
+          "P1"
+        ],
+        "regle_amendee": "R7",
+        "regles_ajoutees": [
+          "R11",
+          "R12",
+          "R13"
+        ],
+        "nouveaux_criteres": [
+          "CA-18",
+          "CA-19",
+          "CA-20",
+          "CA-21",
+          "CA-22",
+          "CA-23",
+          "CA-24",
+          "CA-25",
+          "CA-26"
+        ],
+        "consentement_version": 2,
+        "carte_suivante_proposee": "21 (architecture Lot 7)"
+      }
+    },
+    {
+      "carte": "21",
+      "nom": "Lot 7 — Architecture et plan (cœurs sociaux)",
+      "agent": "architecte",
+      "statut": "approuvee",
+      "veto_jusqu_au": "2026-09-16T09:00:00+00:00",
+      "approuvee_le": "2026-09-15T09:00:00+00:00",
+      "livrable": "docs/cartes/21-lot7-architecture.md (ce document), docs/data-model.md mis à jour, docs/adr/0007-limite-cloisonnement-multi-entreprises.md, docs/lots.md (Lot 7)",
+      "porte": "aucune écriture ne doit laisser croire que le cloisonnement d'accès entre entreprises existe déjà",
+      "journal": "- **Décision** : modèle à trois niveaux (`pays` → `entreprise` → `equipe` →\n  `personne.equipe_id`), `coeur.type`, `personne.consentement_version_acceptee`, anti-abus\n  sans nouvelle table, fond d'écran comme lecture calculée (pas de nouveau stockage),\n  quatre sous-lots dans `docs/lots.md`. La limite du cloisonnement est documentée dans\n  l'ADR-0007, pas glissée dans une phrase optionnelle.\n- **Options considérées** : cloisonnement réel dès ce lot (RLS par entreprise) — écartée,\n  hors mandat de la carte 18 et sans deuxième entreprise réelle pour le valider ; champ\n  texte plutôt que table `pays` — écartée (challenge 1) ; documenter la limite sans\n  mitigation de convention — écartée (challenge 2).\n- **Qui a tranché** : le Stratège, après challenge du Contradicteur, sur le mandat\n  explicite de la carte 18 (« à écrire noir sur blanc dans l'ADR d'architecture »).\n- **Réversible** : oui pour le schéma (colonnes/tables ajoutables et migrables sans\n  perte tant qu'une seule entreprise existe) ; l'ADR lui-même engage surtout la\n  compréhension future du projet, pas du code.\n- **Ce qui ferait revenir dessus** : l'arrivée réelle d'une deuxième entreprise cliente\n  sur ce schéma sans le chantier de cloisonnement livré au préalable — configuration que\n  l'ADR interdit explicitement.\n- **Veto possible jusqu'à** : 2026-09-16T09:00:00+00:00.",
+      "challenge": "**1 · Sérieuse · Pourquoi une table `pays` séparée plutôt qu'un simple champ texte sur\n`entreprise` (ce que la carte 18 avait initialement esquissé : « entreprise (pays) »)\n?** Une table dédiée est plus lourde pour un pilote qui n'en peuple qu'une ligne.\nAlternative : garder `entreprise.pays` en texte libre, sans table séparée.\nCe qui tranche : table séparée retenue, pour deux raisons écrites ici plutôt que\nsupposées : (a) elle porte aussi `region`, nécessaire si le signal R13 doit un jour se\ncalculer par région plutôt que par pays strict, sans nouvelle migration ; (b) le mandat\ndu loop demande explicitement des « tables `equipe`, `entreprise`, `pays` » (trois\ntables), pas un champ texte — décision déjà prise en amont de cette carte, actée ici\nplutôt que rediscutée.\n\n**2 · Sérieuse · L'ADR doit-il aussi documenter une mitigation minimale (ex. filtrer\nsystématiquement par `entreprise_id` côté application) plutôt que seulement constater\nl'absence de cloisonnement ?** Se contenter de dire « ce n'est pas cloisonné » sans rien\nproposer laisse le futur lot de code sans garde-fou pratique.\nAlternative : ajouter à l'ADR une consigne de convention de code (filtrer explicitement\npar `entreprise_id`/`pays_id` à chaque requête d'agrégation) comme mitigation partielle,\nen la nommant clairement comme une convention et non un cloisonnement réel.\nCe qui tranche : retenu, ajouté à l'ADR-0007 (section Conséquences).\n\n**Verdict : accepté, ADR complété avec la mitigation de convention (point 2).**",
+      "reponses": "1. **Accepte.** Table `pays` séparée maintenue, justification écrite ci-dessus.\n2. **Accepte.** Convention de filtrage explicite ajoutée à l'ADR-0007.",
+      "a_trancher": [],
+      "veto_ouvert": true,
+      "metadata": {
+        "type": "architecture",
+        "tables_ajoutees": [
+          "pays",
+          "entreprise",
+          "equipe"
+        ],
+        "champs_ajoutes": [
+          "personne.equipe_id",
+          "coeur.type",
+          "personne.consentement_version_acceptee"
+        ],
+        "adr": "0007-limite-cloisonnement-multi-entreprises",
+        "sous_lots": [
+          "7.1",
+          "7.2",
+          "7.3",
+          "7.4"
+        ],
+        "carte_suivante_proposee": "22 (tests d'acceptation Lot 7)"
+      }
+    },
+    {
+      "carte": "22",
+      "nom": "Lot 7 — Tests d'acceptation (cœurs sociaux)",
+      "agent": "architecte",
+      "statut": "approuvee",
+      "veto_jusqu_au": "2026-09-16T09:30:00+00:00",
+      "approuvee_le": "2026-09-15T09:30:00+00:00",
+      "livrable": "docs/cartes/22-lot7-tests-acceptation.md (ce document), docs/test-plan.md mis à jour, tests rouges commités (CA-18 à CA-26), squelettes minimaux (src/domain/signal-pays.ts, src/domain/anti-abus.ts, src/domain/flux-anonymise.ts, src/domain/fond-ecran.ts, src/db/schema.ts mis à jour)",
+      "porte": "aucun test ne doit passer au vert dans ce loop : ce serait soit un code applicatif déjà écrit (interdit ici), soit un test qui ne teste rien",
+      "journal": "- **Décision** : 9 tests rouges écrits (un par CA-18 à CA-26), 4 squelettes minimaux\n  (`signal-pays.ts`, `anti-abus.ts`, `flux-anonymise.ts`, `fond-ecran.ts`),\n  `src/db/schema.ts` étendu (types `Pays`/`Entreprise`/`Equipe`, champs optionnels sur\n  `Personne`/`Coeur`), `docs/test-plan.md` complété. Les 46 tests existants restent\n  verts (vérifié par exécution).\n- **Options considérées** : simuler un comportement plausible mais incorrect (ex.\n  `signalPays` qui somme au lieu de prendre la médiane) plutôt que lever une erreur\n  explicite — écartée : plus proche d'un vrai TDD « on écrit le mauvais raccourci\n  d'abord », mais risque plus élevé d'introduire un bug qui ne serait pas celui prévu et\n  de brouiller la lecture du diff pour la vérification binaire ; l'erreur explicite est\n  plus sûre et tout aussi rouge.\n- **Qui a tranché** : le Stratège, après challenge du Contradicteur.\n- **Réversible** : oui, ce sont des tests et des types, aucun comportement de production.\n- **Ce qui ferait revenir dessus** : si le lot de code (Lot 7.1-7.4) découvre qu'un\n  squelette manque un cas non anticipé ici (ex. une personne dans plusieurs pays) — pas\n  observé dans les cartes précédentes, donc pas anticipé davantage ici.\n- **Veto possible jusqu'à** : 2026-09-16T09:30:00+00:00.",
+      "challenge": "**1 · Mineure · CA-20 et CA-26 sont des critères « négatifs » ou « de forme » — un peu\nartificiels comme tests unitaires. Est-ce un test valable ou un contournement pour cocher\nla case « un test par critère » ?** Un test qui vérifie une constante volontairement\nfausse ou un champ volontairement absent est réel (il échoue pour la bonne raison, il\npassera quand et seulement quand le lot de code aura fait le bon choix), mais mérite\nd'être signalé comme différent des tests de comportement (CA-18, CA-21…).\nAlternative : aucune, la nature « statique » de ces deux critères (déjà indiquée dans\n`docs/test-plan.md` comme colonne « Type ») rend ce test légitime, à la manière de\nCA-17 déjà dans le pilote (introspection des champs interdits).\nCe qui tranche : accepté tel quel, type « statique » déjà documenté dans le tableau\nci-dessus, cohérent avec le précédent CA-17.\n\n**Verdict : accepté sans réserve.**",
+      "reponses": "1. **Accepte.** Type « statique » explicite dans le tableau, cohérent avec CA-17.",
+      "a_trancher": [],
+      "veto_ouvert": true,
+      "metadata": {
+        "type": "tests-acceptation",
+        "nouveaux_tests": [
+          "test/signal-pays.test.ts",
+          "test/anti-abus.test.ts",
+          "test/flux-anonymise.test.ts",
+          "test/fond-ecran.test.ts",
+          "test/schema-lot7.test.ts"
+        ],
+        "nouveaux_squelettes": [
+          "src/domain/signal-pays.ts",
+          "src/domain/anti-abus.ts",
+          "src/domain/flux-anonymise.ts",
+          "src/domain/fond-ecran.ts"
+        ],
+        "criteres_couverts": [
+          "CA-18",
+          "CA-19",
+          "CA-20",
+          "CA-21",
+          "CA-22",
+          "CA-23",
+          "CA-24",
+          "CA-25",
+          "CA-26"
+        ],
+        "tests_existants_verts": 46,
+        "carte_suivante_proposee": "aucune — fin du loop plan-lot7, Lot 7 de code (7.1-7.4) à lancer séparément"
       }
     }
   ],
@@ -1133,6 +1282,39 @@
         "CA-17"
       ],
       "statut": "termine"
+    },
+    {
+      "titre": "Lot 7.1 — Modèle de données et signal pays/région",
+      "criteres": [
+        "CA-18",
+        "CA-19",
+        "CA-20",
+        "CA-26"
+      ],
+      "statut": "a_faire"
+    },
+    {
+      "titre": "Lot 7.2 — Envoi de cœurs et anti-abus",
+      "criteres": [
+        "CA-21",
+        "CA-22"
+      ],
+      "statut": "a_faire"
+    },
+    {
+      "titre": "Lot 7.3 — Flux anonymisé et consentement révisé",
+      "criteres": [
+        "CA-23",
+        "CA-24"
+      ],
+      "statut": "a_faire"
+    },
+    {
+      "titre": "Lot 7.4 — Fond d'écran et purge",
+      "criteres": [
+        "CA-25"
+      ],
+      "statut": "a_faire"
     }
   ],
   "criteres_ids": [
@@ -1176,6 +1358,15 @@
     "CA-17"
   ],
   "commits": [
+    "325fcb6 Fusion : Lot 7 (cœurs sociaux) — cadrage, design, spécification, architecture, tests",
+    "a1a01da loop lot-07 : mémoire de boucle et programme.md à jour, DoD atteinte",
+    "ef7b55d carte(22): approuvée — 9 tests rouges, un par CA-18 à CA-26 (Lot 7)",
+    "5a48fd1 carte(21): approuvée — modèle multi-entreprises, ADR-0007, Lot 7 (docs/lots.md)",
+    "5363fb6 carte(20): approuvée — spécification P9, révision P1, R7 amendée (Lot 7)",
+    "9acd478 carte(19): approuvée — design des écrans, cœurs sociaux (Lot 7)",
+    "a49b938 Nouveau launcher ralph-plan.sh : loop de plan sans bloquer docs/",
+    "5ffab5b Prompt de loop pour le programme B du Lot 7 (cœurs sociaux)",
+    "b2efe41 carte(18): approuvée — cadrage Lot 7, cœurs sociaux",
     "912d26a Rapport quotidien 2026-09-15 : 6 fenêtres de veto acquises, 18/18 verts",
     "65b231a Remplace les étoiles par des cœurs, restaure le caractère signage",
     "e78f42e Vraie mise en page desktop : utilise la largeur de l'écran",
@@ -1186,15 +1377,6 @@
     "c46acd8 ADR-0006 : PWA remplace Telegram comme canal (carte 18 à venir)",
     "f42fc2b Webhook Telegram enregistré, consentement vérifié en conditions réelles",
     "b5e7fea Fix : le webhook répond toujours 200, jamais un crash",
-    "aa9f99d Lot 6 : câblage réel grammY, webhook Vercel, jobs planifiés (carte 17)",
-    "f4eb3f9 Projet Vercel créé et lié au dépôt via l'API (token fondateur)",
-    "b4674c6 Clé Supabase service_role vérifiée de bout en bout contre domelo-dev",
-    "d97fe89 Bot Telegram créé et vérifié (@Coeursportbot)",
-    "03a0e5c Lot 6 : couche de données réelle (Repository, SupabaseRepository, EU)",
-    "ecdb68d etat: régénéré [skip ci]",
-    "be8a744 Rotation de phrases motivantes pour le rappel du lundi (CA-13)",
-    "2c58852 etat: régénéré [skip ci]",
-    "fbf89bc Résumé quotidien des cœurs + mécanisme de style de message (CA-09bis)",
-    "5c7bd37 etat: régénéré [skip ci]"
+    "aa9f99d Lot 6 : câblage réel grammY, webhook Vercel, jobs planifiés (carte 17)"
   ]
 }
